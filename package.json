@@ -1,0 +1,22 @@
+{
+  "name": "sab-database",
+  "version": "1.0.0",
+  "description": "Scheduling Application for Biometric database and API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MTS-STM/SAB-DataBase.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MTS-STM/SAB-DataBase/issues"
+  },
+  "homepage": "https://github.com/MTS-STM/SAB-DataBase#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
