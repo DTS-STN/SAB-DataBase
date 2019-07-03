@@ -1,0 +1,5 @@
+node_modules/
+data/*
+
+# dotenv files for testing local variables
+.env
