@@ -17,13 +17,16 @@ mongoose.connection
     console.log('Connection error:;, error');
   });
 
+// Parser for request handlers
 app.use(bodyParser.json());
-//see the request on console
+
+// See the request on console
 app.use((req, res, next) => {
   console.log(`${new Date().toString()} => ${req.originalUrl}`, req.body);
   next(); // breaks the pipeline request
 });
 
+// Routes or route modules for the app to use
 app.use(customerRoute);
 
 //handler for 404 - resources not found
@@ -37,6 +40,7 @@ app.use((err, req, res, next) => {
   res.sendFile(path.join(__dirname, '../public/500.html'));
 });
 
+// Server port
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => console.info(`Server has started on ${PORT}`));
