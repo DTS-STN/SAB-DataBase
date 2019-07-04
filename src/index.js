@@ -4,6 +4,7 @@ import express from 'express';
 import customerRoute from './routes/customer';
 import path from 'path';
 import bodyParser from 'body-parser';
+require('dotenv').config();
 
 let app = express();
 mongoose.connect('mongodb://localhost/27017');
