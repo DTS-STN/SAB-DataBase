@@ -10,10 +10,10 @@ let app = express();
 mongoose.connect('mongodb://localhost/27017');
 
 mongoose.connection
-  .once('open', function() {
+  .once('open', () => {
     console.log('connection has been made');
   })
-  .on('error', function(error) {
+  .on('error', error => {
     console.log('Connection error:;, error');
   });
 
