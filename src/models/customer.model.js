@@ -1,14 +1,4 @@
-let mongoose = require("mongoose");
-
-mongoose.connect("mongodb://localhost/3001");
-
-mongoose.connection
-  .once("open", function() {
-    console.log("connection has been made");
-  })
-  .on("error", function(error) {
-    console.log("Connection error:;, error");
-  });
+let mongoose = require('mongoose');
 
 let CustomerSchema = new mongoose.Schema({
   name: String,
@@ -20,4 +10,4 @@ let CustomerSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Customer", CustomerSchema);
+module.exports = mongoose.model('Customer', CustomerSchema);

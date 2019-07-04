@@ -1,11 +1,20 @@
-let express = require('express');
+import mongoose from 'mongoose';
+
+import express from 'express';
+import customerRoute from './routes/customer';
+import path from 'path';
+import bodyParser from 'body-parser';
+
 let app = express();
-let personRoute = require('./routes/person');
-let customerRoute = require('./routes/customer');
-let path = require('path');
-let bodyParser = require('body-parser');
+mongoose.connect('mongodb://localhost/27017');
 
-
+mongoose.connection
+  .once('open', function() {
+    console.log('connection has been made');
+  })
+  .on('error', function(error) {
+    console.log('Connection error:;, error');
+  });
 
 app.use(bodyParser.json());
 //see the request on console
@@ -14,9 +23,7 @@ app.use((req, res, next) => {
   next(); // breaks the pipeline request
 });
 
-app.use(personRoute);
 app.use(customerRoute);
-app.use(express.static('public'));
 
 //handler for 404 - resources not found
 app.use((req, res, next) => {
