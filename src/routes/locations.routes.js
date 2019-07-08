@@ -27,13 +27,19 @@ router.get('/locations/:id', (req, res) => {
 });
 
 // Update a Location
-router.put('/locations/:id', (req, res) => {
+router.put('/locations/update/:id', (req, res) => {
   const locationId = req.params.id;
-  LocationsModel.findByIdAndUpdate(locationId, (err, updatedLocationDoc) => {
+  const newLocationData = req.body;
+  if (newLocationData === null || newLocationData === undefined) {
+    res
+      .sendStatus(403)
+      .send({ error: 'No location information in body of request.' });
+  }
+  LocationsModel.findByIdAndUpdate(locationId, newLocationData, err => {
     if (err) {
-      res.sendStatus(403).send({ error: 'Could not update location' });
+      res.status(403).send({ error: JSON.stringify(err) });
     } else {
-      res.statusCode(200).send(updatedLocationDoc);
+      res.status(200).send(newLocationData);
     }
   });
 });
