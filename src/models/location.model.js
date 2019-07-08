@@ -1,4 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
+import BioKitModel from './biokits.model';
+
+const BioKitSchema = BioKitModel.schema;
 
 const LocationSchema = new Schema({
   locationId: String,
@@ -17,12 +20,4 @@ const LocationSchema = new Schema({
   bioKit: [BioKitSchema]
 });
 
-const BioKitSchema = new Schema({
-  bioKitId: String,
-  timeSlots: [
-    {
-      time: String,
-      closed: Boolean
-    }
-  ]
-});
+export default mongoose.model('Locations', LocationSchema);

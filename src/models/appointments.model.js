@@ -12,3 +12,5 @@ const AppointmentSchema = new Schema({
   cancelledByClient: Boolean,
   cancelledByLocation: Boolean
 });
+
+export default mongoose.model('Appointments', AppointmentSchema);

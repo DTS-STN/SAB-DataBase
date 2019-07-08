@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import express from 'express';
-import customerRoute from './routes/customer.routes';
+import locationsRoutes from './routes/locations.routes';
 import path from 'path';
 import bodyParser from 'body-parser';
 require('dotenv').config();
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 });
 
 // Routes or route modules for the app to use
-app.use(customerRoute);
+app.use(locationsRoutes);
 
 //handler for 404 - resources not found
 app.use((req, res, next) => {
