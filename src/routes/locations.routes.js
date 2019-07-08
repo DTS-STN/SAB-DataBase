@@ -37,7 +37,7 @@ router.put('/locations/update/:id', (req, res) => {
   }
   LocationsModel.findByIdAndUpdate(locationId, newLocationData, err => {
     if (err) {
-      res.status(403).send({ error: JSON.stringify(err) });
+      res.status(403).send({ error: err });
     } else {
       res.status(200).send(newLocationData);
     }
