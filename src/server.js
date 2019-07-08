@@ -20,13 +20,15 @@ mongoose.connection
     console.log('Connection error:;, error');
   });
 
+// Helmet options
+if (process.env.NODE_ENV === 'production') {
+  app.use(helmet());
+  app.use(hidePoweredBy());
+  app.use(nosniff());
+}
+
 // Parser for request handlers
 app.use(bodyParser.json());
-
-// Helmet options
-app.use(helmet());
-app.use(hidePoweredBy());
-app.use(nosniff());
 
 // See the request on console
 app.use((req, res, next) => {
