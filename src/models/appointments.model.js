@@ -1,11 +1,17 @@
 import { Schema } from 'mongoose';
 
 const AppointmentSchema = new Schema({
-  appointmentId: String,
+  appointmentId: {
+    type: String,
+    unique: true
+  },
   clientEmail: String,
   locationId: String,
   bioKitId: String,
-  cic: String,
+  cic: {
+    type: String,
+    unique: false
+  },
   date: Date,
   timeSlot: String,
   dateSubmitted: String,
