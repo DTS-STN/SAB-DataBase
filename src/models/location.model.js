@@ -20,7 +20,7 @@ const LocationSchema = new Schema({
       type: String
     }
   ],
-  bioKit: [BioKitSchema]
+  bioKits: [BioKitSchema]
 });
 
 export default mongoose.model('Locations', LocationSchema);
