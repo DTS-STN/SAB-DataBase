@@ -20,7 +20,7 @@ mongoose.connection
     console.log('Connection error:;, error');
   });
 
-// Helmet options
+// Helmet options for production environment
 if (process.env.NODE_ENV === 'production') {
   app.use(helmet());
   app.use(hidePoweredBy());
