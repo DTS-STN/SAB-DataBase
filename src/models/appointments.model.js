@@ -4,7 +4,7 @@ const AppointmentSchema = new Schema({
   appointmentId: String,
   clientEmail: String,
   locationId: String,
-  stationId: String,
+  bioKitId: String,
   cic: String,
   date: Date,
   timeSlot: String,
