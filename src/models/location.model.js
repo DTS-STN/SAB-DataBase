@@ -18,7 +18,7 @@ const LocationSchema = new Schema({
 });
 
 const BioKitSchema = new Schema({
-  stationId: String,
+  bioKitId: String,
   timeSlots: [
     {
       time: String,
