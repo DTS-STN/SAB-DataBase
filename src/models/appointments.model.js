@@ -1,7 +1,10 @@
-import { Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const AppointmentSchema = new Schema({
-  appointmentId: String,
+  appointmentId: {
+    type: String,
+    unique: true
+  },
   clientEmail: String,
   locationId: String,
   bioKitId: String,
@@ -12,3 +15,5 @@ const AppointmentSchema = new Schema({
   cancelledByClient: Boolean,
   cancelledByLocation: Boolean
 });
+
+export default mongoose.model('Appointments', AppointmentSchema);

@@ -1,13 +1,14 @@
 import mongoose from 'mongoose';
 
 import express from 'express';
-import customerRoute from './routes/customer.routes';
+import locationsRoutes from './routes/locations.routes';
+import appointmentsRoutes from './routes/appointments.routes';
 import path from 'path';
 import bodyParser from 'body-parser';
 require('dotenv').config();
 
 let app = express();
-mongoose.connect('mongodb://localhost/27017');
+mongoose.connect('mongodb://localhost/sabdb');
 
 mongoose.connection
   .once('open', () => {
@@ -27,7 +28,8 @@ app.use((req, res, next) => {
 });
 
 // Routes or route modules for the app to use
-app.use(customerRoute);
+app.use(locationsRoutes);
+app.use(appointmentsRoutes);
 
 //handler for 404 - resources not found
 app.use((req, res, next) => {
