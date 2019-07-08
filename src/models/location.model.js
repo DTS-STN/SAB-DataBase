@@ -1,0 +1,28 @@
+import mongoose, { Schema } from 'mongoose';
+
+const LocationSchema = new Schema({
+  locationId: String,
+  locationAddress: String,
+  locationCity: String,
+  locationRegion: String,
+  locationRegionFr: String,
+  postalCode: String,
+  accomodations: Boolean,
+  hours: String,
+  closures: [
+    {
+      type: String
+    }
+  ],
+  bioKit: [BioKitSchema]
+});
+
+const BioKitSchema = new Schema({
+  bioKitId: String,
+  timeSlots: [
+    {
+      time: String,
+      closed: Boolean
+    }
+  ]
+});
