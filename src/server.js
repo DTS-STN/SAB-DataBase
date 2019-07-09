@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
-
+import helmet from 'helmet';
+import hidePoweredBy from 'hide-powered-by';
+import nosniff from 'dont-sniff-mimetype';
 import express from 'express';
 import locationsRoutes from './routes/locations.routes';
 import appointmentsRoutes from './routes/appointments.routes';
@@ -17,6 +19,13 @@ mongoose.connection
   .on('error', error => {
     console.log('Connection error:;, error');
   });
+
+// Helmet options for production environment
+if (process.env.NODE_ENV === 'production') {
+  app.use(helmet());
+  app.use(hidePoweredBy());
+  app.use(nosniff());
+}
 
 // Parser for request handlers
 app.use(bodyParser.json());
