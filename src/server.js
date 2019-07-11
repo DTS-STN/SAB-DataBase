@@ -10,7 +10,7 @@ import bodyParser from 'body-parser';
 require('dotenv').config();
 
 let app = express();
-mongoose.connect('mongodb://localhost/sabdb');
+mongoose.connect(process.env.CONNECTION_STRING);
 
 mongoose.connection
   .once('open', () => {
