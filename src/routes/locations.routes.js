@@ -55,4 +55,24 @@ router.put('/locations/update/:id', (req, res) => {
   });
 });
 
+// @route   POST api/locations
+// @desc    Create an Location
+// @access  Public for now
+router.post('/locations', (req, res) => {
+  const newLocation = new LocationsModel({
+    locationId: req.body.locationId,
+    locationAddress: req.body.locationAddress,
+    locationCity: req.body.locationCity,
+    locationRegion: req.body.locationRegion,
+    locationRegionFr: req.body.locationRegionFr,
+    postalCode: req.body.postalCode,
+    accomodations: req.body.accomodations,
+    hours: req.body.hours,
+    //closures: req.body.closures[],
+    //bioKits: req.body.bioKits[]
+  });
+ 
+  newLocation.save().then(local => res.json(local));
+ });
+ 
 export default router;
