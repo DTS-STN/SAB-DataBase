@@ -17,7 +17,7 @@ mongoose.connection
     console.log('connection has been made');
   })
   .on('error', error => {
-    console.log('Connection error:;, error');
+    console.log(`Connection error: ${error}`);
   });
 
 // Helmet options for production environment
