@@ -10,7 +10,7 @@ import bodyParser from 'body-parser';
 require('dotenv').config();
 
 let app = express();
-mongoose.connect('mongodb://localhost/sabdb');
+mongoose.connect(process.env.CONNECTION_STRING);
 
 mongoose.connection
   .once('open', () => {
@@ -52,6 +52,6 @@ app.use((err, req, res, next) => {
 });
 
 // Server port
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4001;
 
 app.listen(PORT, () => console.info(`Server has started on ${PORT}`));
