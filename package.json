@@ -4,8 +4,9 @@
   "description": "Scheduling Application for Biometric database and API",
   "main": "server.js",
   "scripts": {
+    "build": "babel src -d build",
     "dev": "nodemon --exec babel-node src/server.js",
-    "start": "babel-node src/server.js",
+    "start": "npm run build && node build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,13 +26,14 @@
     "helmet": "^3.18.0",
     "moment": "^2.24.0",
     "mongodb": "^3.2.7",
-    "mongoose": "^5.6.3",
-    "@babel/node": "^7.4.5"
+    "mongoose": "^5.6.3"
   },
   "devDependencies": {
+    "@babel/node": "^7.4.5",
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
     "nodemon": "^1.19.1",
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
     "prettier": "^1.18.2"
   }
 }
