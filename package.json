@@ -19,6 +19,10 @@
     "url": "https://github.com/MTS-STM/SAB-DataBase/issues"
   },
   "homepage": "https://github.com/MTS-STM/SAB-DataBase#readme",
+  "resolutions": {
+    "mixin-deep": ">=2.0.1",
+    "set-value": ">=3.0.1"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "dotenv": "^8.0.0",
