@@ -3,8 +3,6 @@ import BioKitModel from './biokits.model';
 
 const BioKitSchema = BioKitModel.schema;
 
-const DateRangeSchema = new Schema({ periodStart: Date, periodEnd: Date });
-
 const LocationSchema = new Schema({
   locationId: {
     type: String,
@@ -16,10 +14,12 @@ const LocationSchema = new Schema({
   postalCode: String,
   accomodations: Boolean,
   hours: String,
-  closures: {
-    type: [DateRangeSchema],
-    default: undefined
-  },
+  closures: [
+    {
+      periodStart: Date,
+      periodEnd: Date
+    }
+  ],
   bioKits: {
     type: [BioKitSchema],
     default: undefined
