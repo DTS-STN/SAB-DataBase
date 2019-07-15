@@ -1,6 +1,6 @@
 node_modules/
-data/*
-build/*
+data/
+build/
 
 # dotenv files for testing local variables
 .env
