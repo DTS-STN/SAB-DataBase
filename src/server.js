@@ -33,16 +33,18 @@ if (process.env.NODE_ENV === 'production') {
 app.use(bodyParser.json());
 
 // Logging for request details
-app.use(morgan('combined'));
+process.env.NODE_ENV === 'development'
+  ? app.use(morgan('dev'))
+  : app.use(morgan('combined'));
 
 // Enable CORS for all requests
 app.use(cors());
 
 // See the request on console
-app.use((req, res, next) => {
-  console.log(`${new Date().toString()} => ${req.originalUrl}`, req.body);
-  next(); // breaks the pipeline request
-});
+// app.use((req, res, next) => {
+//   console.log(`${new Date().toString()} => ${req.originalUrl}`, req.body);
+//   next(); // breaks the pipeline request
+// });
 
 // Routes or route modules for the app to use
 app.use(locationsRoutes);
