@@ -40,12 +40,6 @@ process.env.NODE_ENV === 'development'
 // Enable CORS for all requests
 app.use(cors());
 
-// See the request on console
-// app.use((req, res, next) => {
-//   console.log(`${new Date().toString()} => ${req.originalUrl}`, req.body);
-//   next(); // breaks the pipeline request
-// });
-
 // Routes or route modules for the app to use
 app.use(locationsRoutes);
 app.use(appointmentsRoutes);
