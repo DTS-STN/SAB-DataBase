@@ -4,6 +4,7 @@ import hidePoweredBy from 'hide-powered-by';
 import nosniff from 'dont-sniff-mimetype';
 import express from 'express';
 import cors from 'cors';
+import morgan from 'morgan';
 import locationsRoutes from './routes/locations.routes';
 import appointmentsRoutes from './routes/appointments.routes';
 import path from 'path';
@@ -30,6 +31,9 @@ if (process.env.NODE_ENV === 'production') {
 
 // Parser for request handlers
 app.use(bodyParser.json());
+
+// Logging for request details
+app.use(morgan('combined'));
 
 // Enable CORS for all requests
 app.use(cors());
