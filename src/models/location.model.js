@@ -13,7 +13,6 @@ const LocationSchema = new Schema({
   locationAddress: String,
   locationCity: String,
   locationRegion: String,
-  locationRegionFr: String,
   postalCode: String,
   accomodations: Boolean,
   hours: String,

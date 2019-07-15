@@ -11,7 +11,7 @@ const AppointmentSchema = new Schema({
   cic: String,
   date: Date,
   timeSlot: String,
-  dateSubmitted: String,
+  dateSubmitted: Date,
   cancelledByClient: Boolean,
   cancelledByLocation: Boolean
 });
