@@ -26,9 +26,6 @@ router.post('/appointments', (req, res) => {
   if (!req.body) {
     return res.status(400).send('Request body is missing');
   }
-
-  if (!req.body.appointmentId) {
-  }
   //json format to test on postman and issomonia
   // {
   //     "locationId" : "hello1234",

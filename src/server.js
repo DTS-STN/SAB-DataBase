@@ -45,12 +45,12 @@ app.use(locationsRoutes);
 app.use(appointmentsRoutes);
 
 //handler for 404 - resources not found
-app.use((req, res, next) => {
+app.use((req, res) => {
   res.status(404).send('we think you are lost');
 });
 
 // Handler for Error 500
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(err.stack);
   res.sendFile(path.join(__dirname, '../public/500.html'));
 });
