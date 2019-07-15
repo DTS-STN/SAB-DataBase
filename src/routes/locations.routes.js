@@ -32,6 +32,46 @@ router.get('/locations/:id', (req, res) => {
   });
 });
 
+
+// @route   GET api/locations
+// @desc    Find all locations by Province
+// @access  Private
+router.get('/locationsbyprov/:id', (req, res) => {
+  const provinceId = req.params.id;
+  LocationsModel.find({locationProvinceId : provinceId }, (err, locationDoc) => {
+    if (err) {
+      res.status(403).send({ error: err, message: 'Could not get the location by Province' });
+    } else {
+      res
+        .status(200)
+        .type('application/json')
+        .send(locationDoc);
+    }
+  });
+});
+
+
+// @route   POST api/locations
+// @desc    Create an Location
+// @access  Public for now
+router.post('/locations', (req, res) => {
+  const newLocation = new LocationsModel({
+    locationId: req.body.locationId,
+    locationAddress: req.body.locationAddress,
+    locationCity: req.body.locationCity,
+    locationRegion: req.body.locationRegion,
+    locationRegionFr: req.body.locationRegionFr,
+    postalCode: req.body.postalCode,
+    accomodations: req.body.accomodations,
+    hours: req.body.hours,
+    //closures: req.body.closures[],
+    //bioKits: req.body.bioKits[]
+  });
+ 
+  newLocation.save().then(local => res.json(local));
+ });
+ 
+
 // Update a Location
 router.put('/locations/update/:id', (req, res) => {
   const locationId = req.params.id;
