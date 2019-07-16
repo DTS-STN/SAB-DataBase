@@ -1,17 +1,44 @@
 import AppointmentsModel from '../models/appointments.model';
+import moment from 'moment';
 import express from 'express';
 
 let router = express.Router();
 
-// GET an appointment with it's BIL field
-/*
-TODO: Add in the query a check that the returned appointment must be a current
-appointment, and not from the past? Users will have multiple appointments that will fit the 
-current query otherwise
- */
+// GET a current (not in the past) appointment with it's BIL field
 router.get('/appointments/:bil', (req, res) => {
+  let now = moment().format();
   AppointmentsModel.findOne({
     bil: req.params.bil,
+    date: {
+      $gte: now
+    },
+    cancelledByClient: false,
+    cancelledByLocation: false
+  })
+    .then(doc => {
+      res.json(doc);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// GET appointments for a month date range for a specific location that have not been cancelled
+router.get('/appointments/:locationId/:month', (req, res) => {
+  let startDate = moment()
+    .month(req.params.month)
+    .startOf('month')
+    .format();
+  let endDate = moment()
+    .month(req.params.month)
+    .endOf('month')
+    .format();
+  AppointmentsModel.find({
+    locationId: req.params.locationId,
+    date: {
+      $gte: startDate,
+      $lte: endDate
+    },
     cancelledByClient: false,
     cancelledByLocation: false
   })
