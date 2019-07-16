@@ -7,7 +7,6 @@ let router = express.Router();
 // GET a current (not in the past) appointment with it's BIL field
 router.get('/appointments/:bil', (req, res) => {
   let now = moment().toDate();
-  console.log(now);
   AppointmentsModel.findOne({
     bil: req.params.bil,
     date: {
