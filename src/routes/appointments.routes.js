@@ -27,11 +27,11 @@ router.get('/appointments/:locationId/:month', (req, res) => {
   let startDate = moment()
     .month(req.params.month)
     .startOf('month')
-    .format();
+    .toDate();
   let endDate = moment()
     .month(req.params.month)
     .endOf('month')
-    .format();
+    .toDate();
   AppointmentsModel.find({
     locationId: req.params.locationId,
     date: {
