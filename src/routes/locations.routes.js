@@ -38,7 +38,7 @@ router.get('/locations/:id', (req, res) => {
 // @access  Public for now
 router.get('/locationsbyprov/:id', (req, res) => {
   const provinceId = req.params.id;
-  LocationsModel.find({locationProvince : provinceId }, (err, locationDoc) => {
+  LocationsModel.find({locationProvinceId : provinceId }, (err, locationDoc) => {
     if (err) {
       res.status(403).send({ error: err, message: 'Could not get location' });
     } else {
