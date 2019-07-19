@@ -3,33 +3,41 @@ import express from 'express';
 
 let router = express.Router();
 
+const couldNotGetLocation = {
+  code: 403,
+  msg: 'Could not get location'
+};
+
+const internalServerError = {
+  code: 500,
+  msg: 'Internal server error'
+};
+
 // Get All Locations
 router.get('/locations', (req, res) => {
-  LocationsModel.find((err, locations) => {
-    if (err) {
-      res.status(500).send({ error: err, message: 'Internal server error' });
-    } else {
-      res
-        .status(200)
-        .type('application/json')
-        .send(locations);
-    }
-  });
+  LocationsModel.find((err, locations) =>
+    respondToFind(res, err, internalServerError, locations)
+  );
 });
+
+// Deal with the results of a database query
+function respondToFind(res, err, errmsg, object) {
+  if (err) {
+    res.status(errmsg.code).send({ error: err, message: errmsg.msg });
+  } else {
+    res
+      .status(200)
+      .type('application/json')
+      .send(object);
+  }
+}
 
 // Get One Location
 router.get('/locations/:id', (req, res) => {
   const locationId = req.params.id;
-  LocationsModel.findById(locationId, (err, locationDoc) => {
-    if (err) {
-      res.status(403).send({ error: err, message: 'Could not get location' });
-    } else {
-      res
-        .status(200)
-        .type('application/json')
-        .send(locationDoc);
-    }
-  });
+  LocationsModel.findById(locationId, (err, locationDoc) =>
+    respondToFind(res, err, couldNotGetLocation, locationDoc)
+  );
 });
 
 // @route   GET api/locations
@@ -37,18 +45,8 @@ router.get('/locations/:id', (req, res) => {
 // @access  Public for now
 router.get('/locationsbyprov/:id', (req, res) => {
   const provinceId = req.params.id;
-  LocationsModel.find(
-    { locationProvinceId: provinceId },
-    (err, locationDoc) => {
-      if (err) {
-        res.status(403).send({ error: err, message: 'Could not get location' });
-      } else {
-        res
-          .status(200)
-          .type('application/json')
-          .send(locationDoc);
-      }
-    }
+  LocationsModel.find({ locationProvinceId: provinceId }, (err, locationDoc) =>
+    respondToFind(res, err, couldNotGetLocation, locationDoc)
   );
 });
 
