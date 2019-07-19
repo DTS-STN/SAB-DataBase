@@ -26,7 +26,10 @@ steps:
 
 - script: npm run codeclimate:analyze
   displayName: 'Analyze Code Quality and Check Licenses'
-  
+ 
+# XXX: Currently runs a demo load test
+# TODO: Start the server
+# TODO: Run tests against api endpoints
 - script: npm run test:load
   displayName: 'Run Load Tests'
 
