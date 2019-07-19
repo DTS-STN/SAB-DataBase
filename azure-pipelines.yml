@@ -15,11 +15,16 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- script: npm install
+- script: |
+    npm install
+    npm run install:codeclimate
   displayName: 'install dependencies'
 
 - script: npm run lint
   displayName: lint
+
+- script: npm run codeclimate:analyze
+  displayName: 'Analyze Code Quality and Check Licenses'
 
 - script: npm run build
   displayName: 'build'

@@ -8,8 +8,9 @@
     "dev": "nodemon --exec babel-node src/server.js",
     "start": "npm run build && node build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
-  },
+    "lint": "eslint .",
+    "install:codeclimate": "docker pull codeclimate/codeclimate",
+    "codeclimate:analyze": "docker run  --interactive --tty --rm  --env CODECLIMATE_CODE=\"$PWD\"  --volume \"$PWD\":/code  --volume /var/run/docker.sock:/var/run/docker.sock  --volume /tmp/cc:/tmp/cc  codeclimate/codeclimate analyze" },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MTS-STM/SAB-DataBase.git"
