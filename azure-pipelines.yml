@@ -22,15 +22,18 @@ steps:
   displayName: 'install dependencies'
 
 - script: npm run lint
+  condition: always()
   displayName: lint
 
 - script: npm run codeclimate:analyze
+  condition: always()
   displayName: 'Analyze Code Quality and Check Licenses'
  
 # XXX: Currently runs a demo load test
 # TODO: Start the server
 # TODO: Run tests against api endpoints
 - script: npm run test:load
+  condition: always()
   displayName: 'Run Load Tests'
 
 - script: npm run build
