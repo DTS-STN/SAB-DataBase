@@ -8,7 +8,12 @@
     "dev": "nodemon --exec babel-node src/server.js",
     "start": "npm run build && node build/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "install:codeclimate": "docker pull codeclimate/codeclimate",
+    "install:k6": "docker pull loadimpact/k6",
+    "codeclimate:analyze": "docker run --tty --rm  --env CODECLIMATE_CODE=\"$PWD\"  --volume \"$PWD\":/code  --volume /var/run/docker.sock:/var/run/docker.sock  --volume /tmp/cc:/tmp/cc  codeclimate/codeclimate analyze",
+    "test:load": "docker run -i loadimpact/k6 run - <./tests/load/script.js",
+    "fullcheck": "npm run lint && npm run codeclimate:analyze"
   },
   "repository": {
     "type": "git",
@@ -47,6 +52,8 @@
     "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.5.4",
     "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-security": "^1.4.0",
     "husky": "^3.0.0",
     "nodemon": "^1.19.1",
