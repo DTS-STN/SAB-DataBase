@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "install:codeclimate": "docker pull codeclimate/codeclimate",
     "install:k6": "docker pull loadimpact/k6",
-    "codeclimate:analyze": "docker run  --interactive --tty --rm  --env CODECLIMATE_CODE=\"$PWD\"  --volume \"$PWD\":/code  --volume /var/run/docker.sock:/var/run/docker.sock  --volume /tmp/cc:/tmp/cc  codeclimate/codeclimate analyze",
+    "codeclimate:analyze": "docker run --tty --rm  --env CODECLIMATE_CODE=\"$PWD\"  --volume \"$PWD\":/code  --volume /var/run/docker.sock:/var/run/docker.sock  --volume /tmp/cc:/tmp/cc  codeclimate/codeclimate analyze",
     "test:load": "docker run -i loadimpact/k6 run - <./tests/load/script.js",
     "fullcheck": "npm run lint && npm run codeclimate:analyze"
   },
