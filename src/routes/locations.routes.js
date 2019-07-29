@@ -47,9 +47,17 @@ router.get('/locationsByProv/:id/:city?', (req, res) => {
   const provinceId = req.params.id;
   const cityName = req.params.city;
   if (!cityName) {
-    LocationsModel.find().distinct(
-      'locationCity',
-      { locationProvince: provinceId },
+    LocationsModel.aggregate(
+      [
+        { $match: { locationProvince: provinceId } },
+        {
+          $group: {
+            _id: '$locationCity',
+            locationCity: { $first: '$locationCity' }
+          }
+        },
+        { $sort: { locationCity: -1 } }
+      ],
       (err, locationDoc) =>
         respondToFind(res, err, couldNotGetLocation, locationDoc)
     );
