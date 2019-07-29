@@ -40,17 +40,29 @@ router.get('/locations/:id', (req, res) => {
   );
 });
 
-// @route   GET api/locations
-// @desc    Find all locations by Province
+// @route   GET /locationsbyProv/id/city
+// @desc    Find all locations by Province, where City is an optional parameter
 // @access  Public for now
-router.get('/locationsbyprov/:id', (req, res) => {
+router.get('/locationsByProv/:id/:city?', (req, res) => {
   const provinceId = req.params.id;
-  LocationsModel.find({ locationProvinceId: provinceId }, (err, locationDoc) =>
-    respondToFind(res, err, couldNotGetLocation, locationDoc)
-  );
+  const cityName = req.params.city;
+  if (!cityName) {
+    LocationsModel.find().distinct(
+      'locationCity',
+      { locationProvince: provinceId },
+      (err, locationDoc) =>
+        respondToFind(res, err, couldNotGetLocation, locationDoc)
+    );
+  } else {
+    LocationsModel.find(
+      { locationProvince: provinceId, locationCity: cityName },
+      (err, locationDoc) =>
+        respondToFind(res, err, couldNotGetLocation, locationDoc)
+    );
+  }
 });
 
-// @route   POST api/locations
+// @route   POST /locations
 // @desc    Create an Office Location
 // @access  Public for now
 router.post('/locations', (req, res) => {
