@@ -12,7 +12,8 @@ import bodyParser from 'body-parser';
 require('dotenv').config();
 
 let app = express();
-mongoose.connect(process.env.CONNECTION_STRING);
+mongoose.connect(process.env.CONNECTION_STRING, { useNewUrlParser: true });
+mongoose.set('useCreateIndex', true);
 
 mongoose.connection
   .once('open', () => {
