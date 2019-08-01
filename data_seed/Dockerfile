@@ -1,14 +1,18 @@
 FROM pkosiec/mongo-seeding:latest
 
-#
-# Copy sample data
-#
-
-COPY ./data_seed_db/data /import-data
+WORKDIR /sample-data/
 
 #
-# Copy dependencies
+# Copy sample data and helpers and dependencies
 #
+
+COPY . /sample-data/
+
+#
+# Install dependencies
+#
+
+RUN rm -rf node_modules && npm install
 
 #
 # Set environmental variables (optional)
@@ -20,8 +24,9 @@ ENV DB_PORT 27017
 ENV DROP_DATABASE true
 ENV REPLACE_ID true
 
+
 #
 # Set default workspace to not specify it every time the image is ran
 #
 
-WORKDIR /import-data
+WORKDIR /sample-data/data
