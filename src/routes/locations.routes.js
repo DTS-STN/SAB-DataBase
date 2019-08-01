@@ -21,9 +21,9 @@ router.get('/locations', (req, res) => {
 });
 
 // Deal with the results of a database query
-function respondToFind(res, err, errmsg, object) {
+function respondToFind(res, err, errMsg, object) {
   if (err) {
-    res.status(errmsg.code).send({ error: err, message: errmsg.msg });
+    res.status(errMsg.code).send({ error: err, message: errMsg.msg });
   } else {
     res
       .status(200)
@@ -40,7 +40,7 @@ router.get('/locations/:id', (req, res) => {
   );
 });
 
-// @route   GET /locationsbyProv/id/city
+// @route   GET /locationsByProv/id/city
 // @desc    Find all locations by Province, where City is an optional parameter
 // @access  Public for now
 router.get('/locationsByProv/:id/:city?', (req, res) => {
