@@ -13,7 +13,9 @@
     "install:k6": "docker pull loadimpact/k6",
     "codeclimate:analyze": "docker run --tty --rm  --env CODECLIMATE_CODE=\"$PWD\"  --volume \"$PWD\":/code  --volume /var/run/docker.sock:/var/run/docker.sock  --volume /tmp/cc:/tmp/cc  codeclimate/codeclimate analyze",
     "test:load": "docker run -i loadimpact/k6 run - <./tests/load/script.js",
-    "fullcheck": "npm run lint && npm run codeclimate:analyze"
+    "fullcheck": "npm run lint && npm run codeclimate:analyze",
+    "install:mongoseeding": "docker pull pkosiec/mongo-seeding",
+    "mongoseeding:run": "docker run --rm --network=host -v /data_seed/data_seed_db/data:/data_seed/data_seed_db/data -w /data_seed/data_seed_db/data pkosiec/mongo-seeding"
   },
   "repository": {
     "type": "git",
