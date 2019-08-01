@@ -24,7 +24,9 @@ steps:
 - script: npm run lint
   condition: always()
   displayName: lint
-
+- script: npm run spellcheck
+  condition: always()
+  displayName: spellcheck
 - script: npm run codeclimate:analyze
   condition: always()
   displayName: 'Analyze Code Quality and Check Licenses'
