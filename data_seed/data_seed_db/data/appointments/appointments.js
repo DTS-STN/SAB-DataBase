@@ -1,5 +1,5 @@
 const { getObjectId } = require('../../helpers/index');
-const { moment } = require('moment');
+const moment = require('moment');
 
 const appointments = [
   {
@@ -7,7 +7,7 @@ const appointments = [
     appointmentId: 'abc123',
     locationId: 'SC-0001',
     bioKitId: 'asd123',
-    bil: 'abc123',
+    bil: 'aer123',
     date: moment()
       .startOf('week')
       .add(14, 'days')

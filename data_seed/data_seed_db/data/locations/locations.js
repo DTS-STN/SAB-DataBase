@@ -1,9 +1,9 @@
 const { getObjectId } = require('../../helpers/index');
-const { moment } = require('moment');
+const moment = require('moment');
 
 const locations = [
   {
-    id: getObjectId('location1'),
+    id: getObjectId('SC-0001'),
     locationId: 'SC-0001',
     locationAddress: 'Elgin 100 - City hall',
     locationCity: 'Ottawa',
@@ -63,7 +63,7 @@ const locations = [
     ]
   },
   {
-    id: getObjectId('location1'),
+    id: getObjectId('PC-0002'),
     locationId: 'PC-0002',
     locationAddress: '85 Meadowlands Dr E',
     locationCity: 'Ottawa',
