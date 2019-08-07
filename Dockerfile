@@ -1,5 +1,7 @@
 FROM node:8
 
+ENV CONNECTION_STRING=iwillbeupdatedautomatically
+
 WORKDIR /usr/src/app
 
 COPY package*.json ./
