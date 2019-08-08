@@ -13,7 +13,6 @@ const appointments = [
       .add(15, 'days')
       .hours(8)
       .toDate(),
-    timeSlot: '8:00',
     dateSubmitted: moment().toDate(),
     cancelledByClient: false,
     cancelledByLocation: false
