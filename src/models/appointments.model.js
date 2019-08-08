@@ -11,7 +11,6 @@ const AppointmentSchema = new Schema({
   bioKitId: String,
   bil: String,
   date: Date,
-  timeSlot: String,
   dateSubmitted: Date,
   maintenance: Boolean,
   cancelledByClient: Boolean,

@@ -5,14 +5,14 @@ const appointments = [
   {
     id: getObjectId('abc123'),
     appointmentId: 'abc123',
-    locationId: 'SC-0001',
+    locationId: '3747',
     bioKitId: 'asd123',
     bil: 'aer123',
     date: moment()
       .startOf('week')
-      .add(14, 'days')
+      .add(15, 'days')
+      .hours(8)
       .toDate(),
-    timeSlot: '8:00',
     dateSubmitted: moment().toDate(),
     cancelledByClient: false,
     cancelledByLocation: false
@@ -20,14 +20,15 @@ const appointments = [
   {
     id: getObjectId('huy668'),
     appointmentId: 'huy668',
-    locationId: 'SC-0001',
+    locationId: '3747',
     bioKitId: 'asd123',
     bil: 'ggg666',
     date: moment()
       .startOf('week')
-      .add(14, 'days')
+      .add(15, 'days')
+      .hours(8)
+      .minutes(15)
       .toDate(),
-    timeSlot: '8:15',
     dateSubmitted: moment().toDate(),
     cancelledByClient: false,
     cancelledByLocation: false
@@ -35,14 +36,15 @@ const appointments = [
   {
     id: getObjectId('ret688'),
     appointmentId: 'ret688',
-    locationId: 'SC-0001',
+    locationId: '3747',
     bioKitId: 'asd123',
     bil: 'gye429',
     date: moment()
       .startOf('week')
-      .add(14, 'days')
+      .add(15, 'days')
+      .hours(8)
+      .minutes(30)
       .toDate(),
-    timeSlot: '8:30',
     dateSubmitted: moment().toDate(),
     cancelledByClient: false,
     cancelledByLocation: false

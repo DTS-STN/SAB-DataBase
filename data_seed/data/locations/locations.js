@@ -3,11 +3,10 @@ const moment = require('moment');
 
 const locations = [
   {
-    id: getObjectId('SC-0001'),
-    locationId: 'SC-0001',
-    locationAddress: 'Elgin 100 - City hall',
+    id: getObjectId('3747'),
+    locationId: '3747',
+    locationAddress: 'Elgin 110 - Laurier Avenue West',
     locationCity: 'Ottawa',
-    locationProvinceId: '9',
     locationProvince: 'Ontario',
     locationProvinceFr: 'Ontario',
     hours: '8:00-16:00',
@@ -63,11 +62,10 @@ const locations = [
     ]
   },
   {
-    id: getObjectId('PC-0002'),
-    locationId: 'PC-0002',
-    locationAddress: '85 Meadowlands Dr E',
+    id: getObjectId('3745'),
+    locationId: '3745',
+    locationAddress: '2525 Carling Avenue E. Lincoln Fields Galleria, Floor 1',
     locationCity: 'Ottawa',
-    locationProvinceId: '9',
     locationProvince: 'Ontario',
     locationProvinceFr: 'Ontario',
     hours: '8:30-16:00',
@@ -105,6 +103,895 @@ const locations = [
       {
         id: getObjectId('kot409'),
         bioKitId: 'kot409',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('3552'),
+    locationId: '3552',
+    locationAddress: '8 Queen Street',
+    locationCity: 'Kapuskasing',
+    locationProvince: 'Ontario',
+    locationProvinceFr: 'Ontario',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('ter678'),
+        bioKitId: 'ter678',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('utr635'),
+        bioKitId: 'utr635',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('2879'),
+    locationId: '2879',
+    locationAddress:
+      '200 René-Lévesque Boulevard West Suite 034, Guy-Favreau Complex',
+    locationCity: 'Montreal',
+    locationProvince: 'Quebec',
+    locationProvinceFr: 'Québec',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('tgo897'),
+        bioKitId: 'tgo897',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('jyu762'),
+        bioKitId: 'jyu762',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('2504'),
+    locationId: '2504',
+    locationAddress:
+      'Du Littoral Complex, Suite 101 2500 Montmorency Boulevard',
+    locationCity: 'Quebec City',
+    locationProvince: 'Quebec',
+    locationProvinceFr: 'Québec',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('gdf789'),
+        bioKitId: 'gdf789',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('lop645'),
+        bioKitId: 'lop645',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('4754'),
+    locationId: '4753',
+    locationAddress: 'Canada Place, Floor Main 9700 Jasper Avenue',
+    locationCity: 'Edmonton',
+    locationProvince: 'Alberta',
+    locationProvinceFr: 'Alberta',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('asr713'),
+        bioKitId: 'asr713',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('ity908'),
+        bioKitId: 'ity908',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('4802'),
+    locationId: '4802',
+    locationAddress: 'Harry Hays Building, Suite 150 220 4th Avenue Southeast',
+    locationCity: 'Calgary',
+    locationProvince: 'Alberta',
+    locationProvinceFr: 'Alberta',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('hyo907'),
+        bioKitId: 'hyo907',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('iut701'),
+        bioKitId: 'iut701',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('4123'),
+    locationId: '4802',
+    locationAddress:
+      'Portage Place Mall, Floor Ground, Unit 122 393 Portage Avenue',
+    locationCity: 'Winnipeg',
+    locationProvince: 'Manitoba',
+    locationProvinceFr: 'Manitoba',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('hty725'),
+        bioKitId: 'hty725',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('jku491'),
+        bioKitId: 'jku491',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('1515'),
+    locationId: '1515',
+    locationAddress: '6206 Quinpool Road',
+    locationCity: 'Halifax',
+    locationProvince: 'Nova Scotia',
+    locationProvinceFr: 'Nova Scotia',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('req816'),
+        bioKitId: 'req816',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('olp860'),
+        bioKitId: 'olp860',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('5823'),
+    locationId: '5823',
+    locationAddress: '1263 West Broadway',
+    locationCity: 'Vancouver',
+    locationProvince: 'British Columbia',
+    locationProvinceFr: 'Colombie-Britannique',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('ytr903'),
+        bioKitId: 'ytr903',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('uid890'),
+        bioKitId: 'uid890',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('1640'),
+    locationId: '1640',
+    locationAddress: 'Heritage Court, Suite 110, 95 Foundry Street',
+    locationCity: 'Moncton',
+    locationProvince: 'New Brunswick',
+    locationProvinceFr: 'Nouveau-Brunswick',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('kli570'),
+        bioKitId: 'kli570',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('fdr429'),
+        bioKitId: 'fdr429',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('1137'),
+    locationId: '1137',
+    locationAddress: '99 Churchill Avenue, Building 223',
+    locationCity: "St. John's",
+    locationProvince: 'Newfoundland and Labrador',
+    locationProvinceFr: 'Terre-Neuve-et-Labrador',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('hgi527'),
+        bioKitId: 'hgi527',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('ftq895'),
+        bioKitId: 'ftq895',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('4901'),
+    locationId: '4901',
+    locationAddress: 'Greenstone Building, Floor Main, 5101 50th Avenue',
+    locationCity: 'Yellowknife',
+    locationProvince: 'Northwest Territories',
+    locationProvinceFr: 'Territoires du nord-ouest',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('ger624'),
+        bioKitId: 'ger624',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('lki713'),
+        bioKitId: 'lki713',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('4936'),
+    locationId: '4936',
+    locationAddress: '933 Mivvik Street (P.O. Box 639), Floor Main',
+    locationCity: 'Iqaluit',
+    locationProvince: 'Nunavut',
+    locationProvinceFr: 'Le Nunavut',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('hyt714'),
+        bioKitId: 'hyt714',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('jai961'),
+        bioKitId: 'jai961',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('1959'),
+    locationId: '1959',
+    locationAddress:
+      'Jean Canfield Building, Floor Main, 191 Great George Street',
+    locationCity: 'Charlottetown',
+    locationProvince: 'Prince Edward Island',
+    locationProvinceFr: 'Île-du-Prince-Édouard',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('jie516'),
+        bioKitId: 'jie516',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('ket817'),
+        bioKitId: 'ket817',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('4318'),
+    locationId: '4318',
+    locationAddress: 'Market Mall, Unit 120, 2325 Preston Avenue South',
+    locationCity: 'Saskatoon',
+    locationProvince: 'Saskatchewan',
+    locationProvinceFr: 'Saskatchewan',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('aft471'),
+        bioKitId: 'aft471',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('pol097'),
+        bioKitId: 'pol097',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: getObjectId('5965'),
+    locationId: '5965',
+    locationAddress: 'Elijah Smith Building, Suite 125, 300 Main Street',
+    locationCity: 'Whitehorse',
+    locationProvince: 'Yukon',
+    locationProvinceFr: 'Yukon',
+    hours: '8:30-16:00',
+    closures: [
+      {
+        periodStart: moment()
+          .startOf('week')
+          .add(7, 'days')
+          .toDate(),
+        periodEnd: moment()
+          .endOf('week')
+          .add(7, 'days')
+          .toDate()
+      }
+    ],
+    bioKits: [
+      {
+        id: getObjectId('jir615'),
+        bioKitId: 'jir615',
+        timeSlots: [
+          {
+            time: '8:00',
+            closed: false
+          },
+          {
+            time: '8:15',
+            closed: false
+          },
+          {
+            time: '8:30',
+            closed: false
+          }
+        ]
+      },
+      {
+        id: getObjectId('rtp527'),
+        bioKitId: 'rtp527',
         timeSlots: [
           {
             time: '8:00',
