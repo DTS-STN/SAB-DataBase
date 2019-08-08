@@ -10,7 +10,8 @@ const appointments = [
     bil: 'aer123',
     date: moment()
       .startOf('week')
-      .add(14, 'days')
+      .add(15, 'days')
+      .hours(8)
       .toDate(),
     timeSlot: '8:00',
     dateSubmitted: moment().toDate(),
@@ -25,9 +26,10 @@ const appointments = [
     bil: 'ggg666',
     date: moment()
       .startOf('week')
-      .add(14, 'days')
+      .add(15, 'days')
+      .hours(8)
+      .minutes(15)
       .toDate(),
-    timeSlot: '8:15',
     dateSubmitted: moment().toDate(),
     cancelledByClient: false,
     cancelledByLocation: false
@@ -40,9 +42,10 @@ const appointments = [
     bil: 'gye429',
     date: moment()
       .startOf('week')
-      .add(14, 'days')
+      .add(15, 'days')
+      .hours(8)
+      .minutes(30)
       .toDate(),
-    timeSlot: '8:30',
     dateSubmitted: moment().toDate(),
     cancelledByClient: false,
     cancelledByLocation: false
