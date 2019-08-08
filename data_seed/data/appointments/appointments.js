@@ -5,7 +5,7 @@ const appointments = [
   {
     id: getObjectId('abc123'),
     appointmentId: 'abc123',
-    locationId: 'SC-0001',
+    locationId: '3747',
     bioKitId: 'asd123',
     bil: 'aer123',
     date: moment()
@@ -20,7 +20,7 @@ const appointments = [
   {
     id: getObjectId('huy668'),
     appointmentId: 'huy668',
-    locationId: 'SC-0001',
+    locationId: '3747',
     bioKitId: 'asd123',
     bil: 'ggg666',
     date: moment()
@@ -35,7 +35,7 @@ const appointments = [
   {
     id: getObjectId('ret688'),
     appointmentId: 'ret688',
-    locationId: 'SC-0001',
+    locationId: '3747',
     bioKitId: 'asd123',
     bil: 'gye429',
     date: moment()
