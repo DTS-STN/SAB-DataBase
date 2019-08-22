@@ -4,6 +4,22 @@ import express from 'express';
 
 let router = express.Router();
 
+router.get('/appointmentsByLocId/:locationId', (req, res) => {
+  let now = moment().toDate();
+  AppointmentsModel.find({
+    locationId: req.params.locationId,
+    date: {
+      $gte: now
+    }
+  })
+    .then(doc => {
+      res.json(doc);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 // GET a current (not in the past) appointment with it's BIL field
 router.get('/appointments/:bil', (req, res) => {
   let now = moment().toDate();
