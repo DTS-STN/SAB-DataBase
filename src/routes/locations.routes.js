@@ -53,10 +53,11 @@ router.get('/locationsByProv/:id/:city?', (req, res) => {
         {
           $group: {
             _id: '$locationCity',
-            locationCity: { $first: '$locationCity' }
+            name: { $first: '$locationCity' },
+            value: { $first: '$locationCity' }
           }
         },
-        { $sort: { locationCity: -1 } }
+        { $sort: { value: -1 } }
       ],
       (err, locationDoc) =>
         respondToFind(res, err, couldNotGetLocation, locationDoc)
