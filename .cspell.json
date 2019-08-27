@@ -1,0 +1,21 @@
+{
+  "version": "0.1",
+  "language": "fr",
+  "words": [
+    "biokits",
+    "Prov"
+  ],
+  "flagWords": [],
+  "import": ["./node_modules/cspell-dict-fr-fr/cspell-ext.json"],
+  "ignoreRegExpList": ["CONNECTION_STRING=.*$"],
+  "dictionaries": [
+      "fr-fr",
+      "en-gb",
+      "en_US",
+      "typescript",
+      "node",
+      "softwareterms",
+      "html",
+      "css"
+  ]
+}
