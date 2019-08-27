@@ -4,12 +4,7 @@ const BioKitSchema = new Schema();
 
 BioKitSchema.add({
   bioKitId: String,
-  timeSlots: [
-    {
-      time: String,
-      closed: Boolean
-    }
-  ]
+  available: Boolean
 });
 
 export default mongoose.model('BioKits', BioKitSchema);
