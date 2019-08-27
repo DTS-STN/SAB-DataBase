@@ -52,8 +52,8 @@ router.get('/locationsByProv/:id/:city?', (req, res) => {
         { $match: { locationProvince: provinceId } },
         {
           $group: {
-            _id: '$locationCity',
-            locationCity: { $first: '$locationCity' }
+            value: '$locationCity',
+            name: { $first: '$locationCity' }
           }
         },
         { $sort: { locationCity: -1 } }
