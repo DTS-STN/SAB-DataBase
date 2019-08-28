@@ -4,7 +4,7 @@ const BioKitSchema = new Schema();
 
 BioKitSchema.add({
   bioKitId: String,
-  available: Boolean
+  accessible: Boolean
 });
 
 export default mongoose.model('BioKits', BioKitSchema);

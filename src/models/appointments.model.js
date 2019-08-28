@@ -8,6 +8,7 @@ const AppointmentSchema = new Schema({
   clientEmail: String,
   phoneNumber: Number,
   locationId: String,
+  bioKitId: String,
   bil: String,
   date: Date,
   dateSubmitted: Date,
