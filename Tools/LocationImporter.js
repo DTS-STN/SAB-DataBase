@@ -1,4 +1,4 @@
-// Temporary tool used to import location data to our mongo data model 
+// Temporary tool used to import location data to our mongo data model
 // from a CSV file provided by product owners
 
 import csv from 'csv-parser';
