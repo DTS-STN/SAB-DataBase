@@ -26,38 +26,14 @@ const locations = [
       {
         id: getObjectId('asd123'),
         bioKitId: 'asd123',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('ftq789'),
         bioKitId: 'ftq789',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -85,38 +61,14 @@ const locations = [
       {
         id: getObjectId('aer657'),
         bioKitId: 'aer657',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('kot409'),
         bioKitId: 'kot409',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -144,38 +96,14 @@ const locations = [
       {
         id: getObjectId('ter678'),
         bioKitId: 'ter678',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('utr635'),
         bioKitId: 'utr635',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -204,38 +132,14 @@ const locations = [
       {
         id: getObjectId('tgo897'),
         bioKitId: 'tgo897',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('jyu762'),
         bioKitId: 'jyu762',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -264,38 +168,14 @@ const locations = [
       {
         id: getObjectId('gdf789'),
         bioKitId: 'gdf789',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('lop645'),
         bioKitId: 'lop645',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -323,38 +203,14 @@ const locations = [
       {
         id: getObjectId('asr713'),
         bioKitId: 'asr713',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('ity908'),
         bioKitId: 'ity908',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -382,38 +238,14 @@ const locations = [
       {
         id: getObjectId('hyo907'),
         bioKitId: 'hyo907',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('iut701'),
         bioKitId: 'iut701',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -442,38 +274,14 @@ const locations = [
       {
         id: getObjectId('hty725'),
         bioKitId: 'hty725',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('jku491'),
         bioKitId: 'jku491',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -501,38 +309,14 @@ const locations = [
       {
         id: getObjectId('req816'),
         bioKitId: 'req816',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('olp860'),
         bioKitId: 'olp860',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -560,38 +344,14 @@ const locations = [
       {
         id: getObjectId('ytr903'),
         bioKitId: 'ytr903',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('uid890'),
         bioKitId: 'uid890',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -619,38 +379,14 @@ const locations = [
       {
         id: getObjectId('kli570'),
         bioKitId: 'kli570',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('fdr429'),
         bioKitId: 'fdr429',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -678,38 +414,14 @@ const locations = [
       {
         id: getObjectId('hgi527'),
         bioKitId: 'hgi527',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('ftq895'),
         bioKitId: 'ftq895',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -737,38 +449,14 @@ const locations = [
       {
         id: getObjectId('ger624'),
         bioKitId: 'ger624',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('lki713'),
         bioKitId: 'lki713',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -796,38 +484,14 @@ const locations = [
       {
         id: getObjectId('hyt714'),
         bioKitId: 'hyt714',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('jai961'),
         bioKitId: 'jai961',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -856,38 +520,14 @@ const locations = [
       {
         id: getObjectId('jie516'),
         bioKitId: 'jie516',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('ket817'),
         bioKitId: 'ket817',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -915,38 +555,14 @@ const locations = [
       {
         id: getObjectId('aft471'),
         bioKitId: 'aft471',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('pol097'),
         bioKitId: 'pol097',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   },
@@ -974,38 +590,14 @@ const locations = [
       {
         id: getObjectId('jir615'),
         bioKitId: 'jir615',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       },
       {
         id: getObjectId('rtp527'),
         bioKitId: 'rtp527',
-        timeSlots: [
-          {
-            time: '8:00',
-            closed: false
-          },
-          {
-            time: '8:15',
-            closed: false
-          },
-          {
-            time: '8:30',
-            closed: false
-          }
-        ]
+        accessible: true,
+        available: true
       }
     ]
   }
