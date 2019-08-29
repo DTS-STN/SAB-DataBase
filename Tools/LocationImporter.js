@@ -51,7 +51,7 @@ const createModels = location => {
 };
 
 // Main
-readFromFile('Biometrics_Sitescsv.csv').then(locationsRaw => {
+readFromFile('Tools/Biometrics_Sitescsv.csv').then(locationsRaw => {
   locationsRaw.forEach(createModels);
 });
 
