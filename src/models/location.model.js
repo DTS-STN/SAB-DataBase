@@ -21,6 +21,7 @@ const LocationSchema = new Schema({
       periodEnd: Date
     }
   ],
+  bioKitAmount: Number,
   bioKits: {
     type: [BioKitSchema],
     default: undefined
