@@ -8,6 +8,8 @@ const LocationSchema = new Schema({
     type: String,
     unique: true
   },
+  locationRegion: String,
+  locationType: String,
   locationAddress: String,
   locationCity: String,
   locationProvince: String,
