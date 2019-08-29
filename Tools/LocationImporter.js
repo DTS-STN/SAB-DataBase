@@ -2,62 +2,59 @@
 // from a CSV file provided by product owners
 
 import csv from 'csv-parser';
-import * as db from "./DatabaseHelper";
-import locationModel from "../src/models/location.model";
+// import * as db from './DatabaseHelper';
+import locationModel from '../src/models/location.model';
 import { createReadStream } from 'fs';
 
+let locationsFormatted = [];
 
 // get read stream, seperate lines to sites[]
-const readFromFile = (path) => {
-    let counter = 0 // Count how many records were successfully read
-    let readstream = createReadStream(path)
-    let csvLocationsArray = []
-
-    readstream.pipe(csv(['region', 'type', 'office', 'physicalAddress', 'bioKits', 'notes']))
-    .on('data', (data) => {
-        csvLocationsArray.push(data)
-        counter++
-    })
-    .on('end', () => {
-        console.log(`${counter} records read from file`)
-        locationsArray.shift() // Removes the first record in the array, which in this case is the headers row, since we explicitly set our own values
-    })
-
-    return csvLocationsArray
-}
+const readFromFile = path => {
+  return new Promise((resolve, reject) => {
+    let readstream = createReadStream(path);
+    let csvLocationsArray = [];
+    readstream
+      .pipe(
+        csv(['region', 'type', 'office', 'physicalAddress', 'bioKits', 'notes'])
+      )
+      .on('data', data => {
+        csvLocationsArray.push(data);
+      });
+    readstream.on('error', e => {
+      reject(e);
+    });
+    return readstream.on('end', () => {
+      csvLocationsArray.shift(); // Removes the first record in the array, which in this case is the headers row, since we explicitly set our own values
+      resolve(csvLocationsArray);
+    });
+  });
+};
 
 // seperate the location string (undecided / unused)
-const seperateLocation = (address) => {
-    // city = address[-3]
-    // proince = address[-2]
-    // streetAddress = address[0:-3] + address[-1]
-    return addressArray
-}
+const seperateLocation = address => {
+  let addressArray = address.split(',');
+  return addressArray;
+};
+
+const createModels = location => {
+  console.log('Physical address for location: ' + location.physicalAddress);
+  let addressArray = seperateLocation(location.physicalAddress);
+  let model = new locationModel({
+    locationName: addressArray[0],
+    locationAddress: addressArray[addressArray.length - 4],
+    locationCity: addressArray[addressArray.length - 3],
+    locationProvince: addressArray[addressArray.length - 2],
+    locationProvinceFr: addressArray[addressArray.length - 2]
+  });
+  console.log(model);
+  locationsFormatted.push(model);
+};
 
 // Main
-let locationsRaw = readFromFile('Tools/Biometrics_Sitescsv.csv')
-let locationsFormatted = []
-//db.init() //Init database
-for (location in locationsRaw){
-    let model = new locationModel({
-        locationAddress: String,
-        locationCity: String,
-        locationProvince: String,
-        locationProvinceFr: String,
-        hours: String,
-        closures: [
-            {
-                periodStart: Date,
-                periodEnd: Date
-            }
-        ],
-        bioKits: {
-            type: [BioKitSchema],
-            default: undefined
-        }
-    })
-    locationsFormatted.push(model)
+readFromFile('Biometrics_Sitescsv.csv').then(locationsRaw => {
+  locationsRaw.forEach(createModels);
+});
 
-}
+// db.init() //Init database
 // Read all records from csv into locationModels
-db.insert(locationsFormatted)
+// db.insert(locationsFormatted);
