@@ -40,7 +40,7 @@ const createModels = location => {
   let addressArray = seperateLocation(location.physicalAddress);
   let model = new locationModel({
     locationName: location.office,
-    locationAddress: addressArray[addressArray.length - 4],
+    locationAddress: addressArray.slice(0, addressArray.length - 3),
     locationCity: addressArray[addressArray.length - 3],
     postalCode: addressArray[addressArray.length - 1],
     locationProvince: addressArray[addressArray.length - 2],
