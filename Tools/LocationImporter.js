@@ -37,12 +37,12 @@ const seperateLocation = address => {
 };
 
 const createModels = location => {
-  console.log('Physical address for location: ' + location.physicalAddress);
   let addressArray = seperateLocation(location.physicalAddress);
   let model = new locationModel({
-    locationName: addressArray[0],
+    locationName: location.office,
     locationAddress: addressArray[addressArray.length - 4],
     locationCity: addressArray[addressArray.length - 3],
+    postalCode: addressArray[addressArray.length - 1],
     locationProvince: addressArray[addressArray.length - 2],
     locationProvinceFr: addressArray[addressArray.length - 2]
   });
@@ -51,7 +51,7 @@ const createModels = location => {
 };
 
 // Main
-readFromFile('Biometrics_Sitescsv.csv').then(locationsRaw => {
+readFromFile('Tools/Biometrics_Sitescsv.csv').then(locationsRaw => {
   locationsRaw.forEach(createModels);
 });
 
