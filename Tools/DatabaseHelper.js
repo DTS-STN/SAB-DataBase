@@ -1,7 +1,6 @@
 // Mongo authentication and insertion
 // Import mongo model
 import locationModel from "../src/models/location.model";
-<<<<<<< HEAD
 import mongoose from 'mongoose'
 
 // Initialise connection to database 
@@ -30,14 +29,4 @@ const onInsert = (err, docs) => {
   } else {
     console.info('%d location documents were successfully stored.', docs.length);
   }
-=======
-// Initialise connection to database 
-export const init = () => {
-// create connection string through env variables
-}
-
-// Takes one complete model, inserts it into the database
-export const insert = (locationModel) => {
-// send this documentr to the database
->>>>>>> 136e3e4a060c187ecfff0e6414cb040bda6a7068
 }
