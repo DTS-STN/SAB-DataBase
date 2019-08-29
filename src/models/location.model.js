@@ -8,6 +8,9 @@ const LocationSchema = new Schema({
     type: String,
     unique: true
   },
+  locationName: String,
+  locationRegion: String,
+  locationType: String,
   locationAddress: String,
   locationCity: String,
   locationProvince: String,
@@ -19,6 +22,7 @@ const LocationSchema = new Schema({
       periodEnd: Date
     }
   ],
+  bioKitAmount: Number,
   bioKits: {
     type: [BioKitSchema],
     default: undefined
