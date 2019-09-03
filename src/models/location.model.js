@@ -15,7 +15,6 @@ const LocationSchema = new Schema({
   locationCity: String,
   postalCode: String,
   locationProvince: String,
-  locationProvinceFr: String,
   hours: String,
   closures: [
     {
