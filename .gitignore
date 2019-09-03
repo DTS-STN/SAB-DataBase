@@ -1,6 +1,7 @@
 node_modules/
 /data/
 build/
+*.csv
 
 # dotenv files for testing local variables
 .env
