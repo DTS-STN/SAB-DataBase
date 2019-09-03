@@ -6,7 +6,9 @@ import mongoose from 'mongoose';
 // Initialise connection to database
 export const init = () => {
   // create connection string through env variables
-  mongoose.connect(process.env.CONNECTION_STRING, { useNewUrlParser: true });
+  mongoose.connect('mongodb://localhost:27017/db', {
+    useNewUrlParser: true
+  });
   mongoose.set('useCreateIndex', true);
   mongoose.connection
     .once('open', () => {
@@ -17,7 +19,7 @@ export const init = () => {
     });
 };
 
-// Takes one complete model, inserts it into the database
+// Takes multiple models/documents, inserts it into the database
 export const insert = locationModels => {
   // send this documentr to the database
   locationModel.collection.insertMany(locationModels, onInsert);

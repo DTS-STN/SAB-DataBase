@@ -2,7 +2,7 @@
 // from a CSV file provided by product owners
 
 import csv from 'csv-parser';
-// import * as db from './DatabaseHelper';
+import * as db from './DatabaseHelper';
 import locationModel from '../src/models/location.model';
 import { createReadStream } from 'fs';
 
@@ -36,15 +36,20 @@ const seperateLocation = address => {
   return addressArray;
 };
 
+const joinPhysicalAddress = array => {
+  return array.join(',');
+};
+
 const createModels = location => {
   let addressArray = seperateLocation(location.physicalAddress);
   let model = new locationModel({
     locationName: location.office,
-    locationAddress: addressArray.slice(0, addressArray.length - 3),
+    locationAddress: joinPhysicalAddress(
+      addressArray.slice(0, addressArray.length - 3)
+    ),
     locationCity: addressArray[addressArray.length - 3],
     postalCode: addressArray[addressArray.length - 1],
     locationProvince: addressArray[addressArray.length - 2],
-    locationProvinceFr: addressArray[addressArray.length - 2],
     bioKitAmount: parseInt(location.bioKits)
   });
   console.log(model);
@@ -52,9 +57,14 @@ const createModels = location => {
 };
 
 // Main
-readFromFile('Tools/Biometrics_Sitescsv.csv').then(locationsRaw => {
-  locationsRaw.forEach(createModels);
-});
+readFromFile('Tools/Biometrics_Sitescsv.csv')
+  .then(locationsRaw => {
+    locationsRaw.forEach(createModels);
+  })
+  .then(() => {
+    db.init();
+    db.insert(locationsFormatted);
+  });
 
 // db.init() //Init database
 // Read all records from csv into locationModels
