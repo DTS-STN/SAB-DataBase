@@ -40,7 +40,7 @@ const seperateLocation = address => {
 };
 
 const joinPhysicalAddress = array => {
-  return array.join(',');
+  return array.join(', ');
 };
 
 const createModels = location => {
@@ -59,7 +59,7 @@ const createModels = location => {
 };
 
 // Main
-readFromFile('Tools/Biometrics_Sitescsv.csv')
+readFromFile('Tools/Biometrics_Sites.csv')
   .then(locationsRaw => {
     locationsRaw.forEach(createModels);
   })
