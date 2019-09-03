@@ -23,6 +23,10 @@ export const init = () => {
   });
 };
 
+export const close = () => {
+  mongoose.connection.close();
+};
+
 // Takes multiple models/documents, inserts it into the database
 export const insert = locationModels => {
   // send this documentr to the database

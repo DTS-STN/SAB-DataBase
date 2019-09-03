@@ -66,5 +66,6 @@ readFromFile('Tools/Biometrics_Sites.csv')
   .then(() => {
     db.init().then(() => {
       db.insert(locationsFormatted);
+      db.close();
     });
   });
