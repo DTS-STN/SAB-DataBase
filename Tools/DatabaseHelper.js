@@ -5,33 +5,35 @@ import mongoose from 'mongoose';
 
 // Initialise connection to database
 export const init = () => {
-  // create connection string through env variables
-  mongoose.connect('mongodb://localhost:27017/db', {
-    useNewUrlParser: true
-  });
-  mongoose.set('useCreateIndex', true);
-  mongoose.connection
-    .once('open', () => {
-      console.log('Connection has been made for data import');
-    })
-    .on('error', error => {
-      console.log(`Connection error: ${error}`);
+  return new Promise((resolve, reject) => {
+    // create connection string through env variables
+    mongoose.connect('mongodb://localhost:27017/db', {
+      useNewUrlParser: true
     });
+    mongoose.set('useCreateIndex', true);
+    return mongoose.connection
+      .once('open', () => {
+        console.log('Connection has been made for data import');
+        resolve();
+      })
+      .on('error', error => {
+        console.log(`Connection error: ${error}`);
+        reject();
+      });
+  });
 };
 
 // Takes multiple models/documents, inserts it into the database
 export const insert = locationModels => {
   // send this documentr to the database
-  locationModel.collection.insertMany(locationModels, onInsert);
+  console.log(locationModels);
+  return locationModel.collection.insertMany(locationModels, onInsert);
 };
 
-const onInsert = (err, docs) => {
+const onInsert = err => {
   if (err) {
-    // TODO: Handle error
+    console.log(err);
   } else {
-    console.info(
-      '%d location documents were successfully stored.',
-      docs.length
-    );
+    console.log(`Location documents were successfully stored.`);
   }
 };
