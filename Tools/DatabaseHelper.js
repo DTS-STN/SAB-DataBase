@@ -2,12 +2,13 @@
 // Import mongo model
 import locationModel from '../src/models/location.model';
 import mongoose from 'mongoose';
+require('dotenv').config();
 
 // Initialise connection to database
 export const init = () => {
   return new Promise((resolve, reject) => {
     // create connection string through env variables
-    mongoose.connect('mongodb://localhost:27017/db', {
+    mongoose.connect(process.env.LOCAL_CONNECTION_STRING, {
       useNewUrlParser: true
     });
     mongoose.set('useCreateIndex', true);
