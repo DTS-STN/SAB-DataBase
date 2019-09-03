@@ -8,7 +8,6 @@ const locations = [
     locationAddress: 'Elgin 110 - Laurier Avenue West',
     locationCity: 'Ottawa',
     locationProvince: 'Ontario',
-    locationProvinceFr: 'Ontario',
     hours: '8:00-16:00',
     closures: [
       {
@@ -43,7 +42,6 @@ const locations = [
     locationAddress: '2525 Carling Avenue E. Lincoln Fields Galleria, Floor 1',
     locationCity: 'Ottawa',
     locationProvince: 'Ontario',
-    locationProvinceFr: 'Ontario',
     hours: '8:30-16:00',
     closures: [
       {
@@ -78,7 +76,6 @@ const locations = [
     locationAddress: '8 Queen Street',
     locationCity: 'Kapuskasing',
     locationProvince: 'Ontario',
-    locationProvinceFr: 'Ontario',
     hours: '8:30-16:00',
     closures: [
       {
@@ -114,7 +111,6 @@ const locations = [
       '200 René-Lévesque Boulevard West Suite 034, Guy-Favreau Complex',
     locationCity: 'Montreal',
     locationProvince: 'Quebec',
-    locationProvinceFr: 'Québec',
     hours: '8:30-16:00',
     closures: [
       {
@@ -150,7 +146,6 @@ const locations = [
       'Du Littoral Complex, Suite 101 2500 Montmorency Boulevard',
     locationCity: 'Quebec City',
     locationProvince: 'Quebec',
-    locationProvinceFr: 'Québec',
     hours: '8:30-16:00',
     closures: [
       {
@@ -185,7 +180,6 @@ const locations = [
     locationAddress: 'Canada Place, Floor Main 9700 Jasper Avenue',
     locationCity: 'Edmonton',
     locationProvince: 'Alberta',
-    locationProvinceFr: 'Alberta',
     hours: '8:30-16:00',
     closures: [
       {
@@ -220,7 +214,6 @@ const locations = [
     locationAddress: 'Harry Hays Building, Suite 150 220 4th Avenue Southeast',
     locationCity: 'Calgary',
     locationProvince: 'Alberta',
-    locationProvinceFr: 'Alberta',
     hours: '8:30-16:00',
     closures: [
       {
@@ -256,7 +249,6 @@ const locations = [
       'Portage Place Mall, Floor Ground, Unit 122 393 Portage Avenue',
     locationCity: 'Winnipeg',
     locationProvince: 'Manitoba',
-    locationProvinceFr: 'Manitoba',
     hours: '8:30-16:00',
     closures: [
       {
@@ -291,7 +283,6 @@ const locations = [
     locationAddress: '6206 Quinpool Road',
     locationCity: 'Halifax',
     locationProvince: 'Nova Scotia',
-    locationProvinceFr: 'Nova Scotia',
     hours: '8:30-16:00',
     closures: [
       {
@@ -326,7 +317,6 @@ const locations = [
     locationAddress: '1263 West Broadway',
     locationCity: 'Vancouver',
     locationProvince: 'British Columbia',
-    locationProvinceFr: 'Colombie-Britannique',
     hours: '8:30-16:00',
     closures: [
       {
@@ -361,7 +351,6 @@ const locations = [
     locationAddress: 'Heritage Court, Suite 110, 95 Foundry Street',
     locationCity: 'Moncton',
     locationProvince: 'New Brunswick',
-    locationProvinceFr: 'Nouveau-Brunswick',
     hours: '8:30-16:00',
     closures: [
       {
@@ -396,7 +385,6 @@ const locations = [
     locationAddress: '99 Churchill Avenue, Building 223',
     locationCity: "St. John's",
     locationProvince: 'Newfoundland and Labrador',
-    locationProvinceFr: 'Terre-Neuve-et-Labrador',
     hours: '8:30-16:00',
     closures: [
       {
@@ -431,7 +419,6 @@ const locations = [
     locationAddress: 'Greenstone Building, Floor Main, 5101 50th Avenue',
     locationCity: 'Yellowknife',
     locationProvince: 'Northwest Territories',
-    locationProvinceFr: 'Territoires du nord-ouest',
     hours: '8:30-16:00',
     closures: [
       {
@@ -466,7 +453,6 @@ const locations = [
     locationAddress: '933 Mivvik Street (P.O. Box 639), Floor Main',
     locationCity: 'Iqaluit',
     locationProvince: 'Nunavut',
-    locationProvinceFr: 'Le Nunavut',
     hours: '8:30-16:00',
     closures: [
       {
@@ -502,7 +488,6 @@ const locations = [
       'Jean Canfield Building, Floor Main, 191 Great George Street',
     locationCity: 'Charlottetown',
     locationProvince: 'Prince Edward Island',
-    locationProvinceFr: 'Île-du-Prince-Édouard',
     hours: '8:30-16:00',
     closures: [
       {
@@ -537,7 +522,6 @@ const locations = [
     locationAddress: 'Market Mall, Unit 120, 2325 Preston Avenue South',
     locationCity: 'Saskatoon',
     locationProvince: 'Saskatchewan',
-    locationProvinceFr: 'Saskatchewan',
     hours: '8:30-16:00',
     closures: [
       {
@@ -572,7 +556,6 @@ const locations = [
     locationAddress: 'Elijah Smith Building, Suite 125, 300 Main Street',
     locationCity: 'Whitehorse',
     locationProvince: 'Yukon',
-    locationProvinceFr: 'Yukon',
     hours: '8:30-16:00',
     closures: [
       {
