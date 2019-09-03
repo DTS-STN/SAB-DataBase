@@ -9,7 +9,7 @@ const config = {
 };
 const seeder = new Seeder(config);
 const collections = seeder.readCollectionsFromPath(
-  path.resolve('./data_seed_db/data'),
+  path.resolve('./data_seed/data'),
   {
     transformers: [Seeder.Transformers.replaceDocumentIdWithUnderscoreId]
   }
