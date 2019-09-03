@@ -1,7 +1,7 @@
 node_modules/
 /data/
 build/
-Tools/Biometrics_Sites.csv
+/Tools/Biometrics_Sites.csv
 
 # dotenv files for testing local variables
 .env
