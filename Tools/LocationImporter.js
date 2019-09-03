@@ -33,6 +33,9 @@ const readFromFile = path => {
 // seperate the location string (undecided / unused)
 const seperateLocation = address => {
   let addressArray = address.split(',');
+  addressArray = addressArray.map(addressValue => {
+    return addressValue.trim();
+  });
   return addressArray;
 };
 
@@ -52,7 +55,6 @@ const createModels = location => {
     locationProvince: addressArray[addressArray.length - 2],
     bioKitAmount: parseInt(location.bioKits)
   });
-  console.log(model);
   locationsFormatted.push(model);
 };
 
@@ -62,10 +64,7 @@ readFromFile('Tools/Biometrics_Sitescsv.csv')
     locationsRaw.forEach(createModels);
   })
   .then(() => {
-    db.init();
-    db.insert(locationsFormatted);
+    db.init().then(() => {
+      db.insert(locationsFormatted);
+    });
   });
-
-// db.init() //Init database
-// Read all records from csv into locationModels
-// db.insert(locationsFormatted);
