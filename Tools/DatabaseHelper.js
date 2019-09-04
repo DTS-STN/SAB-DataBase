@@ -41,4 +41,4 @@ const onInsert = err => {
   } else {
     console.log(`Location documents were successfully stored.`);
   }
-}
+};
