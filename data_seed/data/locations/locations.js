@@ -21,6 +21,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('asd123'),
@@ -55,6 +56,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('aer657'),
@@ -89,6 +91,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('ter678'),
@@ -124,6 +127,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('tgo897'),
@@ -159,6 +163,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('gdf789'),
@@ -193,6 +198,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('asr713'),
@@ -227,6 +233,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('hyo907'),
@@ -262,6 +269,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('hty725'),
@@ -296,6 +304,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('req816'),
@@ -330,6 +339,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('ytr903'),
@@ -364,6 +374,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('kli570'),
@@ -398,6 +409,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('hgi527'),
@@ -432,6 +444,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('ger624'),
@@ -466,6 +479,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('hyt714'),
@@ -501,6 +515,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('jie516'),
@@ -535,6 +550,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('aft471'),
@@ -569,6 +585,7 @@ const locations = [
           .toDate()
       }
     ],
+    bioKitAmouont: 2,
     bioKits: [
       {
         id: getObjectId('jir615'),
