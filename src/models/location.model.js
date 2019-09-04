@@ -4,6 +4,10 @@ import BioKitModel from './biokits.model';
 const BioKitSchema = BioKitModel.schema;
 
 const LocationSchema = new Schema({
+  locationId: {
+    type: String,
+    unique: true
+  },
   locationName: String,
   locationRegion: String,
   locationType: String,
