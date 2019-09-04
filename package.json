@@ -17,7 +17,8 @@
     "fullcheck": "npm run lint && npm run codeclimate:analyze",
     "mongodb": "docker run --rm -p 27017:27017 mongo",
     "mongodb:seed": "cd data_seed && docker build -t mongo-seeding . && docker run --rm --network='host' mongo-seeding",
-    "databaseInit": "babel-node Tools/LocationImporter.js"
+    "databaseInit": "babel-node Tools/LocationImporter.js",
+    "seed": "babel-node Tools/dataSeeder/dataSeeder.js"
   },
   "repository": {
     "type": "git",
