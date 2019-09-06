@@ -46,7 +46,7 @@ const locations = [
     locationAddress:
       'Sinclair Centre, 757 Hastings Street West, Suite 100, Vancouver, British Columbia, V6C1A1',
     locationCity: 'Vancouver',
-    locationProvince: 'Ontario',
+    locationProvince: 'British Columbia',
     hours: '8:30-16:00',
     closures: [
       {
