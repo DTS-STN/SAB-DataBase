@@ -3,6 +3,7 @@ import AppointmentModel from '../../src/models/appointments.model';
 import BiokitModel from '../../src/models/biokits.model';
 import * as db from '../DatabaseHelper';
 import * as Randomizers from './Randomizers';
+const moment = require('moment');
 
 let numAppoints = process.env.NUMAPPOINTMENTS || 100;
 let numLocations = process.env.NUMLOCATIONS || 100;
@@ -13,14 +14,25 @@ const populateDatabase = async () => {
       appointmentId: i,
       clientEmail: `${Randomizers.randomString(10)}@example.com`,
       phoneNumber: Randomizers.randomInt(10000000000, 99999999999),
-      locationId: Randomizers.randomString(3),
-      bioKitId: Randomizers.randomString(6),
+      locationId: Randomizers.randomInt(1, numLocations),
+      bioKitId: Randomizers.randomString(5),
       bil: Randomizers.randomString(3),
-      date: Randomizers.randomDate(),
-      dateSubmitted: Randomizers.randomDate(),
-      maintenance: i % 2,
-      cancelledByClient: i % 2,
-      cancelledByLocation: i % 2
+      date: Randomizers.randomDate(
+        new Date(),
+        moment()
+          .startOf('week')
+          .add(Randomizers.randomInt(15, 19), 'days')
+          .toDate()
+      ),
+      dateSubmitted: Randomizers.randomDate(
+        moment()
+          .startOf('week')
+          .toDate(),
+        moment().toDate()
+      ),
+      maintenance: !(i % 20),
+      cancelledByClient: !(i % 10),
+      cancelledByLocation: !(i % 15)
     });
   }
 
@@ -33,18 +45,24 @@ const populateDatabase = async () => {
       locationAddress: Randomizers.randomString(15),
       locationCity: Randomizers.randomString(6),
       postalCode: Randomizers.randomString(6),
-      locationProvince: Randomizers.randomString(2),
+      locationProvince: Randomizers.randomProvince(),
       hours: `${Randomizers.randomInt(8, 10)}:00-${Randomizers.randomInt(
         15,
         17
       )}:00`,
       closures: [
         {
-          periodStart: Randomizers.randomDate(),
-          periodEnd: Randomizers.randomDate()
+          periodStart: moment()
+            .startOf('week')
+            .add(7, 'days')
+            .toDate(),
+          periodEnd: moment()
+            .endOf('week')
+            .add(7, 'days')
+            .toDate()
         }
       ],
-      bioKitAmount: Randomizers.randomInt(1, 999),
+      bioKitAmount: Randomizers.randomInt(1, 4),
       bioKits: new BiokitModel({
         bioKitId: Randomizers.randomString(5),
         accessible: i % 2,
