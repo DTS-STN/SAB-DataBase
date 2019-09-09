@@ -25,7 +25,9 @@ const populateDatabase = async () => {
           .toDate()
       ),
       dateSubmitted: Randomizers.randomDate(
-        moment().startOf('week'),
+        moment()
+          .startOf('week')
+          .toDate(),
         moment().toDate()
       ),
       maintenance: !(i % 20),
