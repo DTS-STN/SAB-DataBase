@@ -1,6 +1,5 @@
 import LocationModel from '../../src/models/location.model';
 import AppointmentModel from '../../src/models/appointments.model';
-import BiokitModel from '../../src/models/biokits.model';
 import * as db from '../DatabaseHelper';
 import * as Randomizers from './Randomizers';
 const moment = require('moment');
@@ -15,8 +14,8 @@ const populateDatabase = async () => {
       clientEmail: `${Randomizers.randomString(10)}@example.com`,
       phoneNumber: parseInt(Randomizers.randomInt(1000000000, 9999999999)),
       locationId: Randomizers.randomInt(1, numLocations),
-      bioKitId: Randomizers.randomString(5),
-      bil: Randomizers.randomString(6),
+      bioKitId: Randomizers.getBioKitId(),
+      bil: Randomizers.randomBil(),
       date: moment(
         Randomizers.randomDate(
           moment()
@@ -32,6 +31,7 @@ const populateDatabase = async () => {
         .hours(Randomizers.randomInt(7, 11))
         .minutes(Randomizers.randomTimeSlot())
         .seconds(0)
+        .milliseconds(0)
         .toDate(),
       dateSubmitted: Randomizers.randomDate(
         moment()
@@ -72,11 +72,7 @@ const populateDatabase = async () => {
         }
       ],
       bioKitAmount: Randomizers.randomInt(1, 4),
-      bioKits: new BiokitModel({
-        bioKitId: Randomizers.randomString(5),
-        accessible: i % 2,
-        available: i % 2
-      })
+      bioKits: Randomizers.generateBioKits()
     });
   }
 };

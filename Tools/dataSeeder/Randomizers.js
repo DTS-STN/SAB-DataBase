@@ -1,3 +1,5 @@
+import BiokitModel from '../../src/models/biokits.model';
+
 export function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -15,12 +17,47 @@ export function randomDate(start, end) {
   );
 }
 
+export function getBioKitId() {
+  let ids = ['a1234', 'b3456', 'c5678'];
+  return ids[Math.floor(Math.random() * ids.length)];
+}
+
+export function generateBioKits() {
+  let ids = ['a1234', 'b3456', 'c5678'];
+  let bioKits = [];
+  for (let index = 0; index < ids.length; index++) {
+    // eslint-disable-next-line security/detect-object-injection
+    let id = ids[index];
+    bioKits.push(
+      new BiokitModel({
+        bioKitId: id,
+        accessible: index % 2,
+        available: index % 2
+      })
+    );
+  }
+  return bioKits;
+}
+
 export function randomString(length) {
-  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
   var result = '';
   for (var i = 0; i < length; i++) {
     var rnum = Math.floor(Math.random() * chars.length);
     result += chars.substring(rnum, rnum + 1);
+  }
+  return result;
+}
+
+export function randomBil() {
+  var char = 'ABCDEFGHIJKLMNOPQRSTUVWXTZ';
+  var numbers = '1234567890';
+  var result = '';
+  var rchar = Math.floor(Math.random() * char.length);
+  result += char.substring(rchar, rchar + 1);
+  for (var i = 0; i < 12; i++) {
+    var rnum = Math.floor(Math.random() * numbers.length);
+    result += numbers.substring(rnum, rnum + 1);
   }
   return result;
 }
