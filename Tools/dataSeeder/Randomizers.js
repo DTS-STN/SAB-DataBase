@@ -40,10 +40,10 @@ export function generateBioKits() {
 
 // Returns an alphanueric string of a given length
 export function randomString(length) {
-  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
-  var result = '';
-  for (var i = 0; i < length; i++) {
-    var rnum = Math.floor(Math.random() * chars.length);
+  let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    let rnum = Math.floor(Math.random() * chars.length);
     result += chars.substring(rnum, rnum + 1);
   }
   return result;
@@ -51,13 +51,13 @@ export function randomString(length) {
 
 // Returns a string in the format of the BIL# (1 letter followed by 12 digits)
 export function randomBil() {
-  var char = 'ABCDEFGHIJKLMNOPQRSTUVWXTZ';
-  var numbers = '1234567890';
-  var result = '';
-  var rchar = Math.floor(Math.random() * char.length);
+  const char = 'ABCDEFGHIJKLMNOPQRSTUVWXTZ';
+  const numbers = '1234567890';
+  let result = '';
+  let rchar = Math.floor(Math.random() * char.length);
   result += char.substring(rchar, rchar + 1);
-  for (var i = 0; i < 12; i++) {
-    var rnum = Math.floor(Math.random() * numbers.length);
+  for (let i = 0; i < 12; i++) {
+    let rnum = Math.floor(Math.random() * numbers.length);
     result += numbers.substring(rnum, rnum + 1);
   }
   return result;

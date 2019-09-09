@@ -2,7 +2,7 @@ import LocationModel from '../../src/models/location.model';
 import AppointmentModel from '../../src/models/appointments.model';
 import * as db from '../DatabaseHelper';
 import * as Randomizers from './Randomizers';
-const moment = require('moment');
+import moment from 'moment';
 
 // User defined number of appointments and location documents to create
 let numAppoints = process.env.NUMAPPOINTMENTS || 100;
