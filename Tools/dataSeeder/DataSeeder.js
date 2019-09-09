@@ -71,7 +71,7 @@ const populateDatabase = async () => {
             .toDate()
         }
       ],
-      bioKitAmount: Randomizers.randomInt(1, 4),
+      bioKitAmount: 3,
       bioKits: Randomizers.generateBioKits()
     });
   }

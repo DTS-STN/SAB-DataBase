@@ -18,7 +18,7 @@ export function randomDate(start, end) {
 }
 
 export function getBioKitId() {
-  let ids = ['a1234', 'b3456', 'c5678'];
+  let ids = ['a1234', 'b3456'];
   return ids[Math.floor(Math.random() * ids.length)];
 }
 
@@ -32,7 +32,7 @@ export function generateBioKits() {
       new BiokitModel({
         bioKitId: id,
         accessible: index % 2,
-        available: index % 2
+        available: index === 2 ? false : true
       })
     );
   }
