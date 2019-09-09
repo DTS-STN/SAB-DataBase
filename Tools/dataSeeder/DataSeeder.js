@@ -51,8 +51,8 @@ const populateDatabase = async () => {
       maintenance: !(i % 20),
       // Every 10 appointments are flagged as cancelled by the client
       cancelledByClient: !(i % 10),
-      // Every 15 appointments are flagged as cancelled by the location/site
-      cancelledByLocation: !(i % 15)
+      // Every 19 appointments are flagged as cancelled by the location/site
+      cancelledByLocation: !(i % 19)
     });
   }
 
