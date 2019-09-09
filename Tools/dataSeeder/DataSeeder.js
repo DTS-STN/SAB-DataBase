@@ -4,6 +4,7 @@ import * as db from '../DatabaseHelper';
 import * as Randomizers from './Randomizers';
 const moment = require('moment');
 
+// User defined number of appointments and location documents to create
 let numAppoints = process.env.NUMAPPOINTMENTS || 100;
 let numLocations = process.env.NUMLOCATIONS || 100;
 
@@ -12,10 +13,15 @@ const populateDatabase = async () => {
     await AppointmentModel.create({
       appointmentId: i,
       clientEmail: `${Randomizers.randomString(10)}@example.com`,
-      phoneNumber: parseInt(Randomizers.randomInt(1000000000, 9999999999)),
+      phoneNumber: Randomizers.randomInt(1000000000, 9999999999),
       locationId: Randomizers.randomInt(1, numLocations),
+      // Returns one of two Biokit IDs
       bioKitId: Randomizers.getBioKitId(),
+      // Returns string in BIL# format
       bil: Randomizers.randomBil(),
+      // Picks a random weekday in the week, 2 weeks from the current week and
+      // selects a random hour within working hours, and then picks a random slot in
+      // 15 minute increments
       date: moment(
         Randomizers.randomDate(
           moment()
@@ -33,14 +39,19 @@ const populateDatabase = async () => {
         .seconds(0)
         .milliseconds(0)
         .toDate(),
+      // Returns a date and time between the beginning of the week and the time of
+      // the object's creation
       dateSubmitted: Randomizers.randomDate(
         moment()
           .startOf('week')
           .toDate(),
         moment().toDate()
       ),
+      // Every 20 appointments are maintenance appointments
       maintenance: !(i % 20),
+      // Every 10 appointments are flagged as cancelled by the client
       cancelledByClient: !(i % 10),
+      // Every 15 appointments are flagged as cancelled by the location/site
       cancelledByLocation: !(i % 15)
     });
   }
@@ -54,11 +65,15 @@ const populateDatabase = async () => {
       locationAddress: Randomizers.randomString(15),
       locationCity: Randomizers.randomString(6),
       postalCode: Randomizers.randomString(6),
+      // Get a random province from an array of provinces
       locationProvince: Randomizers.randomProvince(),
+      // Get a string representing the 24-hour format range of business hours for this location
       hours: `${Randomizers.randomInt(8, 10)}:00-${Randomizers.randomInt(
-        15,
+        16,
         17
       )}:00`,
+      // Creates a week-long closure period for the location a week from the when
+      // the object was initially generated
       closures: [
         {
           periodStart: moment()
@@ -72,6 +87,7 @@ const populateDatabase = async () => {
         }
       ],
       bioKitAmount: 3,
+      // Get array of 3 BioKits: 1 flagged accessible, 1 flagged unavailable
       bioKits: Randomizers.generateBioKits()
     });
   }
