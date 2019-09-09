@@ -34,10 +34,17 @@ const populateDatabase = async () => {
       locationCity: Randomizers.randomString(6),
       postalCode: Randomizers.randomString(6),
       locationProvince: Randomizers.randomString(2),
-      hours: `${Randomizers.randomInt(8, 10)}:00-${Randomizers.randomInt(
-        15,
-        17
-      )}:00`,
+      hours: `${Randomizers.random24Hour(8, 10)}:${Randomizers.random24Hour(
+        0,
+        59
+      )}-${Randomizers.random24Hour(15, 17)}:${Randomizers.random24Hour(
+        0,
+        59
+      )}`,
+      // `${Randomizers.randomInt(8, 10)}:00-${Randomizers.randomInt(
+      //   15,
+      //   17
+      // )}:00`,
       closures: [
         {
           periodStart: Randomizers.randomDate(),

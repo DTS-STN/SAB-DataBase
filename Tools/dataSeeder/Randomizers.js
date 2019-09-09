@@ -2,6 +2,11 @@ export function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+export function random24Hour(min, max) {
+  // "00:00-00:00"
+  return ('00' + randomInt(min, max)).slice(-2);
+}
+
 export function randomDate(start, end) {
   // var nr_days1 = 30 * 365;
   // var nr_days2 = -20 * 365;
@@ -10,9 +15,8 @@ export function randomDate(start, end) {
   // // get a random number of days passed between 1950 and 2000
   // var days = randomInt(nr_days2, nr_days1);
 
-  return new Date(
-    start.getTime() + Math.random() * (end.getTime() - start.getTime())
-  );
+  return new Date();
+  //start.getTime() + Math.random() * (end.getTime() - start.getTime())
 }
 
 export function randomString(length) {
