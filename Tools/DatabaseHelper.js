@@ -14,12 +14,15 @@ export const init = () => {
     mongoose.set('useCreateIndex', true);
     return mongoose.connection
       .once('open', () => {
-        console.log('Connection has been made for data import');
+        console.log('Connection to the database established');
         resolve();
       })
       .on('error', error => {
         console.log(`Connection error: ${error}`);
         reject();
+      })
+      .on('disconnected', () => {
+        console.log('Database disconnected');
       });
   });
 };
