@@ -13,17 +13,26 @@ const populateDatabase = async () => {
     await AppointmentModel.create({
       appointmentId: i,
       clientEmail: `${Randomizers.randomString(10)}@example.com`,
-      phoneNumber: Randomizers.randomInt(10000000000, 99999999999),
+      phoneNumber: parseInt(Randomizers.randomInt(1000000000, 9999999999)),
       locationId: Randomizers.randomInt(1, numLocations),
       bioKitId: Randomizers.randomString(5),
-      bil: Randomizers.randomString(3),
-      date: Randomizers.randomDate(
-        new Date(),
-        moment()
-          .startOf('week')
-          .add(Randomizers.randomInt(15, 19), 'days')
-          .toDate()
-      ),
+      bil: Randomizers.randomString(6),
+      date: moment(
+        Randomizers.randomDate(
+          moment()
+            .startOf('week')
+            .add(15, 'days')
+            .toDate(),
+          moment()
+            .startOf('week')
+            .add(19, 'days')
+            .toDate()
+        )
+      )
+        .hours(Randomizers.randomInt(7, 11))
+        .minutes(Randomizers.randomTimeSlot())
+        .seconds(0)
+        .toDate(),
       dateSubmitted: Randomizers.randomDate(
         moment()
           .startOf('week')
@@ -58,7 +67,7 @@ const populateDatabase = async () => {
             .toDate(),
           periodEnd: moment()
             .endOf('week')
-            .add(7, 'days')
+            .add(6, 'days')
             .toDate()
         }
       ],

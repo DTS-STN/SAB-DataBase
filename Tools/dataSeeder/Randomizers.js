@@ -40,3 +40,8 @@ export function randomProvince() {
   ];
   return provinces[Math.floor(Math.random() * provinces.length)];
 }
+
+export function randomTimeSlot() {
+  let timeslots = [0, 15, 30, 45];
+  return timeslots[Math.floor(Math.random() * timeslots.length)];
+}
