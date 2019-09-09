@@ -3,6 +3,7 @@ import AppointmentModel from '../../src/models/appointments.model';
 import BiokitModel from '../../src/models/biokits.model';
 import * as db from '../DatabaseHelper';
 import * as Randomizers from './Randomizers';
+const moment = require('moment');
 
 let numAppoints = process.env.NUMAPPOINTMENTS || 100;
 let numLocations = process.env.NUMLOCATIONS || 100;
@@ -14,11 +15,11 @@ const populateDatabase = async () => {
       clientEmail: `${Randomizers.randomString(10)}@example.com`,
       phoneNumber: Randomizers.randomInt(10000000000, 99999999999),
       locationId: Randomizers.randomInt(1, 100),
-      bioKitId: Randomizers.randomString(6),
+      bioKitId: Randomizers.randomString(5),
       bil: Randomizers.randomString(3),
       date: Randomizers.randomDate(),
       dateSubmitted: Randomizers.randomDate(),
-      maintenance: i % 2,
+      maintenance: false,
       cancelledByClient: i % 2,
       cancelledByLocation: i % 2
     });
@@ -40,8 +41,14 @@ const populateDatabase = async () => {
       )}:00`,
       closures: [
         {
-          periodStart: Randomizers.randomDate(),
-          periodEnd: Randomizers.randomDate()
+          periodStart: moment()
+            .startOf('week')
+            .add(7, 'days')
+            .toDate(),
+          periodEnd: moment()
+            .endOf('week')
+            .add(7, 'days')
+            .toDate()
         }
       ],
       bioKitAmount: Randomizers.randomInt(1, 999),
