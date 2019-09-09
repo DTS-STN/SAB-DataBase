@@ -14,7 +14,7 @@ const populateDatabase = async () => {
       appointmentId: i,
       clientEmail: `${Randomizers.randomString(10)}@example.com`,
       phoneNumber: Randomizers.randomInt(1000000000, 9999999999),
-      locationId: Randomizers.randomInt(1, numLocations),
+      locationId: Randomizers.randomInt(0, numLocations),
       // Returns one of two Biokit IDs
       bioKitId: Randomizers.getBioKitId(),
       // Returns string in BIL# format
