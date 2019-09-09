@@ -17,11 +17,19 @@ const populateDatabase = async () => {
       locationId: Randomizers.randomInt(1, 100),
       bioKitId: Randomizers.randomString(5),
       bil: Randomizers.randomString(3),
-      date: Randomizers.randomDate(),
-      dateSubmitted: Randomizers.randomDate(),
-      maintenance: false,
-      cancelledByClient: i % 2,
-      cancelledByLocation: i % 2
+      date: Randomizers.randomDate(
+        new Date(),
+        moment()
+          .startOf('week')
+          .add(Randomizers.randomInt(14, 19), 'days'.toDate())
+      ),
+      dateSubmitted: Randomizers.randomDate(
+        moment().startOf('week'),
+        moment().toDate()
+      ),
+      maintenance: !(i % 20),
+      cancelledByClient: !(i % 10),
+      cancelledByLocation: !(i % 15)
     });
   }
 
@@ -51,7 +59,7 @@ const populateDatabase = async () => {
             .toDate()
         }
       ],
-      bioKitAmount: Randomizers.randomInt(1, 999),
+      bioKitAmount: Randomizers.randomInt(1, 4),
       bioKits: new BiokitModel({
         bioKitId: Randomizers.randomString(5),
         accessible: i % 2,
