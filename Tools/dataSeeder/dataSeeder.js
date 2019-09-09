@@ -13,7 +13,7 @@ const populateDatabase = async () => {
       appointmentId: i,
       clientEmail: `${Randomizers.randomString(10)}@example.com`,
       phoneNumber: Randomizers.randomInt(10000000000, 99999999999),
-      locationId: Randomizers.randomString(3),
+      locationId: Randomizers.randomInt(1, 100),
       bioKitId: Randomizers.randomString(6),
       bil: Randomizers.randomString(3),
       date: Randomizers.randomDate(),
@@ -33,7 +33,7 @@ const populateDatabase = async () => {
       locationAddress: Randomizers.randomString(15),
       locationCity: Randomizers.randomString(6),
       postalCode: Randomizers.randomString(6),
-      locationProvince: Randomizers.randomString(2),
+      locationProvince: Randomizers.randomProvince(),
       hours: `${Randomizers.randomInt(8, 10)}:00-${Randomizers.randomInt(
         15,
         17

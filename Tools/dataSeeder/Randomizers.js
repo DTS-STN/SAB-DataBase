@@ -22,3 +22,19 @@ export function randomString(length) {
   }
   return result;
 }
+
+export function randomProvince() {
+  let provinces = [
+    'Ontario',
+    'Saskatchewan',
+    'Alberta',
+    'British Columbia',
+    'Prince Edward Island',
+    'Nova Scotia',
+    'Newfoundland and Labrador',
+    'New Brunswick',
+    'Manitoba',
+    'Quebec'
+  ];
+  return provinces[Math.floor(Math.random() * provinces.length)];
+}
