@@ -14,14 +14,15 @@ const populateDatabase = async () => {
       appointmentId: i,
       clientEmail: `${Randomizers.randomString(10)}@example.com`,
       phoneNumber: Randomizers.randomInt(10000000000, 99999999999),
-      locationId: Randomizers.randomInt(1, 100),
+      locationId: Randomizers.randomInt(1, numLocations),
       bioKitId: Randomizers.randomString(5),
       bil: Randomizers.randomString(3),
       date: Randomizers.randomDate(
         new Date(),
         moment()
           .startOf('week')
-          .add(Randomizers.randomInt(14, 19), 'days'.toDate())
+          .add(Randomizers.randomInt(15, 19), 'days')
+          .toDate()
       ),
       dateSubmitted: Randomizers.randomDate(
         moment().startOf('week'),
