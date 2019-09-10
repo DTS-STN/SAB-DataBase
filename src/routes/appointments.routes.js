@@ -4,6 +4,29 @@ import express from 'express';
 
 let router = express.Router();
 
+// TODO: Create API for fetching set of appointments for a given location, on a given day
+// TODO: Create endpoint for cancelling appointments
+
+// GET appointments for a given location for a given day
+// day parameter is passed in the format "MM-DD-YYYY"
+router.get('/appointments/:locationId/:day', (req, res) => {
+  let day = req.body.day || req.params.day;
+  AppointmentsModel.find({
+    locationId: req.params.locationId,
+    date: {
+      $gte: day.startOf('day'),
+      $lt: day.endOf('day')
+    }
+  })
+    .then(docs => {
+      res.json(docs);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// GET all appointments in the future for a given location
 router.get('/appointmentsByLocId/:locationId', (req, res) => {
   let now = moment().toDate();
   AppointmentsModel.find({
