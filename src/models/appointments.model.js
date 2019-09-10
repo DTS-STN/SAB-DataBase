@@ -10,6 +10,7 @@ const AppointmentSchema = new Schema({
   locationId: String,
   bioKitId: String,
   bil: String,
+  confirmation: String,
   date: Date,
   dateSubmitted: Date,
   maintenance: Boolean,
