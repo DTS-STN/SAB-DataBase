@@ -5,8 +5,8 @@ import * as Randomizers from './Randomizers';
 import moment from 'moment';
 
 // User defined number of appointments and location documents to create
-let numAppoints = process.env.NUMAPPOINTMENTS || 100;
-let numLocations = process.env.NUMLOCATIONS || 5;
+let numAppoints = process.env.NUM_APPOINTMENTS || 100;
+let numLocations = process.env.NUM_LOCATIONS || 100;
 
 const populateDatabase = async () => {
   for (let i = 0; i < numAppoints; i++) {
