@@ -6,7 +6,7 @@ import moment from 'moment';
 
 // User defined number of appointments and location documents to create
 let numAppoints = process.env.NUMAPPOINTMENTS || 100;
-let numLocations = process.env.NUMLOCATIONS || 100;
+let numLocations = process.env.NUMLOCATIONS || 5;
 
 const populateDatabase = async () => {
   for (let i = 0; i < numAppoints; i++) {

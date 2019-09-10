@@ -10,12 +10,13 @@ let router = express.Router();
 // GET appointments for a given location for a given day
 // day parameter is passed in the format "MM-DD-YYYY"
 router.get('/appointments/:locationId/:day', (req, res) => {
-  let day = req.body.day || req.params.day;
+  let day = moment(req.params.day, 'DD-MM-YYYY');
+  console.log(day);
   AppointmentsModel.find({
     locationId: req.params.locationId,
     date: {
-      $gte: day.startOf('day'),
-      $lt: day.endOf('day')
+      $gte: day.startOf('day').toDate(),
+      $lte: day.endOf('day').toDate()
     }
   })
     .then(docs => {
