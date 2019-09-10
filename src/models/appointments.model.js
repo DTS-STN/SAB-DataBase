@@ -13,6 +13,7 @@ const AppointmentSchema = new Schema({
   date: Date,
   dateSubmitted: Date,
   maintenance: Boolean,
+  private: Boolean,
   cancelledByClient: Boolean,
   cancelledByLocation: Boolean
 });
