@@ -1,6 +1,6 @@
 FROM node:8
 
-ENV CONNECTION_STRING=iwillbeupdatedautomatically
+ENV MONGO_URI=iwillbeupdatedautomatically
 
 WORKDIR /usr/src/app
 
