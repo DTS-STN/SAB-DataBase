@@ -4,13 +4,28 @@ import locationModel from '../src/models/location.model';
 import mongoose from 'mongoose';
 require('dotenv').config();
 
+const mongoUser = process.env.MONGO_USER;
+const mongoPassword = process.env.MONGO_PASSWORD;
+const mongoURI = process.env.MONGO_URI;
+const mongoPort = process.env.MONGO_PORT;
+const mongoDB = process.env.MONGO_DATABASE;
+
 // Initialise connection to database
 export const init = () => {
   return new Promise((resolve, reject) => {
     // create connection string through env variables
-    mongoose.connect(process.env.LOCAL_CONNECTION_STRING, {
-      useNewUrlParser: true
-    });
+    console.log(mongoURI);
+
+    mongoose
+      .connect(
+        `mongodb://${mongoUser}:${mongoPassword}@${mongoURI}:${mongoPort}/${mongoDB}`,
+        {
+          useNewUrlParser: true
+        }
+      )
+      .then(console.log('Connection successful'))
+      .catch(err => console.log(err));
+
     mongoose.set('useCreateIndex', true);
     return mongoose.connection
       .once('open', () => {
