@@ -11,7 +11,6 @@ let router = express.Router();
 // day parameter is passed in the format "MM-DD-YYYY"
 router.get('/appointments/:locationId/:day', (req, res) => {
   let day = moment(req.params.day, 'DD-MM-YYYY');
-  console.log(day);
   AppointmentsModel.find({
     locationId: req.params.locationId,
     date: {
