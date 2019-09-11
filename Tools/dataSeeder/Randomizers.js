@@ -31,6 +31,7 @@ export function generateBioKits() {
       new BiokitModel({
         bioKitId: id,
         accessible: index % 2,
+        private: index % 2,
         available: index === 2 ? false : true
       })
     );
