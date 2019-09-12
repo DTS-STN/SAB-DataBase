@@ -5,6 +5,7 @@ import csv from 'csv-parser';
 import * as db from './DatabaseHelper';
 import locationModel from '../src/models/location.model';
 import { createReadStream } from 'fs';
+import biokitsModel from '../src/models/biokits.model';
 
 let locationsFormatted = [];
 
@@ -43,9 +44,10 @@ const joinPhysicalAddress = array => {
   return array.join(', ');
 };
 
-const createModels = location => {
+const createModels = (location, index) => {
   let addressArray = seperateLocation(location.physicalAddress);
   let model = new locationModel({
+    locationId: index,
     locationName: location.office,
     locationAddress: joinPhysicalAddress(
       addressArray.slice(0, addressArray.length - 3)
@@ -53,9 +55,24 @@ const createModels = location => {
     locationCity: addressArray[addressArray.length - 3],
     postalCode: addressArray[addressArray.length - 1],
     locationProvince: addressArray[addressArray.length - 2],
-    bioKitAmount: parseInt(location.bioKits)
+    bioKitAmount: parseInt(location.bioKits),
+    bioKits: generateBioKits(parseInt(location.bioKits))
   });
   locationsFormatted.push(model);
+};
+
+const generateBioKits = bioKitAmount => {
+  let bioKits = [];
+  let i;
+  for (i = 0; i < bioKitAmount; i++) {
+    let model = new biokitsModel({
+      bioKitId: i + 1,
+      accessible: i === bioKitAmount - 1 ? true : false,
+      private: i === bioKitAmount - 1 ? true : false
+    });
+    bioKits.push(model);
+  }
+  return bioKits;
 };
 
 // Main

@@ -16,9 +16,9 @@
     "test:load": "docker run -i loadimpact/k6 run - <./tests/load/script.js",
     "fullcheck": "npm run lint && npm run codeclimate:analyze",
     "mongodb": "docker run --rm -p 27017:27017 mongo",
-    "deprecated:mongodb:seed": "cd data_seed && docker build -t mongo-seeding . && docker run --rm --network='host' mongo-seeding",
-    "databaseInit": "babel-node Tools/LocationImporter.js",
-    "seed": "babel-node --no-deprecation Tools/dataSeeder/DataSeeder.js"
+    "seed": "babel-node --no-deprecation Tools/dataSeeder/DataSeeder.js",
+    "csv:import": "babel-node --no-deprecation Tools/LocationImporter.js",
+    "deprecated:mongodb:seed": "cd data_seed && docker build -t mongo-seeding . && docker run --rm --network='host' mongo-seeding"
   },
   "repository": {
     "type": "git",
