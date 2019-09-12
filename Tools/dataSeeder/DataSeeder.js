@@ -49,8 +49,6 @@ const populateDatabase = async () => {
       ),
       // Every 20 appointments are maintenance appointments
       maintenance: !(i % 20),
-      // Every 15 appointments are private
-      private: !(i % 15),
       // Every 10 appointments are flagged as cancelled by the client
       cancelledByClient: !(i % 10),
       // Every 19 appointments are flagged as cancelled by the location/site
