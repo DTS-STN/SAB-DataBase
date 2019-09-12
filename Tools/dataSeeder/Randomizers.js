@@ -21,7 +21,7 @@ export function getBioKitId() {
 }
 
 // Return array of BioKit models with distinct property values
-export function generateBioKits() {
+export function generateSampleBioKits() {
   let ids = ['a1234', 'b3456', 'c5678'];
   let bioKits = [];
   for (let index = 0; index < ids.length; index++) {

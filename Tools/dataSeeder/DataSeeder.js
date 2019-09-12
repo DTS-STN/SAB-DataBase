@@ -90,7 +90,7 @@ const populateDatabase = async () => {
       ],
       bioKitAmount: 3,
       // Get array of 3 BioKits: 1 flagged accessible, 1 flagged unavailable
-      bioKits: Randomizers.generateBioKits()
+      bioKits: Randomizers.generateSampleBioKits()
     });
   }
 };

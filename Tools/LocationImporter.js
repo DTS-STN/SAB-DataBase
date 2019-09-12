@@ -5,6 +5,7 @@ import csv from 'csv-parser';
 import * as db from './DatabaseHelper';
 import locationModel from '../src/models/location.model';
 import { createReadStream } from 'fs';
+import biokitsModel from '../src/models/biokits.model';
 
 let locationsFormatted = [];
 
@@ -56,6 +57,20 @@ const createModels = location => {
     bioKitAmount: parseInt(location.bioKits)
   });
   locationsFormatted.push(model);
+};
+
+const generateBioKits = bioKitAmount => {
+  let bioKits = [];
+  let i;
+  for (i = 0; i < bioKitAmount; i++) {
+    let model = new biokitsModel({
+      bioKitId: i,
+      accessible: i === bioKitAmount - 1 ? true : false,
+      private: i === bioKitAmount - 1 ? true : false
+    });
+    bioKits.push(model);
+  }
+  return bioKits;
 };
 
 // Main
