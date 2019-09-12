@@ -6,8 +6,10 @@ Where we can collect the data and distribute it accordingly to our front end for
 
 #Create .env File Testing Connection String (Dev)
 NODE_ENV='development'
-PORT=4011
-MONGO_URI='mongodb+srv://<username>:<pass>@cluster0-wbfnv.mongodb.net/test?retryWrites=true&w=majority'
+PORT=4001
+MONGO_URI='localhost'
+MONGO_PORT=27017
+MONGO_DATABASE='db'
 
 #npm i
 installs all the dependencies
