@@ -2,8 +2,8 @@ import locationModel from '../src/models/location.model';
 import mongoose from 'mongoose';
 require('dotenv').config();
 
-const mongoUser = process.env.MONGO_USER;
-const mongoPassword = process.env.MONGO_PASSWORD;
+// const mongoUser = process.env.MONGO_USER;
+// const mongoPassword = process.env.MONGO_PASSWORD;
 const mongoURI = process.env.MONGO_URI;
 const mongoPort = process.env.MONGO_PORT;
 const mongoDB = process.env.MONGO_DATABASE;
@@ -12,12 +12,9 @@ const mongoDB = process.env.MONGO_DATABASE;
 export const init = () => {
   return new Promise((resolve, reject) => {
     mongoose
-      .connect(
-        `mongodb://${mongoUser}:${mongoPassword}@${mongoURI}:${mongoPort}/${mongoDB}`,
-        {
-          useNewUrlParser: true
-        }
-      )
+      .connect(`mongodb://${mongoURI}:${mongoPort}/${mongoDB}`, {
+        useNewUrlParser: true
+      })
       .catch(err => console.log(err));
 
     mongoose.set('useCreateIndex', true);
