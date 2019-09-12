@@ -66,7 +66,7 @@ const generateBioKits = bioKitAmount => {
   let i;
   for (i = 0; i < bioKitAmount; i++) {
     let model = new biokitsModel({
-      bioKitId: i,
+      bioKitId: i + 1,
       accessible: i === bioKitAmount - 1 ? true : false,
       private: i === bioKitAmount - 1 ? true : false
     });
