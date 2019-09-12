@@ -54,7 +54,8 @@ const createModels = location => {
     locationCity: addressArray[addressArray.length - 3],
     postalCode: addressArray[addressArray.length - 1],
     locationProvince: addressArray[addressArray.length - 2],
-    bioKitAmount: parseInt(location.bioKits)
+    bioKitAmount: parseInt(location.bioKits),
+    bioKits: generateBioKits()
   });
   locationsFormatted.push(model);
 };
