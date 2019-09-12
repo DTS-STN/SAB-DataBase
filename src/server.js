@@ -11,8 +11,12 @@ import path from 'path';
 import bodyParser from 'body-parser';
 require('dotenv').config();
 
+const mongoURI = process.env.MONGO_URI;
+const mongoPort = process.env.MONGO_PORT;
+const mongoDB = process.env.MONGO_DATABASE;
+
 let app = express();
-mongoose.connect(process.env.CONNECTION_STRING, {
+mongoose.connect(`mongodb://${mongoURI}:${mongoPort}/${mongoDB}`, {
   useNewUrlParser: true
 });
 mongoose.set('useCreateIndex', true);
