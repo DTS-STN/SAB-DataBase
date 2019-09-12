@@ -1,12 +1,16 @@
 FROM node:8
 
-ENV CONNECTION_STRING=iwillbeupdatedautomatically
+ENV MONGO_URI
+ENV MONGO_PORT
+ENV MONGO_USER
+ENV MONGO_PASSWORD
+ENV MONGO_DATABASE
 
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install --only=production
+RUN npm install --production
 
 COPY . .
 
