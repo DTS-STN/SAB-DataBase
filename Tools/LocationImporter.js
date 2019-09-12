@@ -44,9 +44,10 @@ const joinPhysicalAddress = array => {
   return array.join(', ');
 };
 
-const createModels = location => {
+const createModels = (location, index) => {
   let addressArray = seperateLocation(location.physicalAddress);
   let model = new locationModel({
+    locationId: index,
     locationName: location.office,
     locationAddress: joinPhysicalAddress(
       addressArray.slice(0, addressArray.length - 3)
