@@ -6,9 +6,12 @@ ENV MONGO_USER='autoreplace'
 ENV MONGO_PASSWORD='autoreplace'
 ENV MONGO_DATABASE='autoreplace'
 
-WORKDIR /usr/src/app
+ENV MONGO_URI 'localhost'
+ENV MONGO_PORT '27017'
+ENV MONGO_USER ''
+ENV MONGO_PASSWORD ''
+ENV MONGO_DATABASE 'DTS'
 
-COPY package*.json ./
 
 RUN npm install --production
 RUN npm install --save-dev babel-loader@^8.0.0-beta

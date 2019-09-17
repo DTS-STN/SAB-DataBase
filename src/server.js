@@ -17,6 +17,9 @@ const mongoPort = process.env.MONGO_PORT;
 const mongoDB = process.env.MONGO_DATABASE;
 
 let app = express();
+console.log(
+  `mongodb://${mongoUser}:${mongoPassword}@${mongoURI}:${mongoPort}/${mongoDB}`
+);
 mongoose.connect(
   `mongodb://${mongoUser}:${mongoPassword}@${mongoURI}:${mongoPort}/${mongoDB}`,
   {
