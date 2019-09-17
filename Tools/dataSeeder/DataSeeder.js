@@ -41,6 +41,7 @@ const populateDatabase = async () => {
         .toDate(),
       // Returns a date and time between the beginning of the week and the time of
       // the object's creation
+      confirmation: Randomizers.randomString(8),
       dateConfirmed: Randomizers.randomDate(
         moment()
           .startOf('week')
