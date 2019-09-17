@@ -1,19 +1,22 @@
-FROM node:8
+FROM node:8.16.1-alpine AS builder
+WORKDIR /app
+COPY package* ./
+RUN npm install
+COPY src/ src/
+COPY .babelrc .babelrc
+RUN npm run build
+RUN npm prune --production
 
-ENV MONGO_URI
-ENV MONGO_PORT
-ENV MONGO_USER
-ENV MONGO_PASSWORD
-ENV MONGO_DATABASE
+FROM node:8.16.1-alpine AS production
 
-WORKDIR /usr/src/app
+ENV MONGO_URI 'localhost'
+ENV MONGO_PORT '27017'
+ENV MONGO_USER ''
+ENV MONGO_PASSWORD ''
+ENV MONGO_DATABASE 'DTS'
 
-COPY package*.json ./
 
-RUN npm install --production
-
-COPY . .
-
-EXPOSE 4001
-
-CMD ["npm", "start"]
+WORKDIR /app
+COPY --from=builder /app .
+#CMD [ "/bin/sh" ]
+CMD [ "npm", "start" ]
