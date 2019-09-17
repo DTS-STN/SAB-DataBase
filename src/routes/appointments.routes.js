@@ -92,7 +92,6 @@ router.post('/appointments/temp', (req, res) => {
   if (!req.body) {
     return res.status(400).send('Request body is missing');
   }
-
   let model = new AppointmentsModel(req.body);
 
   model.expires = moment()
@@ -112,10 +111,13 @@ router.post('/appointments/temp', (req, res) => {
 });
 
 // POST for creating a new confirmed appointment
-router.post('/appointments/confirm/:documentId', (req, res) => {
+router.put('/appointments/confirm/:documentId', (req, res) => {
   // Get temporary appointment document
   AppointmentsModel.findById(req.params.documentId).then(doc => {
     // Remove expiry and change to confirmed appointment
+    if (doc.dateConfirmed !== null) {
+      return res.status(400).send('Appointment has already been confirmed');
+    }
     doc.confirmation = hashFromData(doc.clientEmail, doc.bil);
     doc.expires = null;
     doc.dateConfirmed = new Date();
