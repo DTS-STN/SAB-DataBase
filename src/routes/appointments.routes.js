@@ -94,6 +94,10 @@ router.post('/appointments/temp', (req, res) => {
   }
 
   let model = new AppointmentsModel(req.body);
+
+  model.expires = moment()
+    .add(5, 'minutes')
+    .toDate();
   model
     .save()
     .then(doc => {
@@ -114,6 +118,8 @@ router.post('/appointments/confirm', (req, res) => {
   }
 
   let model = new AppointmentsModel(req.body);
+
+  model.dateConfirmed = new Date();
   model
     .save()
     .then(doc => {
