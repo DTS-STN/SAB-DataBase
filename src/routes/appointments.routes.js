@@ -112,10 +112,11 @@ router.post('/appointments/temp', (req, res) => {
 });
 
 // POST for creating a new confirmed appointment
-router.post('/appointments/confirm/:id', (req, res) => {
+router.post('/appointments/confirm/:documentId', (req, res) => {
   // Get temporary appointment document
-  AppointmentsModel.findById(req.params.id).then(doc => {
+  AppointmentsModel.findById(req.params.documentId).then(doc => {
     // Remove expiry and change to confirmed appointment
+    doc.confirmation = hashFromData(doc.clientEmail, doc.bil);
     doc.expires = null;
     doc.dateConfirmed = new Date();
     doc
@@ -131,5 +132,19 @@ router.post('/appointments/confirm/:id', (req, res) => {
       });
   });
 });
+
+const hashFromData = (email, paperFileNumber) => {
+  var hash = 0,
+    i,
+    chr;
+  const keys = email + paperFileNumber;
+  if (keys.length === 0) return hash;
+  for (i = 0; i < keys.length; i++) {
+    chr = keys.charCodeAt(i);
+    hash = (hash << 5) - hash + chr;
+    hash |= 0;
+  }
+  return hash;
+};
 
 export default router;
