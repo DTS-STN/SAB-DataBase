@@ -19,4 +19,6 @@ const AppointmentSchema = new Schema({
   cancelledByLocation: Boolean
 });
 
+AppointmentSchema.index({ expires: 1 }, { expireAfterSeconds: 0 });
+
 export default mongoose.model('Appointments', AppointmentSchema);
