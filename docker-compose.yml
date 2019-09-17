@@ -25,16 +25,3 @@ services:
       - server
     ports:
       - "3000:3000"
-    environment:
-      RAZZLE_CONNECTION_STRING: "server:4001"
-      PORT: 3000
-      VERBOSE: "true"
-      RAZZLE_PAPER_FILE_NUMBER_PATTERN: "[a-zA-Z]{1}"
-      RAZZLE_AWS_ACCESS_KEY_ID: "SOME_ACCESS_ID"
-      RAZZLE_AWS_REGION: "some-region-1"
-      RAZZLE_AWS_SECRET_ACCESS_KEY: "someAccessKey"
-      RAZZLE_IRCC_TEST_RECEIVING_ADDRESS: "your.name@example.com"
-      RAZZLE_SENDING_ADDRESS: "justin@canada.ca"
-      RAZZLE_SITE_URL: "rescheduler-dev.cds-snc.ca"
-      RAZZLE_STAGE: "development"
-      RAZZLE_FLAGS: '[{"name":"newFeature","isActive":true},{"name":"evenNewerFeature","isActive":false}]'
