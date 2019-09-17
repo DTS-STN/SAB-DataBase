@@ -94,6 +94,10 @@ router.post('/appointments/temp', (req, res) => {
   }
 
   let model = new AppointmentsModel(req.body);
+
+  model.expires = moment()
+    .add(5, 'minutes')
+    .toDate();
   model
     .save()
     .then(doc => {
@@ -108,23 +112,39 @@ router.post('/appointments/temp', (req, res) => {
 });
 
 // POST for creating a new confirmed appointment
-router.post('/appointments/confirm', (req, res) => {
-  if (!req.body) {
-    return res.status(400).send('Request body is missing');
-  }
-
-  let model = new AppointmentsModel(req.body);
-  model
-    .save()
-    .then(doc => {
-      if (!doc || doc.length === 0) {
-        return res.status(500).send(doc);
-      }
-      res.status(201).send(doc);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
+router.post('/appointments/confirm/:documentId', (req, res) => {
+  // Get temporary appointment document
+  AppointmentsModel.findById(req.params.documentId).then(doc => {
+    // Remove expiry and change to confirmed appointment
+    doc.confirmation = hashFromData(doc.clientEmail, doc.bil);
+    doc.expires = null;
+    doc.dateConfirmed = new Date();
+    doc
+      .save()
+      .then(doc => {
+        if (!doc || doc.length === 0) {
+          return res.status(500).send(doc);
+        }
+        res.status(201).send(doc);
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  });
 });
+
+const hashFromData = (email, paperFileNumber) => {
+  var hash = 0,
+    i,
+    chr;
+  const keys = email + paperFileNumber;
+  if (keys.length === 0) return hash;
+  for (i = 0; i < keys.length; i++) {
+    chr = keys.charCodeAt(i);
+    hash = (hash << 5) - hash + chr;
+    hash |= 0;
+  }
+  return hash;
+};
 
 export default router;
