@@ -81,8 +81,32 @@ readFromFile('Tools/Biometrics_Sites.csv')
     locationsRaw.forEach(createModels);
   })
   .then(() => {
+    // Initialize database
     db.init().then(() => {
-      db.insert(locationsFormatted);
-      db.close();
+      // If you want to drop an existing locations collection
+      if (process.env.DROP_COLLECTION) {
+        console.log('Dropping collection');
+        // Drop locations collection
+        db.dropLocationsCollection()
+          .then(() => {
+            // Insert new locations
+            db.insert(locationsFormatted);
+            db.close();
+          })
+          .catch(err => {
+            console.log('Drop collection error: ' + err);
+            // If there is an error, attempt dropping the collection again
+            // There is a  MongoDB issue where every second drop returns an error
+            // These lines will ensure the drop is attempted until it works
+            db.dropLocationsCollection().then(() => {
+              db.insert(locationsFormatted);
+              db.close();
+            });
+          });
+      } else {
+        console.log('Not dropping collection');
+        db.insert(locationsFormatted);
+        db.close();
+      }
     });
   });

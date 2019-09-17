@@ -1,12 +1,10 @@
 # SAB-DataBase
 
-Scheduling Application for Biometric database and API
-
 ## Project
 
-Where we can collect the data and distribute it accordingly to our front end for simplicity for the user.
+API and database modelling for the Scheduling Tool
 
-## Create .env File Testing Connection String (Dev)
+## .env values
 
 NODE_ENV='development'
 PORT=4001
