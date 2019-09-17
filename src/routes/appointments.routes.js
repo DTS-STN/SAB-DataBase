@@ -87,8 +87,28 @@ router.get('/appointments/:locationId/:month', (req, res) => {
     });
 });
 
-// POST for creating a new appointment
-router.post('/appointments', (req, res) => {
+// POST for creating a new temporary appointment
+router.post('/appointments/temp', (req, res) => {
+  if (!req.body) {
+    return res.status(400).send('Request body is missing');
+  }
+
+  let model = new AppointmentsModel(req.body);
+  model
+    .save()
+    .then(doc => {
+      if (!doc || doc.length === 0) {
+        return res.status(500).send(doc);
+      }
+      res.status(201).send(doc);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// POST for creating a new confirmed appointment
+router.post('/appointments/confirm', (req, res) => {
   if (!req.body) {
     return res.status(400).send('Request body is missing');
   }
