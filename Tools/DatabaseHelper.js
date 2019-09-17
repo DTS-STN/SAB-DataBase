@@ -38,6 +38,18 @@ export const init = () => {
   });
 };
 
+export const dropLocationsCollection = () => {
+  return mongoose.connection.dropCollection('locations');
+};
+
+// export const collectionExists = collection => {
+//   mongoose.connection.db
+//     .listCollections({ name: collection })
+//     .toArray((err, collinfo) => {
+//       console.log(collinfo);
+//     });
+// };
+
 export const close = () => {
   mongoose.connection.close();
 };
