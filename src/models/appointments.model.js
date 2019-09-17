@@ -12,10 +12,13 @@ const AppointmentSchema = new Schema({
   bil: String,
   confirmation: String,
   date: Date,
-  dateSubmitted: Date,
+  dateConfirmed: Date,
+  expires: Date,
   maintenance: Boolean,
   cancelledByClient: Boolean,
   cancelledByLocation: Boolean
 });
+
+AppointmentSchema.index({ expires: 1 }, { expireAfterSeconds: 0 });
 
 export default mongoose.model('Appointments', AppointmentSchema);

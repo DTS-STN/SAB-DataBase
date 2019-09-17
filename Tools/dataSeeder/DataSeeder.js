@@ -41,12 +41,13 @@ const populateDatabase = async () => {
         .toDate(),
       // Returns a date and time between the beginning of the week and the time of
       // the object's creation
-      dateSubmitted: Randomizers.randomDate(
+      dateConfirmed: Randomizers.randomDate(
         moment()
           .startOf('week')
           .toDate(),
         moment().toDate()
       ),
+      expires: null,
       // Every 20 appointments are maintenance appointments
       maintenance: !(i % 20),
       // Every 10 appointments are flagged as cancelled by the client
