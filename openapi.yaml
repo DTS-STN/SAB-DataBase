@@ -8,7 +8,7 @@ paths:
   /locations:
     get:
       tags:
-      - Locations
+        - Locations
       summary: Returns all locations data and their nested biokits
       responses:
         "200":
@@ -23,9 +23,17 @@ paths:
       tags:
         - Locations
       summary: Create a new location and then return that location in the response
+      requestBody:
+        description: A location object to be inserted into the database
+        required: true
       responses:
         "200":
-          description: 
+          description: Succesful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Locations"
+
   /locations/{locationId}:
     get:
       tags:
@@ -38,8 +46,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Locations"
-
-  
 
 components:
   schemas:
