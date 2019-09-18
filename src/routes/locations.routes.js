@@ -67,7 +67,7 @@ router.put('/locations/:id', (req, res) => {
 // @desc    Find all locations by Province, where City is an optional parameter
 // @access  Public for now
 router.get('/locationsByProv/:province/:city?', (req, res) => {
-  const province = req.params.id;
+  const province = req.params.province;
   const cityName = req.params.city;
   if (!cityName) {
     LocationsModel.aggregate(
