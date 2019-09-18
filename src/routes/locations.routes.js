@@ -75,17 +75,22 @@ router.get('/locationsByProv/:id/:city?', (req, res) => {
 // @desc    Create an Office Location
 // @access  Public for now
 router.post('/locations', (req, res) => {
-  const newLocation = new LocationsModel({
-    locationId: req.body.locationId,
-    locationAddress: req.body.locationAddress,
-    locationCity: req.body.locationCity,
-    locationProvince: req.body.locationProvince,
-    hours: req.body.hours,
-    closures: req.body.closures ? req.body.closures : null,
-    bioKits: req.body.bioKits ? req.body.bioKits : null
-  });
-
-  newLocation.save().then(location => res.json(location));
+  if (!req.body) {
+    res
+      .status(403)
+      .send({ error: 'No location information in body of request.' });
+  } else {
+    const newLocation = new LocationsModel({
+      locationId: req.body.locationId,
+      locationAddress: req.body.locationAddress,
+      locationCity: req.body.locationCity,
+      locationProvince: req.body.locationProvince,
+      hours: req.body.hours,
+      closures: req.body.closures ? req.body.closures : null,
+      bioKits: req.body.bioKits ? req.body.bioKits : null
+    });
+    newLocation.save().then(location => res.json(location));
+  }
 });
 
 // Update a Location
