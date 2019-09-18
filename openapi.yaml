@@ -83,7 +83,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/Locations"
 
-  /locations/locationsByProv/{province}/{city}:
+  # /locations/locationsByProv/{province}/{city}:
+
 components:
   schemas:
     Locations:
