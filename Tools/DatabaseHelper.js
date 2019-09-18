@@ -11,8 +11,6 @@ const mongoDB = process.env.MONGO_DATABASE;
 // Initialise connection to database
 export const init = () => {
   return new Promise((resolve, reject) => {
-    console.log(mongoUser);
-    console.log(mongoPassword);
     mongoose
       .connect(
         `mongodb://${mongoUser}:${mongoPassword}@${mongoURI}:${mongoPort}/${mongoDB}`,
