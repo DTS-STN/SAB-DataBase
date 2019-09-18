@@ -1,0 +1,123 @@
+openapi: 3.0.0
+info:
+  title: SAB-API
+  description: API for viewing and managing office, appointment and biokit information
+  version: 0.1.9
+
+paths:
+  /locations:
+    get:
+      tags:
+      - Locations
+      summary: Returns all locations data and their nested biokits
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Locations"
+    post:
+      tags:
+        - Locations
+      summary: Create a new location and then return that location in the response
+      responses:
+        "200":
+          description: 
+  /locations/{locationId}:
+    get:
+      tags:
+        - Locations
+      summary: Returns a single location
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Locations"
+
+  
+
+components:
+  schemas:
+    Locations:
+      type: object
+      properties:
+        locationId:
+          type: string
+        locationName:
+          type: string
+        locationAddress:
+          type: string
+        locationCity:
+          type: string
+        postalCode:
+          type: string
+        locationProvince:
+          type: string
+        hours:
+          type: string
+        closures:
+          type: array
+          items:
+            type: object
+            properties:
+              periodStart:
+                type: string
+                format: date-time
+              periodEnd:
+                type: string
+                format: date-time
+        bioKits:
+          type: array
+          items:
+            $ref: "#/components/schemas/BioKits"
+
+    BioKits:
+      type: object
+      properties:
+        bioKitId:
+          type: string
+        accessible:
+          type: boolean
+        private:
+          type: boolean
+        available:
+          type: boolean
+
+    Appointments:
+      type: object
+      properties:
+        appointmentId:
+          type: string
+        clientEmail:
+          type: string
+          format: email
+        phoneNumber:
+          type: number
+        locationId:
+          type: string
+        bioKitId:
+          type: string
+        bil:
+          type: string
+        confirmation:
+          type: string
+        date:
+          type: string
+          format: date-time
+        dateConfirmed:
+          type: string
+          format: date-time
+        expires:
+          type: string
+          format: date-time
+        maintenance:
+          type: boolean
+        cancelledByClient:
+          type: boolean
+        cancelledByLocation:
+          type: boolean
