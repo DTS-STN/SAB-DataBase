@@ -13,13 +13,6 @@ const internalServerError = {
   msg: 'Internal server error'
 };
 
-// Get All Locations
-router.get('/locations', (req, res) => {
-  LocationsModel.find((err, locations) =>
-    respondToFind(res, err, internalServerError, locations)
-  );
-});
-
 // Deal with the results of a database query
 function respondToFind(res, err, errMsg, object) {
   if (err) {
@@ -31,6 +24,13 @@ function respondToFind(res, err, errMsg, object) {
       .send(object);
   }
 }
+
+// Get All Locations
+router.get('/locations', (req, res) => {
+  LocationsModel.find((err, locations) =>
+    respondToFind(res, err, internalServerError, locations)
+  );
+});
 
 // Get One Location
 router.get('/locations/:id', (req, res) => {
@@ -79,12 +79,10 @@ router.post('/locations', (req, res) => {
     locationId: req.body.locationId,
     locationAddress: req.body.locationAddress,
     locationCity: req.body.locationCity,
-    locationProvinceId: req.body.locationId,
     locationProvince: req.body.locationProvince,
-    locationProvinceFr: req.body.locationProvinceFr,
     hours: req.body.hours,
-    closures: undefined,
-    bioKits: undefined
+    closures: req.body.closures ? req.body.closures : null,
+    bioKits: req.body.bioKits ? req.body.bioKits : null
   });
 
   newLocation.save().then(location => res.json(location));
