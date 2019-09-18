@@ -40,16 +40,39 @@ router.get('/locations/:id', (req, res) => {
   );
 });
 
-// @route   GET /locationsByProv/id/city
+// Update a Location
+router.put('/locations/:id', (req, res) => {
+  const locationId = req.params.id;
+  const newLocationData = req.body;
+  if (newLocationData === null || newLocationData === undefined) {
+    res
+      .status(403)
+      .send({ error: 'No location information in body of request.' });
+  }
+  LocationsModel.findByIdAndUpdate(locationId, newLocationData, err => {
+    if (err) {
+      res
+        .status(403)
+        .send({ error: err, message: 'Could not update location' });
+    } else {
+      res
+        .status(200)
+        .type('application/json')
+        .send(newLocationData);
+    }
+  });
+});
+
+// @route   GET /locationsByProv/province/city
 // @desc    Find all locations by Province, where City is an optional parameter
 // @access  Public for now
-router.get('/locationsByProv/:id/:city?', (req, res) => {
-  const provinceId = req.params.id;
+router.get('/locationsByProv/:province/:city?', (req, res) => {
+  const province = req.params.id;
   const cityName = req.params.city;
   if (!cityName) {
     LocationsModel.aggregate(
       [
-        { $match: { locationProvince: provinceId } },
+        { $match: { locationProvince: province } },
         {
           $group: {
             _id: '$locationCity',
@@ -64,7 +87,7 @@ router.get('/locationsByProv/:id/:city?', (req, res) => {
     );
   } else {
     LocationsModel.find(
-      { locationProvince: provinceId, locationCity: cityName },
+      { locationProvince: province, locationCity: cityName },
       (err, locationDoc) =>
         respondToFind(res, err, couldNotGetLocation, locationDoc)
     );
@@ -91,29 +114,6 @@ router.post('/locations', (req, res) => {
     });
     newLocation.save().then(location => res.json(location));
   }
-});
-
-// Update a Location
-router.put('/locations/update/:id', (req, res) => {
-  const locationId = req.params.id;
-  const newLocationData = req.body;
-  if (newLocationData === null || newLocationData === undefined) {
-    res
-      .status(403)
-      .send({ error: 'No location information in body of request.' });
-  }
-  LocationsModel.findByIdAndUpdate(locationId, newLocationData, err => {
-    if (err) {
-      res
-        .status(403)
-        .send({ error: err, message: 'Could not update location' });
-    } else {
-      res
-        .status(200)
-        .type('application/json')
-        .send(newLocationData);
-    }
-  });
 });
 
 export default router;

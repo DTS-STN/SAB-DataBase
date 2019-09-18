@@ -26,6 +26,10 @@ paths:
       requestBody:
         description: A location object to be inserted into the database
         required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Locations"
       responses:
         "200":
           description: Succesful operation
@@ -39,6 +43,38 @@ paths:
       tags:
         - Locations
       summary: Returns a single location
+      parameters:
+        - in: path
+          name: locationId
+          schema:
+            type: string
+          required: true
+          description: String id of location to return
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Locations"
+    put:
+      tags:
+        - Locations
+      summary: Updates a location
+      parameters:
+        - in: path
+          name: locationId
+          schema:
+            type: string
+          required: true
+          description: String id of location to update then return
+      requestBody:
+        description: A location object to be inserted into the database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Locations"
       responses:
         "200":
           description: Successful operation
