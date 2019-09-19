@@ -124,6 +124,8 @@ paths:
                     - $ref: "#/components/schemas/Locations"
                     - $ref: "#/components/schemas/Cities"
 
+  
+
 components:
   schemas:
     Locations:
