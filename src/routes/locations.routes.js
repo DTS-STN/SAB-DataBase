@@ -27,9 +27,41 @@ function respondToFind(res, err, errMsg, object) {
 
 // Get All Locations
 router.get('/locations', (req, res) => {
-  LocationsModel.find((err, locations) =>
-    respondToFind(res, err, internalServerError, locations)
-  );
+  let province = req.query.province;
+  let cityName = req.query.city;
+  if (province && cityName) {
+    LocationsModel.find(
+      { locationProvince: province, locationCity: cityName },
+      (err, locationDoc) =>
+        respondToFind(res, err, couldNotGetLocation, locationDoc)
+    );
+  } else if (!cityName && province) {
+    LocationsModel.aggregate(
+      [
+        { $match: { locationProvince: province } },
+        {
+          $group: {
+            _id: '$locationCity',
+            name: { $first: '$locationCity' },
+            value: { $first: '$locationCity' }
+          }
+        },
+        { $sort: { value: -1 } }
+      ],
+      (err, locationDoc) =>
+        respondToFind(res, err, couldNotGetLocation, locationDoc)
+    );
+  } else if (!province && cityName) {
+    LocationsModel.find(
+      { locationProvince: province, locationCity: cityName },
+      (err, locationDoc) =>
+        respondToFind(res, err, couldNotGetLocation, locationDoc)
+    );
+  } else {
+    LocationsModel.find((err, locations) =>
+      respondToFind(res, err, internalServerError, locations)
+    );
+  }
 });
 
 // Get One Location
