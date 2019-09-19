@@ -25,7 +25,9 @@ function respondToFind(res, err, errMsg, object) {
   }
 }
 
-// Get All Locations
+// Get all locations
+// Get Locations by province
+// Get locations by city
 router.get('/locations', (req, res) => {
   let province = req.query.province;
   let cityName = req.query.city;
@@ -36,26 +38,12 @@ router.get('/locations', (req, res) => {
         respondToFind(res, err, couldNotGetLocation, locationDoc)
     );
   } else if (!cityName && province) {
-    LocationsModel.aggregate(
-      [
-        { $match: { locationProvince: province } },
-        {
-          $group: {
-            _id: '$locationCity',
-            name: { $first: '$locationCity' },
-            value: { $first: '$locationCity' }
-          }
-        },
-        { $sort: { value: -1 } }
-      ],
-      (err, locationDoc) =>
-        respondToFind(res, err, couldNotGetLocation, locationDoc)
+    LocationsModel.find({ locationProvince: province }, (err, locationDoc) =>
+      respondToFind(res, err, couldNotGetLocation, locationDoc)
     );
   } else if (!province && cityName) {
-    LocationsModel.find(
-      { locationProvince: province, locationCity: cityName },
-      (err, locationDoc) =>
-        respondToFind(res, err, couldNotGetLocation, locationDoc)
+    LocationsModel.find({ locationCity: cityName }, (err, locationDoc) =>
+      respondToFind(res, err, couldNotGetLocation, locationDoc)
     );
   } else {
     LocationsModel.find((err, locations) =>
