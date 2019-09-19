@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: SAB-API
   description: API for viewing and managing office, appointment and biokit information
-  version: 0.1.9
+  version: 0.2.0
 
 paths:
   /locations:
@@ -10,6 +10,17 @@ paths:
       tags:
         - Locations
       summary: Returns all locations data and their nested biokits
+      parameters:
+        - in: query
+          name: province
+          schema:
+            type: string
+          description: The province with which you would like to query locations
+        - in: query
+          name: city
+          schema:
+            type: string
+          description: The city with which you would like to query locations
       responses:
         "200":
           description: Successful operation
