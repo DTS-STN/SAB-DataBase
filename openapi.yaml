@@ -94,7 +94,35 @@ paths:
               schema:
                 $ref: "#/components/schemas/Locations"
 
-  # /locations/locationsByProv/{province}/{city}:
+  /locations/locationsByProv/{province}/{city}:
+    get:
+      tags:
+        - Locations
+      summary: Returns either array of cities (if province is passed) or array of locations (if province and city are passed)
+      parameters:
+        - in: path
+          name: province
+          schema:
+            type: string
+          required: true
+          description: The province for which you would want returned a list of cities that have locations
+        - in: path
+          name: city
+          schema:
+            type: string
+          required: true
+          description: The city for which you would like to receive locations information
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: "#/components/schemas/Locations"
+                    - $ref: "#/components/schemas/Cities"
 
 components:
   schemas:
@@ -176,3 +204,13 @@ components:
           type: boolean
         cancelledByLocation:
           type: boolean
+
+    Cities:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
