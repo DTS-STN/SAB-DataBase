@@ -4,6 +4,10 @@ info:
   description: API for viewing and managing office, appointment and biokit information
   version: 0.2.0
 
+servers:
+  - url: https://sab-database.dev.esdc.online
+    description: Development server
+
 paths:
   /locations:
     get:
