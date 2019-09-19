@@ -5,38 +5,66 @@
 
 trigger:
 - master
+jobs:
+# - job: Testing
+#   pool:
+#     vmImage: 'ubuntu-latest'
 
-pool:
-  vmImage: 'ubuntu-latest'
+#   steps:
+#   - task: NodeTool@0
+#     inputs:
+#       versionSpec: '10.x'
+#     displayName: 'Install Node.js'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+#   - script: |
+#       npm install
+#       npm run install:codeclimate
+#       npm run install:k6
+#     displayName: 'install dependencies'
 
-- script: |
-    npm install
-    npm run install:codeclimate
-    npm run install:k6
-  displayName: 'install dependencies'
+#   - script: npm run lint
+#     condition: always()
+#     displayName: lint
+#   - script: npm run spellcheck
+#     condition: always()
+#     displayName: spellcheck
+#   - script: npm run codeclimate:analyze
+#     condition: always()
+#     displayName: 'Analyze Code Quality and Check Licenses'
 
-- script: npm run lint
-  condition: always()
-  displayName: lint
-- script: npm run spellcheck
-  condition: always()
-  displayName: spellcheck
-- script: npm run codeclimate:analyze
-  condition: always()
-  displayName: 'Analyze Code Quality and Check Licenses'
- 
-# XXX: Currently runs a demo load test
-# TODO: Start the server
-# TODO: Run tests against api endpoints
-- script: npm run test:load
-  condition: always()
-  displayName: 'Run Load Tests'
+#   # XXX: Currently runs a demo load test
+#   # TODO: Start the server
+#   # TODO: Run tests against api endpoints
+#   - script: npm run test:load
+#     condition: always()
+#     displayName: 'Run Load Tests'
 
-- script: npm run build
-  displayName: 'build'
+#   - script: npm run build
+#     displayName: 'build'
+
+- job: Publish_Artifact
+  # dependsOn: Testing
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  steps:
+   - task: Docker@2
+     inputs:
+      containerRegistry: 'MTSContainers'
+      repository: 'SAB-Database'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
+      Tags: |
+        $(Build.BuildId)
+        latest
+
+- job: Deploy_Jenkins
+  dependsOn: Publish_Artifact
+  steps:
+  - task: JenkinsQueueJob@2
+    inputs:
+      serverEndpoint: 'MTSJenkins'
+      jobName: 'dts-sab-database-api'
+      captureConsole: true
+      capturePipeline: true
+      isParameterizedJob: true
+      jobParameters: 'azure_build_number=$(Build.BuildId)'
