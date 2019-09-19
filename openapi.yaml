@@ -9,18 +9,18 @@ paths:
     get:
       tags:
         - Locations
-      summary: Returns all locations data and their nested biokits
+      summary: Returns location data and nested biokits
       parameters:
         - in: query
           name: province
           schema:
             type: string
-          description: The province with which you would like to query locations
+          description: The province with which you would like to query locations eg. Ontario, Quebec, British%20Columbia
         - in: query
           name: city
           schema:
             type: string
-          description: The city with which you would like to query locations
+          description: The city with which you would like to query locations eg. Toronto, Ottawa, Montreal
       responses:
         "200":
           description: Successful operation
@@ -33,7 +33,7 @@ paths:
     post:
       tags:
         - Locations
-      summary: Create a new location and then return that location in the response
+      summary: Creates a new location and then returns that location in the response
       requestBody:
         description: A location object to be inserted into the database
         required: true
@@ -60,7 +60,7 @@ paths:
           schema:
             type: string
           required: true
-          description: String id of location to return
+          description: Object id of location to return
       responses:
         "200":
           description: Successful operation
@@ -78,7 +78,7 @@ paths:
           schema:
             type: string
           required: true
-          description: String id of location to update then return
+          description: Object id of location to update then return
       requestBody:
         description: A location object to be inserted into the database
         required: true
