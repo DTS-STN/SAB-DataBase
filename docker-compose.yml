@@ -25,3 +25,5 @@ services:
       - server
     ports:
       - "3000:3000"
+    environment:
+      CONNECTION_STRING: "server:4001"
