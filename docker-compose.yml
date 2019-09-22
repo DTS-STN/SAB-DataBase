@@ -17,15 +17,3 @@ services:
       MONGO_USER: ""
       MONGO_PASSWORD: ""
       MONGO_DATABASE: "DTS"
-
-  app:
-    build:
-      context: ../SAB-GUI
-      dockerfile: alt.Dockerfile
-    depends_on:
-      - database
-      - server
-    ports:
-      - "3000:3000"
-    environment:
-      CONNECTION_STRING: "server:4001"
