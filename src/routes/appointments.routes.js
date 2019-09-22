@@ -4,80 +4,77 @@ import express from 'express';
 
 let router = express.Router();
 
-// TODO: Create API for fetching set of appointments for a given location, on a given day
 // TODO: Create endpoint for cancelling appointments
 
 // GET appointments for a given location for a given day
-// day parameter is passed in the format "MM-DD-YYYY"
-router.get('/appointments/:locationId/:day', (req, res) => {
-  let day = moment(req.params.day, 'DD-MM-YYYY');
-  AppointmentsModel.find({
-    locationId: req.params.locationId,
-    date: {
-      $gte: day.startOf('day').toDate(),
-      $lte: day.endOf('day').toDate()
-    }
-  })
-    .then(docs => {
-      res.json(docs);
+// or month. Days and months are passed as query strings
+router.get('/appointments/:locationId', (req, res) => {
+  let day = req.query.day;
+  let month = req.query.month;
+  if (day) {
+    day = moment(day, 'DD-MM-YYYY');
+    AppointmentsModel.find({
+      locationId: req.params.locationId,
+      date: {
+        $gte: day.startOf('day').toDate(),
+        $lte: day.endOf('day').toDate()
+      }
     })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// GET all appointments in the future for a given location
-router.get('/appointmentsByLocId/:locationId', (req, res) => {
-  let now = moment().toDate();
-  AppointmentsModel.find({
-    locationId: req.params.locationId,
-    date: {
-      $gte: now
-    }
-  })
-    .then(doc => {
-      res.json(doc);
+      .then(docs => {
+        res.json(docs);
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  } else if (month) {
+    let startDate = moment()
+      .month(month)
+      .startOf('month')
+      .toDate();
+    let endDate = moment()
+      .month(month)
+      .endOf('month')
+      .toDate();
+    AppointmentsModel.find({
+      locationId: req.params.locationId,
+      date: {
+        $gte: startDate,
+        $lte: endDate
+      },
+      cancelledByClient: false,
+      cancelledByLocation: false
     })
-    .catch(err => {
-      res.status(500).json(err);
-    });
+      .then(doc => {
+        res.json(doc);
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  } else {
+    let now = moment().toDate();
+    AppointmentsModel.find({
+      locationId: req.params.locationId,
+      date: {
+        $gte: now
+      }
+    })
+      .then(doc => {
+        res.json(doc);
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  }
 });
 
 // GET a current (not in the past) appointment with it's BIL field
-router.get('/appointments/:bil', (req, res) => {
+router.get('/appointments/bil/:bil', (req, res) => {
   let now = moment().toDate();
   AppointmentsModel.findOne({
     bil: req.params.bil,
     date: {
       $gte: now
     }
-  })
-    .then(doc => {
-      res.json(doc);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-});
-
-// GET appointments for a month date range for a specific location that have not been cancelled
-router.get('/appointments/:locationId/:month', (req, res) => {
-  let startDate = moment()
-    .month(req.params.month)
-    .startOf('month')
-    .toDate();
-  let endDate = moment()
-    .month(req.params.month)
-    .endOf('month')
-    .toDate();
-  AppointmentsModel.find({
-    locationId: req.params.locationId,
-    date: {
-      $gte: startDate,
-      $lte: endDate
-    },
-    cancelledByClient: false,
-    cancelledByLocation: false
   })
     .then(doc => {
       res.json(doc);
