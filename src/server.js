@@ -51,6 +51,7 @@ process.env.NODE_ENV === 'development'
 
 // Enable CORS for all requests
 app.use(cors());
+app.options('*', cors());
 
 // Routes or route modules for the app to use
 app.use(locationsRoutes);
