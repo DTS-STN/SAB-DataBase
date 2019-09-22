@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import helmet from 'helmet';
-import hidePoweredBy from 'hide-powered-by';
 import nosniff from 'dont-sniff-mimetype';
 import express from 'express';
 import cors from 'cors';
@@ -37,7 +36,7 @@ mongoose.connection
 // Helmet options for production environment
 if (process.env.NODE_ENV === 'production') {
   app.use(helmet());
-  app.use(hidePoweredBy());
+  app.disable('x-powered-by');
   app.use(nosniff());
 }
 
@@ -51,6 +50,7 @@ process.env.NODE_ENV === 'development'
 
 // Enable CORS for all requests
 app.use(cors());
+app.options('*', cors());
 
 // Routes or route modules for the app to use
 app.use(locationsRoutes);
