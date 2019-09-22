@@ -19,7 +19,9 @@ services:
       MONGO_DATABASE: "DTS"
 
   app:
-    build: ../SAB-GUI
+    build:
+      context: ../SAB-GUI
+      dockerfile: alt.Dockerfile
     depends_on:
       - database
       - server
