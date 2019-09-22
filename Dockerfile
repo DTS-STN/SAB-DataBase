@@ -9,14 +9,14 @@ RUN npm prune --production
 
 FROM node:8.16.1-alpine AS production
 
-ENV MONGO_URI 'localhost'
-ENV MONGO_PORT '27017'
-ENV MONGO_USER ''
-ENV MONGO_PASSWORD ''
-ENV MONGO_DATABASE 'DTS'
-
+ENV MONGO_URI='autoreplace'
+ENV MONGO_PORT='autoreplace'
+ENV MONGO_USER='autoreplace'
+ENV MONGO_PASSWORD='autoreplace'
+ENV MONGO_DATABASE='autoreplace'
 
 WORKDIR /app
 COPY --from=builder /app .
-#CMD [ "/bin/sh" ]
+
+EXPOSE 4001
 CMD [ "npm", "start" ]

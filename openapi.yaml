@@ -2,14 +2,29 @@ openapi: 3.0.0
 info:
   title: SAB-API
   description: API for viewing and managing office, appointment and biokit information
-  version: 0.1.9
+  version: 0.2.0
+
+servers:
+  - url: https://sab-database.dev.esdc.online
+    description: Development server
 
 paths:
   /locations:
     get:
       tags:
         - Locations
-      summary: Returns all locations data and their nested biokits
+      summary: Returns location data and nested biokits
+      parameters:
+        - in: query
+          name: province
+          schema:
+            type: string
+          description: The province with which you would like to query locations eg. Ontario, Quebec, British%20Columbia
+        - in: query
+          name: city
+          schema:
+            type: string
+          description: The city with which you would like to query locations eg. Toronto, Ottawa, Montreal
       responses:
         "200":
           description: Successful operation
@@ -22,7 +37,7 @@ paths:
     post:
       tags:
         - Locations
-      summary: Create a new location and then return that location in the response
+      summary: Creates a new location and then returns that location in the response
       requestBody:
         description: A location object to be inserted into the database
         required: true
@@ -49,7 +64,7 @@ paths:
           schema:
             type: string
           required: true
-          description: String id of location to return
+          description: Object id of location to return
       responses:
         "200":
           description: Successful operation
@@ -67,7 +82,7 @@ paths:
           schema:
             type: string
           required: true
-          description: String id of location to update then return
+          description: Object id of location to update then return
       requestBody:
         description: A location object to be inserted into the database
         required: true
@@ -83,7 +98,35 @@ paths:
               schema:
                 $ref: "#/components/schemas/Locations"
 
-  # /locations/locationsByProv/{province}/{city}:
+  /locations/locationsByProv/{province}/{city}:
+    get:
+      tags:
+        - Locations
+      summary: Returns either array of cities (if province is passed) or array of locations (if province and city are passed)
+      parameters:
+        - in: path
+          name: province
+          schema:
+            type: string
+          required: true
+          description: The province for which you would want returned a list of cities that have locations
+        - in: path
+          name: city
+          schema:
+            type: string
+          required: true
+          description: The city for which you would like to receive locations information
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: "#/components/schemas/Locations"
+                    - $ref: "#/components/schemas/Cities"
 
 components:
   schemas:
@@ -165,3 +208,13 @@ components:
           type: boolean
         cancelledByLocation:
           type: boolean
+
+    Cities:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        value:
+          type: string

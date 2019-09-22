@@ -8,7 +8,7 @@ API and database modelling for the Scheduling Tool
 
 You can view documentation on thee API here:
 
-https://app.swaggerhub.com/apis-docs/will0684/sab-api/0.1.9#/
+https://app.swaggerhub.com/apis/will0684/sab-api/0.2.0
 
 ## .env values
 

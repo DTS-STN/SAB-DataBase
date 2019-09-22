@@ -14,12 +14,8 @@ const LocationSchema = new Schema({
   postalCode: String,
   locationProvince: String,
   hours: String,
-  closures: [
-    {
-      periodStart: Date,
-      periodEnd: Date
-    }
-  ],
+  defaultClosures: String,
+  customClosures: String,
   bioKitAmount: Number,
   bioKits: {
     type: [BioKitSchema],
