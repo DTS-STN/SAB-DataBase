@@ -1,5 +1,6 @@
 FROM node:10.15.3-jessie-slim
 
+ENV NODE_ENV='production'
 ENV MONGO_URI='autoreplace'
 ENV MONGO_PORT='autoreplace'
 ENV MONGO_USER='autoreplace'
