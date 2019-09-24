@@ -134,14 +134,13 @@ router.post('/appointments/temp', (req, res) => {
     return res.status(400).send('Request body is missing');
   }
   let model = new AppointmentsModel(req.body);
-
-  model.expires = moment()
-    .add(5, 'minutes')
-    .toDate();
   model.confirmation = null;
   model.maintenance = false;
   model.cancelledByClient = false;
   model.cancelledByLocation = false;
+  model.expires = moment()
+    .add(5, 'minutes')
+    .toDate();
   model
     .save()
     .then(doc => {
