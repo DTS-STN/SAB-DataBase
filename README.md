@@ -25,5 +25,3 @@ installs all the dependencies
 ## npm start or dev
 
 Starts the server
-
-x
