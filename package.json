@@ -41,12 +41,14 @@
     }
   },
   "dependencies": {
+    "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "helmet": "^3.18.0",
+    "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "mongodb": "^3.2.7",
     "mongoose": "^5.6.3",
@@ -58,7 +60,6 @@
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.5.4",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^8.0.6",
     "cspell": "^4.0.26",
     "cspell-dict-fr-fr": "^1.2.4",
     "csv-parser": "^2.3.0",
