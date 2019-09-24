@@ -91,15 +91,11 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
       })
         .then(appointments => {
           for (let i = 0; i < timeSlots.length; i++) {
-            // console.log('One timeslot loop: ' + i);
             for (let j = 0; j < appointments.length; j++) {
-              // console.log('One appointments loop: ' + j);
               let appointmentSlot = moment(appointments[`${j}`].date)
                 .local(true)
                 .format('hh:mm a');
               if (timeSlots[`${i}`].value === appointmentSlot) {
-                console.log(timeSlots[`${i}`].value);
-                console.log(appointmentSlot);
                 timeSlots.splice(i, 1);
               }
             }
