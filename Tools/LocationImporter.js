@@ -16,7 +16,7 @@ const readFromFile = path => {
     let csvLocationsArray = [];
     readstream
       .pipe(
-        csv(['region', 'type', 'office', 'physicalAddress', 'bioKits', 'notes'])
+        csv(['region', 'type', 'id', 'office', 'physicalAddress', 'bioKits'])
       )
       .on('data', data => {
         csvLocationsArray.push(data);
@@ -44,10 +44,10 @@ const joinPhysicalAddress = array => {
   return array.join(', ');
 };
 
-const createModels = (location, index) => {
+const createModels = location => {
   let addressArray = seperateLocation(location.physicalAddress);
   let model = new locationModel({
-    locationId: index,
+    locationId: location.id,
     locationName: location.office,
     locationAddress: joinPhysicalAddress(
       addressArray.slice(0, addressArray.length - 3)
