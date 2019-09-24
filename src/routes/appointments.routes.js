@@ -12,7 +12,7 @@ router.get('/appointments/:locationId', (req, res) => {
   let day = req.query.day;
   let month = req.query.month;
   if (day) {
-    day = moment(day, 'DD-MM-YYYY');
+    day = moment(day, 'YYYY-MM-DD');
     AppointmentsModel.find({
       locationId: req.params.locationId,
       date: {
@@ -67,6 +67,11 @@ router.get('/appointments/:locationId', (req, res) => {
   }
 });
 
+// GET available timeslots for a location on a given day
+// router.get('/appointments/timeslots/:locationId', (req, res) => {
+//   let day = req.query.day;
+// });
+
 // GET a current (not in the past) appointment with it's BIL field
 router.get('/appointments/bil/:bil', (req, res) => {
   let now = moment().toDate();
@@ -95,6 +100,9 @@ router.post('/appointments/temp', (req, res) => {
     .add(5, 'minutes')
     .toDate();
   model.confirmation = null;
+  model.maintenance = false;
+  model.cancelledByClient = false;
+  model.cancelledByLocation = false;
   model
     .save()
     .then(doc => {
