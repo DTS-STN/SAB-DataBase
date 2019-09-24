@@ -172,6 +172,7 @@ router.post('/appointments/temp', (req, res) => {
   model.expires = moment()
     .add(5, 'minutes')
     .toDate();
+  model.confirmation = null;
   model
     .save()
     .then(doc => {
