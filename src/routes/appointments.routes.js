@@ -97,7 +97,6 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
               let appointmentSlot = moment(appointments[`${j}`].date)
                 .utc()
                 .format('hh:mm a');
-              console.log(appointmentSlot);
               if (timeSlots[`${i}`].value === appointmentSlot) {
                 appointmentCount++;
                 if (appointmentCount === bioKitCount) {
