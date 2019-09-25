@@ -167,8 +167,10 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
           for (let i = 0; i < timeSlots.length; i++) {
             for (let j = 0; j < appointments.length; j++) {
               let appointmentSlot = moment(appointments[`${j}`].date)
-                .local(true)
+                .utc()
                 .format('hh:mm a');
+              console.log(appointments[`${j}`].date);
+              console.log(appointmentSlot);
               if (timeSlots[`${i}`].value === appointmentSlot) {
                 timeSlots.splice(i, 1);
               }
@@ -180,7 +182,7 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
           res.json(availTimeSlots);
         })
         .catch(err => {
-          res.status(500).json(err);
+          res.status(500).json(err.message);
         });
     });
 });
