@@ -20,10 +20,6 @@ export function getBioKitId() {
   return ids[Math.floor(Math.random() * ids.length)];
 }
 
-export function randomTimezone(index) {
-  return index % 2 ? 'America/Toronto' : 'America/Vancouver';
-}
-
 // Return array of BioKit models with distinct property values
 export function generateSampleBioKits() {
   let ids = ['a1234', 'b3456', 'c5678'];
