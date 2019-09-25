@@ -34,7 +34,8 @@ const populateDatabase = async () => {
             .toDate()
         )
       )
-        .hours(Randomizers.randomInt(7, 11))
+        .utc()
+        .hours(Randomizers.randomInt(9, 14))
         .minutes(Randomizers.randomTimeSlot())
         .seconds(0)
         .milliseconds(0)
@@ -44,9 +45,12 @@ const populateDatabase = async () => {
       confirmation: Randomizers.randomString(8),
       dateConfirmed: Randomizers.randomDate(
         moment()
+          .utc()
           .startOf('week')
           .toDate(),
-        moment().toDate()
+        moment()
+          .utc()
+          .toDate()
       ),
       expires: null,
       // Every 20 appointments are maintenance appointments
@@ -69,6 +73,7 @@ const populateDatabase = async () => {
       postalCode: Randomizers.randomString(6),
       // Get a random province from an array of provinces
       locationProvince: Randomizers.randomProvince(),
+      timezone: Randomizers.randomTimezone(i),
       // Get a string representing the 24-hour format range of business hours for this location
       hours: `${Randomizers.randomInt(8, 10)}:00-${Randomizers.randomInt(
         16,
