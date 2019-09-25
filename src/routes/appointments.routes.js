@@ -92,13 +92,17 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
         .then(appointments => {
           for (let i = 0; i < timeSlots.length; i++) {
             for (let j = 0; j < appointments.length; j++) {
+              let appointmentCount = 0;
+              let bioKitCount = loc.bioKitAmount;
               let appointmentSlot = moment(appointments[`${j}`].date)
                 .utc()
                 .format('hh:mm a');
-              console.log(appointments[`${j}`].date);
               console.log(appointmentSlot);
               if (timeSlots[`${i}`].value === appointmentSlot) {
-                timeSlots.splice(i, 1);
+                appointmentCount++;
+                if (appointmentCount === bioKitCount) {
+                  timeSlots.splice(i, 1);
+                }
               }
             }
           }
