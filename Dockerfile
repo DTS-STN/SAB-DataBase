@@ -11,12 +11,11 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install --production
-RUN npm install --save-dev babel-loader@^8.0.0-beta
-RUN npm install jsonwebtoken
 
 COPY . .
+
+RUN npm run build
 
 EXPOSE 4001
 
 CMD ["npm", "start"]
-
