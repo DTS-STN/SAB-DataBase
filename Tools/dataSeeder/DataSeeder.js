@@ -46,7 +46,6 @@ const populateDatabase = async () => {
     });
     for (let j = 0; j < numAppoints; j++) {
       await AppointmentModel.create({
-        appointmentId: j,
         clientEmail: `${Randomizers.randomString(10)}@example.com`,
         phoneNumber: Randomizers.randomInt(1000000000, 9999999999),
         locationId: i,
