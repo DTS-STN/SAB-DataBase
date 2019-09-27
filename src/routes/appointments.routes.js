@@ -3,10 +3,19 @@ import AppointmentsModel from '../models/appointments.model';
 import moment from 'moment-timezone';
 import express from 'express';
 import locationModel from '../models/location.model';
+import respondToFind from './locations.routes';
 
 let router = express.Router();
 
-// TODO: Create endpoint for cancelling appointments
+const couldNotGetAppointments = {
+  code: 403,
+  msg: 'Could not get appointments'
+};
+
+// const couldNotGetTimeslots = {
+//   code: 403,
+//   msg: 'Could not get timeslots'
+// };
 
 // GET appointments for a given location for a given day
 // or month. Days and months are passed as query strings
@@ -15,19 +24,18 @@ router.get('/appointments/:locationId', (req, res) => {
   let month = req.query.month;
   if (day) {
     day = moment(day, 'YYYY-MM-DD');
-    AppointmentsModel.find({
-      locationId: req.params.locationId,
-      date: {
-        $gte: day.startOf('day').toDate(),
-        $lte: day.endOf('day').toDate()
+    AppointmentsModel.find(
+      {
+        locationId: req.params.locationId,
+        date: {
+          $gte: day.startOf('day').toDate(),
+          $lte: day.endOf('day').toDate()
+        }
+      },
+      (err, appointmentsDocs) => {
+        respondToFind(res, err, couldNotGetAppointments, appointmentsDocs);
       }
-    })
-      .then(docs => {
-        res.json(docs);
-      })
-      .catch(err => {
-        res.status(500).json(err);
-      });
+    );
   } else if (month) {
     let startDate = moment()
       .month(month)
@@ -37,35 +45,33 @@ router.get('/appointments/:locationId', (req, res) => {
       .month(month)
       .endOf('month')
       .toDate();
-    AppointmentsModel.find({
-      locationId: req.params.locationId,
-      date: {
-        $gte: startDate,
-        $lte: endDate
+    AppointmentsModel.find(
+      {
+        locationId: req.params.locationId,
+        date: {
+          $gte: startDate,
+          $lte: endDate
+        },
+        cancelledByClient: false,
+        cancelledByLocation: false
       },
-      cancelledByClient: false,
-      cancelledByLocation: false
-    })
-      .then(doc => {
-        res.json(doc);
-      })
-      .catch(err => {
-        res.status(500).json(err);
-      });
+      (err, appointmentsDocs) => {
+        respondToFind(res, err, couldNotGetAppointments, appointmentsDocs);
+      }
+    );
   } else {
     let now = moment().toDate();
-    AppointmentsModel.find({
-      locationId: req.params.locationId,
-      date: {
-        $gte: now
+    AppointmentsModel.find(
+      {
+        locationId: req.params.locationId,
+        date: {
+          $gte: now
+        }
+      },
+      (err, appointmentsDocs) => {
+        respondToFind(res, err, couldNotGetAppointments, appointmentsDocs);
       }
-    })
-      .then(doc => {
-        res.json(doc);
-      })
-      .catch(err => {
-        res.status(500).json(err);
-      });
+    );
   }
 });
 
