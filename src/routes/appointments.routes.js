@@ -1,5 +1,6 @@
 import AppointmentsModel from '../models/appointments.model';
-import moment from 'moment';
+// eslint-disable-next-line no-unused-vars
+import moment from 'moment-timezone';
 import express from 'express';
 import locationModel from '../models/location.model';
 
@@ -95,7 +96,7 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
               let appointmentCount = 0;
               let bioKitCount = loc.bioKitAmount;
               let appointmentSlot = moment(appointments[`${j}`].date)
-                .utc()
+                .tz(loc.timezone)
                 .format('hh:mm a');
               if (timeSlots[`${i}`].value === appointmentSlot) {
                 appointmentCount++;

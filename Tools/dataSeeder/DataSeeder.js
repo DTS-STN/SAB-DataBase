@@ -2,7 +2,7 @@ import LocationModel from '../../src/models/location.model';
 import AppointmentModel from '../../src/models/appointments.model';
 import * as db from '../DatabaseHelper';
 import * as Randomizers from './Randomizers';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 // User defined number of appointments and location documents to create
 let numAppoints = process.env.NUM_APPOINTMENTS || 100;
@@ -22,35 +22,34 @@ const populateDatabase = async () => {
       // Picks a random weekday in the week, 2 weeks from the current week and
       // selects a random hour within working hours, and then picks a random slot in
       // 15 minute increments
-      date: moment(
-        Randomizers.randomDate(
-          moment()
-            .startOf('week')
-            .add(15, 'days')
-            .toDate(),
-          moment()
-            .startOf('week')
-            .add(19, 'days')
-            .toDate()
+      date: moment
+        .tz(
+          Randomizers.randomDate(
+            moment()
+              .startOf('week')
+              .add(15, 'days')
+              .toDate(),
+            moment()
+              .startOf('week')
+              .add(19, 'days')
+              .toDate()
+          ),
+          Randomizers.randomTimezone(i)
         )
-      )
-        .utc()
         .hours(Randomizers.randomInt(9, 14))
         .minutes(Randomizers.randomTimeSlot())
         .seconds(0)
-        .milliseconds(0)
-        .toDate(),
+        .milliseconds(0),
       // Returns a date and time between the beginning of the week and the time of
       // the object's creation
       confirmation: Randomizers.randomString(8),
-      dateConfirmed: Randomizers.randomDate(
-        moment()
-          .utc()
-          .startOf('week')
-          .toDate(),
-        moment()
-          .utc()
-          .toDate()
+      dateConfirmed: moment(
+        Randomizers.randomDate(
+          moment()
+            .startOf('week')
+            .toDate(),
+          moment().toDate()
+        )
       ),
       expires: null,
       // Every 20 appointments are maintenance appointments
@@ -80,6 +79,7 @@ const populateDatabase = async () => {
       )}:00`,
       // Creates a week-long closure period for the location a week from the when
       // the object was initially generated
+      timezone: Randomizers.randomTimezone(i),
       closures: [
         {
           periodStart: moment()

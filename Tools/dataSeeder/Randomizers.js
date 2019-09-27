@@ -39,6 +39,10 @@ export function generateSampleBioKits() {
   return bioKits;
 }
 
+export function randomTimezone(index) {
+  return index % 2 ? 'America/Toronto' : 'America/Vancouver';
+}
+
 // Returns an alphanueric string of a given length
 export function randomString(length) {
   let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
