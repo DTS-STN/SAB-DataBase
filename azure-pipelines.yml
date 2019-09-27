@@ -5,6 +5,8 @@
 
 trigger:
 - master
+pr: none
+
 jobs:
 - job: Testing
   pool:
@@ -43,7 +45,7 @@ jobs:
     displayName: 'build'
 
 - job: Publish_Artifact
-  # dependsOn: Testing
+  dependsOn: Testing
   pool:
     vmImage: 'Ubuntu-16.04'
   steps:
