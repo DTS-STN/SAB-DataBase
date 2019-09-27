@@ -142,54 +142,6 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
     });
 });
 
-// GET available timeslots for a location on a given day
-router.get('/appointments/timeslots/:locationId', (req, res) => {
-  let day = req.query.day;
-  locationModel
-    .findOne({
-      locationId: req.params.locationId
-    })
-    .then(loc => {
-      day = moment(day, 'YYYY-MM-DD');
-      let hours = loc.hours.split('-');
-      let start = hours[0];
-      let end = hours[1];
-      let timeSlots = getTimeStops(start, end);
-
-      AppointmentsModel.find({
-        locationId: req.params.locationId,
-        date: {
-          $gte: day.startOf('day').toDate(),
-          $lte: day.endOf('day').toDate()
-        }
-      })
-        .then(appointments => {
-          for (let i = 0; i < timeSlots.length; i++) {
-            for (let j = 0; j < appointments.length; j++) {
-              let appointmentCount = 0;
-              let bioKitCount = loc.bioKitAmount;
-              let appointmentSlot = moment(appointments[`${j}`].date)
-                .tz(loc.timezone)
-                .format('hh:mm a');
-              if (timeSlots[`${i}`].value === appointmentSlot) {
-                appointmentCount++;
-                if (appointmentCount === bioKitCount) {
-                  timeSlots.splice(i, 1);
-                }
-              }
-            }
-          }
-          return timeSlots;
-        })
-        .then(availTimeSlots => {
-          res.json(availTimeSlots);
-        })
-        .catch(err => {
-          res.status(500).json(err.message);
-        });
-    });
-});
-
 // GET a current (not in the past) appointment with it's BIL field
 router.get('/appointments/bil/:bil', (req, res) => {
   let now = moment().toDate();
