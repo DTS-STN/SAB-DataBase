@@ -87,12 +87,17 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
     })
     .then(loc => {
       day = moment(day, 'YYYY-MM-DD');
-      const bioKitCount = loc.bioKitAmount;
+      const bioKitCount = 2;
       let hours = loc.hours.split('-');
       let start = hours[0];
       let end = hours[1];
       let timeSlots = getTimeStops(start, end);
 
+      // AppointmentsModel.mapReduce(() => {
+      //   emit(this.locationId, moment(this.date).tz(loc.timezone).format('hh:mm a'));
+      // }, (keyLocationId, dates) => {
+      //   return
+      // });
       AppointmentsModel.find({
         locationId: req.params.locationId,
         date: {
@@ -101,21 +106,26 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
         }
       })
         .then(appointments => {
-          for (let i = 0; i < timeSlots.length; i++) {
-            for (let j = 0; j < appointments.length; j++) {
-              let appointmentCount = 0;
-              let appointmentSlot = moment(appointments[`${j}`].date)
+          let appointmentCounts = appointments
+            .map(a =>
+              moment(a.date)
                 .tz(loc.timezone)
-                .format('hh:mm a');
-              if (timeSlots[`${i}`].value === appointmentSlot) {
-                appointmentCount++;
-                if (appointmentCount === bioKitCount) {
-                  timeSlots.splice(i, 1);
-                }
-              }
-            }
-          }
-          res.json(timeSlots);
+                .format('hh:mm a')
+            )
+            .reduce((acc, curr) => {
+              acc[`${curr}`] = (acc[`${curr}`] || 0) + 1;
+              return acc;
+            }, {});
+          const fullTimeSlots = Object.keys(appointmentCounts).filter(
+            ac => appointmentCounts[`${ac}`] >= bioKitCount
+          );
+          console.log(fullTimeSlots);
+          console.log(timeSlots);
+          //return all the timeslots that aren't in the list of fullAppointments
+          return timeSlots.filter(ts => !fullTimeSlots.includes(ts.value));
+        })
+        .then(timeSlots => {
+          res.status(200).json(timeSlots);
         })
         .catch(err => {
           res.status(500).json(`Error: ${err}` + err.message);
