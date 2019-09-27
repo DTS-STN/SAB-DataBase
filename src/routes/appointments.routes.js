@@ -87,6 +87,7 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
     })
     .then(loc => {
       day = moment(day, 'YYYY-MM-DD');
+      const bioKitCount = loc.bioKitAmount;
       let hours = loc.hours.split('-');
       let start = hours[0];
       let end = hours[1];
@@ -103,7 +104,6 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
           for (let i = 0; i < timeSlots.length; i++) {
             for (let j = 0; j < appointments.length; j++) {
               let appointmentCount = 0;
-              let bioKitCount = loc.bioKitAmount;
               let appointmentSlot = moment(appointments[`${j}`].date)
                 .tz(loc.timezone)
                 .format('hh:mm a');
