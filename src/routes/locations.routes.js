@@ -100,7 +100,7 @@ router.get('/locationsByProv/:province/:city?', (req, res) => {
             value: { $first: '$locationCity' }
           }
         },
-        { $sort: { value: -1 } }
+        { $sort: { value: 1 } }
       ],
       (err, locationDoc) =>
         respondToFind(res, err, couldNotGetLocation, locationDoc)
