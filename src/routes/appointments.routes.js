@@ -122,8 +122,6 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
           const fullTimeSlots = Object.keys(appointmentCounts).filter(
             ac => appointmentCounts[`${ac}`] >= bioKitCount
           );
-          console.log(fullTimeSlots);
-          console.log(timeSlots);
           //return all the timeslots that aren't in the list of fullAppointments
           return timeSlots.filter(ts => !fullTimeSlots.includes(ts.value));
         })
