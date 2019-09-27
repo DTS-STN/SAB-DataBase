@@ -5,62 +5,10 @@ import * as Randomizers from './Randomizers';
 import moment from 'moment-timezone';
 
 // User defined number of appointments and location documents to create
-let numAppoints = process.env.NUM_APPOINTMENTS || 100;
-let numLocations = process.env.NUM_LOCATIONS || 100;
+let numAppoints = process.env.NUM_APPOINTMENTS || 30;
+let numLocations = process.env.NUM_LOCATIONS || 60;
 
 const populateDatabase = async () => {
-  for (let i = 0; i < numAppoints; i++) {
-    await AppointmentModel.create({
-      appointmentId: i,
-      clientEmail: `${Randomizers.randomString(10)}@example.com`,
-      phoneNumber: Randomizers.randomInt(1000000000, 9999999999),
-      locationId: Randomizers.randomInt(0, numLocations),
-      // Returns one of two Biokit IDs
-      bioKitId: Randomizers.getBioKitId(),
-      // Returns string in BIL# format
-      bil: Randomizers.randomBil(),
-      // Picks a random weekday in the week, 2 weeks from the current week and
-      // selects a random hour within working hours, and then picks a random slot in
-      // 15 minute increments
-      date: moment
-        .tz(
-          Randomizers.randomDate(
-            moment()
-              .startOf('week')
-              .add(15, 'days')
-              .toDate(),
-            moment()
-              .startOf('week')
-              .add(19, 'days')
-              .toDate()
-          ),
-          Randomizers.randomTimezone(i)
-        )
-        .hours(Randomizers.randomInt(9, 14))
-        .minutes(Randomizers.randomTimeSlot())
-        .seconds(0)
-        .milliseconds(0),
-      // Returns a date and time between the beginning of the week and the time of
-      // the object's creation
-      confirmation: Randomizers.randomString(8),
-      dateConfirmed: moment(
-        Randomizers.randomDate(
-          moment()
-            .startOf('week')
-            .toDate(),
-          moment().toDate()
-        )
-      ),
-      expires: null,
-      // Every 20 appointments are maintenance appointments
-      maintenance: !(i % 20),
-      // Every 10 appointments are flagged as cancelled by the client
-      cancelledByClient: !(i % 10),
-      // Every 19 appointments are flagged as cancelled by the location/site
-      cancelledByLocation: !(i % 19)
-    });
-  }
-
   for (let i = 0; i < numLocations; i++) {
     await LocationModel.create({
       locationId: i,
@@ -94,8 +42,59 @@ const populateDatabase = async () => {
       ],
       bioKitAmount: 3,
       // Get array of 3 BioKits: 1 flagged accessible, 1 flagged unavailable
-      bioKits: Randomizers.generateSampleBioKits()
+      bioKits: Randomizers.generateSampleBioKits(3)
     });
+    for (let j = 0; j < numAppoints; j++) {
+      await AppointmentModel.create({
+        appointmentId: j,
+        clientEmail: `${Randomizers.randomString(10)}@example.com`,
+        phoneNumber: Randomizers.randomInt(1000000000, 9999999999),
+        locationId: i,
+        // Returns one of two Biokit IDs
+        bioKitId: Randomizers.randomInt(1, 3).toString(),
+        // Returns string in BIL# format
+        bil: Randomizers.randomBil(),
+        // Picks a random weekday in the week, 2 weeks from the current week and
+        // selects a random hour within working hours, and then picks a random slot in
+        // 15 minute increments
+        date: moment
+          .tz(
+            Randomizers.randomDate(
+              moment()
+                .startOf('week')
+                .add(15, 'days')
+                .toDate(),
+              moment()
+                .startOf('week')
+                .add(19, 'days')
+                .toDate()
+            ),
+            Randomizers.randomTimezone(i)
+          )
+          .hours(Randomizers.randomInt(9, 14))
+          .minutes(Randomizers.randomTimeSlot())
+          .seconds(0)
+          .milliseconds(0),
+        // Returns a date and time between the beginning of the week and the time of
+        // the object's creation
+        confirmation: Randomizers.randomString(8),
+        dateConfirmed: moment(
+          Randomizers.randomDate(
+            moment()
+              .startOf('week')
+              .toDate(),
+            moment().toDate()
+          )
+        ),
+        expires: null,
+        // Every 20 appointments are maintenance appointments
+        maintenance: !(i % 20),
+        // Every 10 appointments are flagged as cancelled by the client
+        cancelledByClient: !(i % 10),
+        // Every 19 appointments are flagged as cancelled by the location/site
+        cancelledByLocation: !(i % 19)
+      });
+    }
   }
 };
 

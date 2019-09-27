@@ -21,15 +21,13 @@ export function getBioKitId() {
 }
 
 // Return array of BioKit models with distinct property values
-export function generateSampleBioKits() {
-  let ids = ['a1234', 'b3456', 'c5678'];
+export function generateSampleBioKits(number) {
   let bioKits = [];
-  for (let index = 0; index < ids.length; index++) {
+  for (let index = 1; index <= number; index++) {
     // eslint-disable-next-line security/detect-object-injection
-    let id = ids[index];
     bioKits.push(
       new BiokitModel({
-        bioKitId: id,
+        bioKitId: index,
         accessible: index % 2,
         private: index % 2,
         available: index === 2 ? false : true
