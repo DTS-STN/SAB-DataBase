@@ -86,6 +86,9 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
       locationId: req.params.locationId
     })
     .then(loc => {
+      if (!loc) {
+        res.status(403).json('Error: Location does not exist');
+      }
       day = moment(day, 'YYYY-MM-DD');
       const bioKitCount = 2;
       let hours = loc.hours.split('-');
@@ -128,11 +131,11 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
           res.status(200).json(timeSlots);
         })
         .catch(err => {
-          res.status(500).json(`Error: ${err}` + err.message);
+          res.status(500).json(`Error:` + err.message);
         });
     })
     .catch(err => {
-      res.status(403).json(`Could not find location: ${err}`);
+      res.status(500).json(`Could not retrieve timeslots: ${err}`);
     });
 });
 
