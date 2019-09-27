@@ -90,7 +90,7 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
         res.status(403).json('Error: Location does not exist');
       }
       day = moment(day, 'YYYY-MM-DD');
-      const bioKitCount = 2;
+      const bioKitCount = loc.bioKitCount;
       let hours = loc.hours.split('-');
       let start = hours[0];
       let end = hours[1];
