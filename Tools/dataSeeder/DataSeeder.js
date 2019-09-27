@@ -27,6 +27,7 @@ const populateDatabase = async () => {
       )}:00`,
       // Creates a week-long closure period for the location a week from the when
       // the object was initially generated
+      timezone: Randomizers.randomTimezone(i),
       closures: [
         {
           periodStart: moment()
