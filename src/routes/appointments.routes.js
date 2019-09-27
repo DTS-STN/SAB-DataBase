@@ -106,11 +106,6 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
       let end = hours[1];
       let timeSlots = getTimeStops(start, end);
 
-      // AppointmentsModel.mapReduce(() => {
-      //   emit(this.locationId, moment(this.date).tz(loc.timezone).format('hh:mm a'));
-      // }, (keyLocationId, dates) => {
-      //   return
-      // });
       AppointmentsModel.find({
         locationId: req.params.locationId,
         date: {
