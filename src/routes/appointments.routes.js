@@ -78,6 +78,9 @@ router.get('/appointments/:locationId', (req, res) => {
 // GET available timeslots for a location on a given day
 router.get('/appointments/timeslots/:locationId', (req, res) => {
   let day = req.query.day;
+  if (!day) {
+    res.status(500).json('Day parameter is missing');
+  }
   locationModel
     .findOne({
       locationId: req.params.locationId
@@ -112,14 +115,14 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
               }
             }
           }
-          return timeSlots;
-        })
-        .then(availTimeSlots => {
-          res.json(availTimeSlots);
+          res.json(timeSlots);
         })
         .catch(err => {
-          res.status(500).json(err.message);
+          res.status(500).json(`Error: ${err}` + err.message);
         });
+    })
+    .catch(err => {
+      res.status(403).json(`Could not find location: ${err}`);
     });
 });
 
