@@ -106,6 +106,11 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
       let end = hours[1];
       let timeSlots = getTimeStops(start, end);
 
+      // AppointmentsModel.mapReduce(() => {
+      //   emit(this.locationId, moment(this.date).tz(loc.timezone).format('hh:mm a'));
+      // }, (keyLocationId, dates) => {
+      //   return
+      // });
       AppointmentsModel.find({
         locationId: req.params.locationId,
         date: {
@@ -117,7 +122,11 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
           let appointmentCounts = appointments
             .map(a =>
               moment(a.date)
+<<<<<<< HEAD
                 .utc()
+=======
+                .tz(loc.timezone)
+>>>>>>> Refactored for-loop into a map-reduce
                 .format('hh:mm a')
             )
             .reduce((acc, curr) => {
@@ -127,6 +136,11 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
           const fullTimeSlots = Object.keys(appointmentCounts).filter(
             ac => appointmentCounts[`${ac}`] >= bioKitCount
           );
+<<<<<<< HEAD
+=======
+          console.log(fullTimeSlots);
+          console.log(timeSlots);
+>>>>>>> Refactored for-loop into a map-reduce
           //return all the timeslots that aren't in the list of fullAppointments
           return timeSlots.filter(ts => !fullTimeSlots.includes(ts.value));
         })
