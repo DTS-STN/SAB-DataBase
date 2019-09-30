@@ -3,9 +3,19 @@ import AppointmentsModel from '../models/appointments.model';
 import moment from 'moment-timezone';
 import express from 'express';
 import locationModel from '../models/location.model';
-import respondToFind from './locations.routes';
 
 let router = express.Router();
+
+function respondToFind(res, err, errMsg, object) {
+  if (err) {
+    res.status(errMsg.code).send({ error: err, message: errMsg.msg });
+  } else {
+    res
+      .status(200)
+      .type('application/json')
+      .send(object);
+  }
+}
 
 const couldNotGetAppointments = {
   code: 403,
@@ -89,7 +99,7 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
       if (!loc) {
         res.status(403).json('Error: Location does not exist');
       }
-      day = moment(day, 'YYYY-MM-DD');
+      day = moment(day, 'YYYY-MM-DD').utc();
       const bioKitCount = loc.bioKitCount;
       let hours = loc.hours.split('-');
       let start = hours[0];
@@ -105,11 +115,7 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
       })
         .then(appointments => {
           let appointmentCounts = appointments
-            .map(a =>
-              moment(a.date)
-                .tz(loc.timezone)
-                .format('hh:mm a')
-            )
+            .map(a => moment(a.date).format('hh:mm a'))
             .reduce((acc, curr) => {
               acc[`${curr}`] = (acc[`${curr}`] || 0) + 1;
               return acc;
