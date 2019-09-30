@@ -14,7 +14,6 @@ const LocationSchema = new Schema({
   postalCode: String,
   locationProvince: String,
   hours: String,
-  timezone: String,
   defaultClosures: String,
   customClosures: String,
   bioKitAmount: Number,
