@@ -45,6 +45,7 @@ jobs:
 
 - job: Publish_Artifact
   dependsOn: Testing
+  condition: Succeeded()
   pool:
     vmImage: 'Ubuntu-16.04'
   steps:
@@ -60,6 +61,7 @@ jobs:
 
 - job: Deploy_Jenkins
   dependsOn: Publish_Artifact
+  condition: Succeeded()
   steps:
   - task: JenkinsQueueJob@2
     inputs:
