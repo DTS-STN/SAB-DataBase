@@ -231,10 +231,10 @@ const getTimeStops = (start, end) => {
   var timeStops = [];
 
   while (startTime <= endTime) {
-    const timestop = moment(startTime).format('hh:mm a');
+    const timeStop = moment(startTime).format('hh:mm a');
     timeStops.push({
-      value: timestop,
-      name: timestop
+      value: timeStop,
+      name: timeStop
     });
     startTime.add(15, 'minutes');
   }
