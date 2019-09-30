@@ -169,6 +169,7 @@ router.post('/appointments/temp', (req, res) => {
   model.maintenance = false;
   model.cancelledByClient = false;
   model.cancelledByLocation = false;
+  model.dateConfirmed = null;
   model.expires = moment()
     .add(5, 'minutes')
     .toDate();
