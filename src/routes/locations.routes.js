@@ -14,8 +14,9 @@ const internalServerError = {
 };
 
 // Deal with the results of a database query
-export function respondToFind(res, err, errMsg, object) {
+function respondToFind(res, err, errMsg, object) {
   if (err) {
+    console.log('ERROR: ' + err);
     res.status(errMsg.code).send({ error: err, message: errMsg.msg });
   } else {
     res
