@@ -71,8 +71,7 @@ const populateDatabase = async () => {
           .hours(Randomizers.randomInt(9, 14))
           .minutes(Randomizers.randomTimeSlot())
           .seconds(0)
-          .milliseconds(0)
-          .utc(),
+          .milliseconds(0),
         // Returns a date and time between the beginning of the week and the time of
         // the object's creation
         confirmation: Randomizers.randomString(8),
