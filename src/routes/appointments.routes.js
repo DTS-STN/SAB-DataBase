@@ -106,6 +106,8 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
       let end = hours[1];
       let timeSlots = getTimeStops(start, end);
 
+      console.log(timeSlots);
+
       AppointmentsModel.find({
         locationId: req.params.locationId,
         date: {
@@ -115,7 +117,11 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
       })
         .then(appointments => {
           let appointmentCounts = appointments
-            .map(a => moment(a.date).format('hh:mm a'))
+            .map(a =>
+              moment(a.date)
+                .utc()
+                .format('hh:mm a')
+            )
             .reduce((acc, curr) => {
               acc[`${curr}`] = (acc[`${curr}`] || 0) + 1;
               return acc;
@@ -123,6 +129,8 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
           const fullTimeSlots = Object.keys(appointmentCounts).filter(
             ac => appointmentCounts[`${ac}`] >= bioKitCount
           );
+          console.log(fullTimeSlots);
+          console.log(appointmentCounts);
           //return all the timeslots that aren't in the list of fullAppointments
           return timeSlots.filter(ts => !fullTimeSlots.includes(ts.value));
         })
