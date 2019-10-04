@@ -16,11 +16,11 @@ const mongoURI = process.env.MONGO_URI;
 const mongoPort = process.env.MONGO_PORT;
 const mongoDB = process.env.MONGO_DATABASE;
 // in cases where we are connection to mongo Atlas, it may be earier to just use a connection string
-let mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
+let mongoConnectionString = process.env.MONGO_CONNECTION_STRING || '';
 
 if (
   typeof mongoConnectionString === undefined ||
-  mongoConnectionString.length < 1
+  mongoConnectionString.length <= 1
 ) {
   // Connection string doesnt exist as an environment variable
   mongoConnectionString = `mongodb://${mongoUser}:${mongoPassword}@${mongoURI}:${mongoPort}/${mongoDB}`;
