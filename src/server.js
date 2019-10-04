@@ -15,14 +15,23 @@ const mongoPassword = process.env.MONGO_PASSWORD || '';
 const mongoURI = process.env.MONGO_URI;
 const mongoPort = process.env.MONGO_PORT;
 const mongoDB = process.env.MONGO_DATABASE;
+// in cases where we are connection to mongo Atlas, it may be earier to just use a connection string
+let mongoConnectionString = process.env.MONGO_CONNECTION_STRING;
+
+if (
+  typeof mongoConnectionString === undefined ||
+  mongoConnectionString.length < 1
+) {
+  // Connection string doesnt exist as an environment variable
+  mongoConnectionString = `mongodb://${mongoUser}:${mongoPassword}@${mongoURI}:${mongoPort}/${mongoDB}`;
+}
 
 let app = express();
-mongoose.connect(
-  `mongodb://${mongoUser}:${mongoPassword}@${mongoURI}:${mongoPort}/${mongoDB}`,
-  {
-    useNewUrlParser: true
-  }
-);
+console.log(mongoConnectionString);
+
+mongoose.connect(mongoConnectionString, {
+  useNewUrlParser: true
+});
 mongoose.set('useCreateIndex', true);
 
 mongoose.connection
