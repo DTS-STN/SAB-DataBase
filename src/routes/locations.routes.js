@@ -16,6 +16,7 @@ const internalServerError = {
 // Deal with the results of a database query
 function respondToFind(res, err, errMsg, object) {
   if (err) {
+    console.log('ERROR: ' + err);
     res.status(errMsg.code).send({ error: err, message: errMsg.msg });
   } else {
     res
@@ -99,11 +100,16 @@ router.get('/locationsByProv/:province/:city?', (req, res) => {
             name: { $first: '$locationCity' },
             value: { $first: '$locationCity' }
           }
-        },
-        { $sort: { value: -1 } }
+        }
       ],
-      (err, locationDoc) =>
-        respondToFind(res, err, couldNotGetLocation, locationDoc)
+      (err, locationDoc) => {
+        //This is here because Mongo sorts capitalized first
+        locationDoc.sort(function(a, b) {
+          //Using localeCompare in case names contain special symbols
+          return a.name.localeCompare(b.name);
+        });
+        respondToFind(res, err, couldNotGetLocation, locationDoc);
+      }
     );
   } else {
     LocationsModel.find(
