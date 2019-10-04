@@ -1,6 +1,6 @@
 import AppointmentsModel from '../models/appointments.model';
 // eslint-disable-next-line no-unused-vars
-import moment from 'moment-timezone';
+import moment from 'moment';
 import express from 'express';
 import locationModel from '../models/location.model';
 
@@ -32,6 +32,9 @@ const couldNotGetAppointments = {
 router.get('/appointments/:locationId', (req, res) => {
   let day = req.query.day;
   let month = req.query.month;
+  let fromDate = req.query.from;
+  let to = req.query.to;
+
   if (day) {
     day = moment(day, 'YYYY-MM-DD');
     AppointmentsModel.find(
@@ -64,6 +67,21 @@ router.get('/appointments/:locationId', (req, res) => {
         },
         cancelledByClient: false,
         cancelledByLocation: false
+      },
+      (err, appointmentsDocs) => {
+        respondToFind(res, err, couldNotGetAppointments, appointmentsDocs);
+      }
+    );
+  } else if (fromDate) {
+    fromDate = moment(fromDate, 'DD-MM-YYYY');
+    to = moment(to, 'DD-MM-YYYY');
+    AppointmentsModel.find(
+      {
+        locationId: req.params.locationId,
+        date: {
+          $gte: fromDate.startOf('day').toDate(),
+          $lte: to.endOf('day').toDate()
+        }
       },
       (err, appointmentsDocs) => {
         respondToFind(res, err, couldNotGetAppointments, appointmentsDocs);
@@ -191,8 +209,9 @@ router.put('/appointments/confirm/:documentId', (req, res) => {
   // Get temporary appointment document
   AppointmentsModel.findById(req.params.documentId).then(doc => {
     // Remove expiry and change to confirmed appointment
+    console.log(doc.dateConfirmed);
     if (doc.dateConfirmed !== null) {
-      return res.status(400).send('Appointment has already been confirmed');
+      return res.status(400).send(doc);
     }
     doc.confirmation = hashFromData(doc.clientEmail, doc.bil);
     doc.expires = null;
