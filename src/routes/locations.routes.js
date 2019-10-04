@@ -103,11 +103,11 @@ router.get('/locationsByProv/:province/:city?', (req, res) => {
       ],
       (err, locationDoc) => {
         //This is here because Mongo sorts capitalized first
-        locationDoc.sort(function (a, b) {
+        locationDoc.sort(function(a, b) {
           //Using localeCompare in case names contain special symbols
           return a.name.localeCompare(b.name);
-        })
-        respondToFind(res, err, couldNotGetLocation, locationDoc)
+        });
+        respondToFind(res, err, couldNotGetLocation, locationDoc);
       }
     );
   } else {

@@ -10,15 +10,16 @@ import path from 'path';
 import bodyParser from 'body-parser';
 require('dotenv').config();
 
-const mongoUser = process.env.MONGO_USER || '';
-const mongoPassword = process.env.MONGO_PASSWORD || '';
-const mongoURI = process.env.MONGO_URI;
-const mongoPort = process.env.MONGO_PORT;
-const mongoDB = process.env.MONGO_DATABASE;
+// const mongoUser = process.env.MONGO_USER || '';
+// const mongoPassword = process.env.MONGO_PASSWORD || '';
+// const mongoURI = process.env.MONGO_URI;
+// const mongoPort = process.env.MONGO_PORT;
+// const mongoDB = process.env.MONGO_DATABASE;
 
 let app = express();
 mongoose.connect(
-  `mongodb://${mongoUser}:${mongoPassword}@${mongoURI}:${mongoPort}/${mongoDB}`,
+  // `mongodb://${mongoUser}:${mongoPassword}@${mongoURI}:${mongoPort}/${mongoDB}`,
+  'mongodb+srv://marco:marco1234@cluster0-wbfnv.mongodb.net/test?retryWrites=true&w=majority',
   {
     useNewUrlParser: true
   }

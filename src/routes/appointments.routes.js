@@ -11,6 +11,9 @@ let router = express.Router();
 router.get('/appointments/:locationId', (req, res) => {
   let day = req.query.day;
   let month = req.query.month;
+  let from = req.query.from;
+  let to = req.query.to;
+
   if (day) {
     day = moment(day, 'DD-MM-YYYY');
     AppointmentsModel.find({
@@ -46,6 +49,22 @@ router.get('/appointments/:locationId', (req, res) => {
     })
       .then(doc => {
         res.json(doc);
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  } else if (from) {
+    from = moment(from, 'DD-MM-YYYY');
+    to = moment(to, 'DD-MM-YYYY');
+    AppointmentsModel.find({
+      locationId: req.params.locationId,
+      date: {
+        $gte: from.startOf('day').toDate(),
+        $lte: to.endOf('day').toDate()
+      }
+    })
+      .then(docs => {
+        res.json(docs);
       })
       .catch(err => {
         res.status(500).json(err);
@@ -90,6 +109,11 @@ router.post('/appointments/temp', (req, res) => {
     return res.status(400).send('Request body is missing');
   }
   let model = new AppointmentsModel(req.body);
+  model.confirmation = null;
+  model.maintenance = false;
+  model.cancelledByClient = false;
+  model.cancelledByLocation = false;
+  model.dateConfirmed = null;
 
   model.expires = moment()
     .add(5, 'minutes')
@@ -112,8 +136,9 @@ router.put('/appointments/confirm/:documentId', (req, res) => {
   // Get temporary appointment document
   AppointmentsModel.findById(req.params.documentId).then(doc => {
     // Remove expiry and change to confirmed appointment
+    console.log(doc.dateConfirmed);
     if (doc.dateConfirmed !== null) {
-      return res.status(400).send('Appointment has already been confirmed');
+      return res.status(400).send(doc);
     }
     doc.confirmation = hashFromData(doc.clientEmail, doc.bil);
     doc.expires = null;
