@@ -105,7 +105,7 @@ router.get('/appointments/:locationId', (req, res) => {
 
 // GET available timeslots for a location on a given day
 router.get('/appointments/timeslots/:locationId', (req, res) => {
-  let accessible = req.query.accessibility;
+  let accessible = req.query.accessible;
   let day = req.query.day;
   if (!day) {
     res.status(500).json('Day parameter is missing');
