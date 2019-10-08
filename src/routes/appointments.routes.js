@@ -120,13 +120,6 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
       }
       day = moment(day, 'YYYY-MM-DD').utc();
       const bioKitCount = loc.bioKitCount;
-      // const accessibleBioKits = loc.bioKits.filter(bk => {
-      //   return bk.private === true && bk.accessible === true;
-      // });
-      // const accessibleBioKitIds = accessibleBioKits.map(bk => {
-      //   bk.bioKitId;
-      // });
-      // console.log(accessibleBioKitIds);
       let hours = loc.hours.split('-');
       let start = hours[0];
       let end = hours[1];
