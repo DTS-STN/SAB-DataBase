@@ -105,6 +105,7 @@ router.get('/appointments/:locationId', (req, res) => {
 
 // GET available timeslots for a location on a given day
 router.get('/appointments/timeslots/:locationId', (req, res) => {
+  let accessible = req.query.accessibility;
   let day = req.query.day;
   if (!day) {
     res.status(500).json('Day parameter is missing');
@@ -132,18 +133,24 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
         }
       })
         .then(appointments => {
-          let appointmentCounts = appointments
-            .map(a =>
-              moment(a.date)
-                .utc()
-                .format('hh:mm a')
-            )
-            .reduce((acc, curr) => {
-              acc[`${curr}`] = (acc[`${curr}`] || 0) + 1;
-              return acc;
-            }, {});
-          const fullTimeSlots = Object.keys(appointmentCounts).filter(
-            ac => appointmentCounts[`${ac}`] >= bioKitCount
+          if (accessible && accessible === 'true') {
+            let accessibleAppointments = appointments.filter(a => {
+              return a.privateAccessible === true;
+            });
+            const appointmentCounts = mapToTimeslots(accessibleAppointments);
+            const accessibleBioKitCount = loc.bioKits.filter(
+              bioKit => bioKit.accessible && bioKit.private === true
+            ).length;
+            const fullTimeSlots = mapFullTimeslots(
+              appointmentCounts,
+              accessibleBioKitCount
+            );
+            return timeSlots.filter(ts => !fullTimeSlots.includes(ts.value));
+          }
+          let appointmentCounts = mapToTimeslots(appointments);
+          const fullTimeSlots = mapFullTimeslots(
+            appointmentCounts,
+            bioKitCount
           );
           //return all the timeslots that aren't in the list of fullAppointments
           return timeSlots.filter(ts => !fullTimeSlots.includes(ts.value));
@@ -264,6 +271,23 @@ const getTimeStops = (start, end) => {
   }
 
   return timeStops;
+};
+
+const mapToTimeslots = appointments => {
+  return appointments
+    .map(a =>
+      moment(a.date)
+        .utc()
+        .format('hh:mm a')
+    )
+    .reduce((acc, curr) => {
+      acc[`${curr}`] = (acc[`${curr}`] || 0) + 1;
+      return acc;
+    }, {});
+};
+
+const mapFullTimeslots = (object, bioKitCount) => {
+  return Object.keys(object).filter(ac => object[`${ac}`] >= bioKitCount);
 };
 
 export default router;
