@@ -144,22 +144,18 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
             let accessibleAppointments = appointments.filter(a => {
               return a.privateAccessible === true;
             });
-            console.log(accessibleAppointments);
             const appointmentCounts = mapToTimeslots(
               accessibleAppointments
             ).reduce((acc, curr) => {
               acc[`${curr}`] = (acc[`${curr}`] || 0) + 1;
               return acc;
             }, {});
-            console.log(appointmentCounts);
             const accessibleBioKitCount = loc.bioKits.filter(
               bioKit => bioKit.accessible && bioKit.private === true
             ).length;
-            console.log(accessibleBioKitCount);
             const fullTimeSlots = Object.keys(appointmentCounts).filter(
               ac => appointmentCounts[`${ac}`] >= accessibleBioKitCount
             );
-            console.log(fullTimeSlots);
             return timeSlots.filter(ts => !fullTimeSlots.includes(ts.value));
           }
           let appointmentCounts = mapToTimeslots(appointments).reduce(
