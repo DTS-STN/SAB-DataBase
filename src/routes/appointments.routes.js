@@ -120,9 +120,12 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
       }
       day = moment(day, 'YYYY-MM-DD').utc();
       const bioKitCount = loc.bioKitCount;
-      let hours = loc.hours.split('-');
-      let start = hours[0];
-      let end = hours[1];
+      const accessibleBioKitCount = loc.bioKits.filter(
+        bioKit => bioKit.accessible && bioKit.private === true
+      ).length;
+      const hours = loc.hours.split('-');
+      const start = hours[0];
+      const end = hours[1];
       let timeSlots = getTimeStops(start, end);
 
       AppointmentsModel.find({
@@ -134,20 +137,17 @@ router.get('/appointments/timeslots/:locationId', (req, res) => {
       })
         .then(appointments => {
           if (accessible && accessible === 'true') {
-            let accessibleAppointments = appointments.filter(a => {
+            const accessibleAppointments = appointments.filter(a => {
               return a.privateAccessible === true;
             });
             const appointmentCounts = mapToTimeslots(accessibleAppointments);
-            const accessibleBioKitCount = loc.bioKits.filter(
-              bioKit => bioKit.accessible && bioKit.private === true
-            ).length;
             const fullTimeSlots = mapFullTimeslots(
               appointmentCounts,
               accessibleBioKitCount
             );
             return timeSlots.filter(ts => !fullTimeSlots.includes(ts.value));
           }
-          let appointmentCounts = mapToTimeslots(appointments);
+          const appointmentCounts = mapToTimeslots(appointments);
           const fullTimeSlots = mapFullTimeslots(
             appointmentCounts,
             bioKitCount
