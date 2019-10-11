@@ -16,7 +16,15 @@ const readFromFile = path => {
     let csvLocationsArray = [];
     readstream
       .pipe(
-        csv(['region', 'type', 'id', 'office', 'physicalAddress', 'bioKits'])
+        csv([
+          'region',
+          'type',
+          'id',
+          'office',
+          'physicalAddress',
+          'bioKits',
+          'hours'
+        ])
       )
       .on('data', data => {
         csvLocationsArray.push(data);
@@ -55,6 +63,7 @@ const createModels = location => {
     locationCity: addressArray[addressArray.length - 3],
     postalCode: addressArray[addressArray.length - 1],
     locationProvince: addressArray[addressArray.length - 2],
+    hours: location.hours,
     bioKitAmount: parseInt(location.bioKits),
     bioKits: generateBioKits(parseInt(location.bioKits))
   });
