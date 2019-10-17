@@ -3,6 +3,7 @@ import AppointmentsModel from '../models/appointments.model';
 import moment from 'moment';
 import express from 'express';
 import locationModel from '../models/location.model';
+import mongoose from 'mongoose';
 
 let router = express.Router();
 
@@ -190,6 +191,7 @@ router.post('/appointments/temp', (req, res) => {
     return res.status(400).send('Request body is missing');
   }
   let model = new AppointmentsModel(req.body);
+  model._id = mongoose.Types.ObjectId();
   model.confirmation = null;
   model.maintenance = false;
   model.cancelledByClient = false;
@@ -212,11 +214,10 @@ router.post('/appointments/temp', (req, res) => {
 });
 
 // POST for creating a new confirmed appointment
-router.put('/appointments/confirm/:documentId', (req, res) => {
+router.get('/appointments/confirm/:documentId', (req, res) => {
   // Get temporary appointment document
   AppointmentsModel.findById(req.params.documentId).then(doc => {
     // Remove expiry and change to confirmed appointment
-    console.log(doc.dateConfirmed);
     if (doc.dateConfirmed !== null) {
       return res.status(400).send(doc);
     }
