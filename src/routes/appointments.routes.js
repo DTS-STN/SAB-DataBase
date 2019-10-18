@@ -213,6 +213,28 @@ router.post('/appointments/temp', (req, res) => {
     });
 });
 
+router.delete('/appointments/temp/delete/:documentId', (req, res) => {
+  AppointmentsModel.findById(req.params.documentId)
+    .then(doc => {
+      if (doc.dateConfirmed !== null) {
+        return res
+          .status(500)
+          .json(`Appointment has already been confirmed: ${doc}`);
+      }
+      doc
+        .remove()
+        .then(doc => {
+          return res.status(200).send(doc);
+        })
+        .catch(err => {
+          res.status(500).json(`Could not delete appointment: ${err}`);
+        });
+    })
+    .catch(err => {
+      res.status(500).json(`Could not find appointment: ${err}`);
+    });
+});
+
 // POST for creating a new confirmed appointment
 router.get('/appointments/confirm/:documentId', (req, res) => {
   // Get temporary appointment document
@@ -253,8 +275,8 @@ const hashFromData = (email, paperFileNumber) => {
 };
 
 const getTimeStops = (start, end) => {
-  var startTime = moment(start, 'hh:mm');
-  var endTime = moment(end, 'hh:mm');
+  var startTime = moment(start, 'h:mm');
+  var endTime = moment(end, 'h:mm');
 
   if (endTime.isBefore(startTime)) {
     endTime.add(1, 'day');
@@ -263,7 +285,7 @@ const getTimeStops = (start, end) => {
   var timeStops = [];
 
   while (startTime <= endTime) {
-    const timeStop = moment(startTime).format('hh:mm a');
+    const timeStop = moment(startTime).format('h:mm a');
     timeStops.push({
       value: timeStop,
       name: timeStop
@@ -279,7 +301,7 @@ const mapToTimeslots = appointments => {
     .map(a =>
       moment(a.date)
         .utc()
-        .format('hh:mm a')
+        .format('h:mm a')
     )
     .reduce((acc, curr) => {
       acc[`${curr}`] = (acc[`${curr}`] || 0) + 1;
