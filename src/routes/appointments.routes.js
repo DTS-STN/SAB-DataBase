@@ -253,8 +253,8 @@ const hashFromData = (email, paperFileNumber) => {
 };
 
 const getTimeStops = (start, end) => {
-  var startTime = moment(start, 'hh:mm');
-  var endTime = moment(end, 'hh:mm');
+  var startTime = moment(start, 'h:mm');
+  var endTime = moment(end, 'h:mm');
 
   if (endTime.isBefore(startTime)) {
     endTime.add(1, 'day');
@@ -263,7 +263,7 @@ const getTimeStops = (start, end) => {
   var timeStops = [];
 
   while (startTime <= endTime) {
-    const timeStop = moment(startTime).format('hh:mm a');
+    const timeStop = moment(startTime).format('h:mm a');
     timeStops.push({
       value: timeStop,
       name: timeStop
@@ -279,7 +279,7 @@ const mapToTimeslots = appointments => {
     .map(a =>
       moment(a.date)
         .utc()
-        .format('hh:mm a')
+        .format('h:mm a')
     )
     .reduce((acc, curr) => {
       acc[`${curr}`] = (acc[`${curr}`] || 0) + 1;
