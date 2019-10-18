@@ -213,6 +213,28 @@ router.post('/appointments/temp', (req, res) => {
     });
 });
 
+router.delete('/appointments/temp/delete/:documentId', (req, res) => {
+  AppointmentsModel.findById(req.params.documentId)
+    .then(doc => {
+      if (doc.dateConfirmed !== null) {
+        return res
+          .status(500)
+          .json(`Appointment has already been confirmed: ${doc}`);
+      }
+      doc
+        .remove()
+        .then(doc => {
+          return res.status(200).send(doc);
+        })
+        .catch(err => {
+          res.status(500).json(`Could not delete appointment: ${err}`);
+        });
+    })
+    .catch(err => {
+      res.status(500).json(`Could not find appointment: ${err}`);
+    });
+});
+
 // POST for creating a new confirmed appointment
 router.get('/appointments/confirm/:documentId', (req, res) => {
   // Get temporary appointment document
