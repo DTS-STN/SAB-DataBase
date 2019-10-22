@@ -4,6 +4,8 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 name: "New SAB-Database PR Pipeline"
+pool: Default
+
 trigger:
 - master
 
