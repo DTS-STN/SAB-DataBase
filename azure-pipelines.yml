@@ -53,8 +53,6 @@ stages:
     condition:  and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
     jobs:
     - job: Publish_Artifact
-      pool:
-        vmImage: 'Ubuntu-16.04'
       steps:
       - task: Docker@2
         inputs:
