@@ -16,8 +16,6 @@ stages:
   - stage: Test
     jobs:
     - job: Testing
-      pool:
-        vmImage: 'ubuntu-latest'
 
       steps:
       - task: NodeTool@0
